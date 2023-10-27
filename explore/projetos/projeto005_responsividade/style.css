@@ -1,0 +1,146 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: grayscale;
+}
+
+:root {
+    --Source-Serif: 'Source Serif 4', serif;
+    font-size: 62.5%; /* 10px */
+}
+
+body {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background: #FFF;
+    
+}
+
+main {
+    max-width: 32rem;
+    margin-inline: auto;
+    
+    padding: 5.3rem 3.7rem;
+    box-sizing: content-box;
+}
+
+main, main .recipe {
+    display: flex;
+    flex-direction: column;
+    gap: 3.4rem;
+}
+
+main .recipe {
+    gap: 4.68rem;
+    text-align: justify;
+}
+
+.recipe h1,
+main .ingredients h2 {
+    color: #A54328;
+    font-family: var(--Source-Serif);
+    font-size: clamp(2.8rem, 2vw + 1rem, 4rem);
+    font-style: normal;
+    font-weight: 700;
+    line-height: clamp(3.6rem, 2vw + 1rem, 5rem);
+}
+
+.recipe img {
+    display: block;
+    width: 100%;
+    max-width: 41.1rem;
+    margin: 0 auto;
+}
+
+.recipe p,
+.ingredients strong,
+.ingredients strong,
+.ingredients ul li,
+.ingredients ol li {
+    color: #A54328;
+    font-family: var(--Source-Serif);
+    font-size: clamp(1.4rem, 1vw + 0.4rem, 2rem);
+    font-style: normal;
+    font-weight: 400;
+    line-height: clamp(1.8rem, 1vw + 1rem, 2.5rem);
+}
+
+main .ingredients h2 {
+    margin-bottom: 3.63rem;
+}
+
+.ingredients ul,
+.ingredients ol {
+    padding-left: 2.4rem;
+}
+
+.ingredients strong,
+.ingredients strong {
+    font-weight: 700;
+}
+
+.ingredients button {
+    background: #A54328;
+
+    color: white;
+    font-family: var(--Source-Serif);
+    font-size: 0.992rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.7006rem;
+    text-transform: capitalize;
+
+    border: none;
+    border-radius: .6rem;
+    margin-top: 1.7rem;
+    padding: 1.13rem;
+}
+
+.ingredients button:hover {
+    background: #551c0c;
+}
+
+@media (min-width: 1120px) {
+    main {
+        flex-direction: row;
+        align-items: center;
+        gap: 19rem;
+
+        max-width: max-content;
+    }
+
+    .recipe {
+        width: 100%;
+        max-width: 43.5rem;
+    }
+
+    .ingredients {
+        width: 100%;
+        max-width: 48rem;
+    }
+
+    /* .recipe h1,
+    main .ingredients h2  {
+        font-size: 4rem;
+        line-height: 5rem;
+    }
+
+    .recipe p,
+    .ingredients strong,
+    .ingredients strong,
+    .ingredients ul li,
+    .ingredients ol li {
+        font-size: 2rem;
+        line-height: 2.5rem;
+    } */
+
+    .ingredients button {
+        padding: 1rem 2rem;
+        font-size: 1.4rem;
+        line-height: 2.4rem;
+    }
+}

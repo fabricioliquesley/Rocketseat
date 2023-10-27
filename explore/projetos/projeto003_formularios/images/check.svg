@@ -1,0 +1,26 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="24" height="24" fill="#E5E5E5"/>
+<g id="Projeto 03">
+<rect width="1440" height="1939" transform="translate(-415 -1414)" fill="#D9D9D9"/>
+<g id="Formul&#195;&#161;rio">
+<g id="Wrapper">
+<path d="M-64 -1124C-64 -1128.42 -60.4183 -1132 -56 -1132H664C668.418 -1132 672 -1128.42 672 -1124V298H-64V-1124Z" fill="#FAFAFC"/>
+<g id="Privacidade">
+<g id="Checkbox">
+<g id="checkbox">
+<rect id="Checkbox_2" width="24" height="24" rx="8" fill="#FAFAFC" stroke="#E6E6F0"/>
+<g id="check" clip-path="url(#clip0_0_1)">
+<path id="Vector" d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="#42D3FF"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_0_1">
+<rect width="24" height="24" fill="white"/>
+</clipPath>
+</defs>
+</svg>

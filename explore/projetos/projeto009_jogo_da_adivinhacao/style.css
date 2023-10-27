@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --DM-Sans: 'DM Sans', sans-serif;
+    --Montserrat: 'Montserrat', sans-serif;
+
+    --color-white-100: #ffffff;
+    --color-gray-100: #DCE2E9;
+    --color-purple-300: #7879F1;
+    --color-purple-400: #34355B;
+    --color-purple-400-opacity: #34355BCC;
+    --color-blue-gradient: linear-gradient(288deg, #C2E9FB 0%, #A1C4FD 100%);
+
+    font-size: 62.5%; 
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background: var(--color-blue-gradient);
+
+    font-size: 1.6rem;
+}
+
+body main {
+    width: min(42.8rem, 90%);
+    background: var(--color-white-100);
+
+    border-radius: .6rem;
+    padding: 4.8rem 6.4rem;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.10);
+
+}
+
+main div.hide {
+    display: none;
+}
+
+main, button, input {
+    font-family: var(--DM-Sans);
+}
+
+main .screen1,
+main .screen2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4.8rem;
+}
+
+main .text h1,
+main .screen2 h1 {
+    color: var(--color-purple-400);
+    font-family: var(--Montserrat);
+    font-size: 2.4rem;
+    font-weight: 600;
+
+    margin-bottom: 1.6rem;
+}
+
+main .text p,
+form #hunch {
+    color: var(--color-purple-400-opacity);
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 150%; /* 2.4rem */
+    text-align: center;
+}
+
+main form {
+    display: flex;
+}
+
+form #hunch {
+    height: 5.3rem;
+    background: var(--color-gray-100);
+
+    color: var(--color-purple-400);
+
+    border: none;
+    border-radius: .4rem 0 0 .4rem;
+    padding: 1.6rem;
+}
+
+form button#submitButton,
+.screen2 button {
+    background: var(--color-purple-300);
+    color: var(--color-white-100);
+
+    color: var(--neutral-white, #FFF);
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 700;
+
+    border: none;
+    border-radius: 0 .4rem .4rem 0;
+    padding: 1.6rem;
+
+    cursor: pointer;
+}
+
+main .screen2 {
+    gap: 3.3rem;
+}
+
+main .screen2 h1 {
+    font-size: 2.3rem;
+    margin: 0;
+}
+
+.screen2 button {
+    border-radius: .4rem;
+}
+
+@media (max-width: 374px){
+    body main {
+        padding: 2rem;
+    }
+}
+
+@media (min-width: 375px) and (max-width: 424px){
+    body main {
+        padding: 4rem;
+    }
+}

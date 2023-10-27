@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crie seu evento</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Poppins&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="flex page">
+    <header class="flex header">
+        <h1>Crie e compartilhe seu evento.</h1>
+        <p>
+            O primeiro passo, é preencher esse<br>
+            formulário de inscrição.
+        </p>
+    </header>
+    <main>
+        <form class="flex" id="event-register">
+            <fieldset class="flex">
+                <legend>Informações do Evento</legend>
+                <div class="title">
+                    <label class="flex" for="title">
+                        Título do evento
+                        <span>(mínimo 8 caracteres)</span>
+                    </label>
+                    <input type="text" name="title" id="title" required minlength="8">
+                </div>
+                <div class="urlEvent">
+                    <label class="flex" for="urlEvent">
+                        Link do evento
+                        <span>(comece com https://)</span>
+                    </label>
+                    <input type="url" name="url-event" id="urlEvent">
+                </div>
+                <div class="whatsapp">
+                    <label class="flex" for="whatsapp">
+                        Whatsapp para contato
+                        <span>(somente números)</span>
+                    </label>
+                    <input type="tel" name="whatsapp-number" id="whatsapp">
+                </div>
+                <div class="extraInfo">
+                    <label class="flex" for="extraInfo">
+                        Informações  extras
+                    </label>
+                    <textarea name="extra-info" id="extraInfo" maxlength="300"></textarea>
+                </div>
+                <div class="category">
+                    <label class="flex" for="category">Categoria</label>
+                    <select name="category" id="category" required>
+                        <option value="">Tipo de evento</option>
+                        <option value="Aniversário">
+                            Aniversário
+                        </option>
+                        <option value="Formatura">
+                            Formatura
+                        </option>
+                        <option value="Casamento">
+                            Casamento
+                        </option>
+                    </select>
+                </div>
+            </fieldset>
+            <fieldset class="flex">
+                <legend>Privacidade</legend>
+                <div class="emailAdmin">
+                    <label class="flex" for="emailAdmin">
+                        E-mail do administrador
+                        <span>(digite um email válido)</span>
+                    </label>
+                    <input type="email" name="email-admin" id="emailAdmin" required>
+                </div>
+                <div class="password">
+                    <label class="flex" for="password">
+                        Senha de acesso para os participantes
+                        <span>(mínimo 8 caracteres)</span>
+                    </label>
+                    <input type="password" name="password" id="password" required minlength="8">
+                </div>
+                <div class="private">
+                    <input type="checkbox" id="privateChecke" checked>
+                    <label class="flex" for="privateChecke">Evento privado</label>
+                </div>
+            </fieldset>
+            <fieldset class="flex date">
+                <legend>Dia e hora</legend>
+                <div class="date">
+                    <label class="flex" for="date">Data</label>
+                    <input type="date" name="date" id="date" required>
+                </div>
+                <div class="startHour">
+                    <label class="flex" for="startHour">Das</label>
+                    <input type="time" name="start-hour" id="startHour" required>
+                </div>
+                <div class="endTime">
+                    <label class="flex" for="endTime">Até</label>
+                    <input type="time" name="end-time" id="endTime" required>
+                </div>
+            </fieldset>
+        </form>
+    </main>
+    <footer>
+        <button 
+            type="submit" 
+            form="event-register"
+        >
+            Salvar evento
+        </button>
+    </footer>
+</body>
+</html>
