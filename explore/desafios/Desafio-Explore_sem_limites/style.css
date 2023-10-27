@@ -1,0 +1,233 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-pink: #B52184;
+    --color-purple: #312D64;
+    --color-white-100: #ffffff;
+    --color-white-200:#F9F4FB;
+
+    --gradient-01: linear-gradient(96deg, #343193 0%, #302C63 99.68%);
+
+    --Mulish: 'Mulish', sans-serif;
+
+    font-size: 62.5%; /* 10px */
+}
+
+body {
+    display: grid;
+    grid-template-rows: 1fr max-content;
+    width: 100%;
+    min-height: 100vh;
+    background: var(--color-white);
+
+    font-family: var(--Mulish);
+    font-size: 1.6rem;
+}
+
+main .cover,
+.cards .card,
+main .form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    padding: 0 4rem 9.3rem;
+}
+
+.cover img:first-child {
+    width: 100%;
+    max-width: 36.4rem;
+}
+
+.cover .text {
+    text-align: center;
+    margin: 1.7rem 0 0;
+}
+
+.cover .text img {
+    margin-top: 3.5rem;
+}
+
+.text h1,
+.card h2,
+.form form fieldset legend {
+    color: var(--color-pink);
+    font-size: 3.2rem;
+    font-weight: 900;
+}
+
+.text p,
+.card-info p,
+form fieldset .name > input,
+form fieldset .email > input,
+form fieldset .name > input::placeholder,
+form fieldset .email > input::placeholder,
+form fieldset textarea,
+form fieldset textarea::placeholder {
+    color: var(--color-purple);
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+main .cards {
+    display: grid;
+    justify-content: center;
+    gap: 5rem;
+    background: var(--gradient-01);
+    padding: 5.3rem 4rem;
+}
+
+.cards .card {
+    align-items: start;
+    gap: 3.3rem;
+    width: 100%;
+    max-width: 35.2rem;
+    background: var(--color-white-100);
+
+    border-radius: 2rem;
+    padding: 2.65rem;
+}
+
+.card .card-info {
+    display: grid;
+    gap: 2rem;
+}
+
+.card h2 {
+    font-size: 2.9rem;
+}
+
+.card p,
+form fieldset .name > input,
+form fieldset .email > input,
+form fieldset .name > input::placeholder,
+form fieldset .email > input::placeholder,
+form fieldset textarea,
+form fieldset textarea::placeholder {
+    font-size: 1.6rem;
+}
+
+main .form {
+    padding: 7.8rem 4rem 6.5rem;
+}
+
+.form form {
+    width: 100%;
+    max-width: 55rem;
+}
+
+.form form fieldset {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    gap: 2.4rem;
+}
+
+.form form fieldset legend {
+    margin-bottom: 4.3rem;
+}
+
+form fieldset .name,
+form fieldset .email,
+form fieldset textarea {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    width: 100%;
+
+    border: 1.5px solid var(--color-purple);
+    border-radius: 1.6rem;
+    padding: 1.2rem 1.4rem;
+}
+
+form fieldset .name > input,
+form fieldset .email > input,
+form fieldset .name > input::placeholder,
+form fieldset .email > input::placeholder,
+form fieldset textarea,
+form fieldset textarea::placeholder {
+    width: 100%;
+    border: none;
+    font-weight: 400;
+    outline: none;
+}
+
+form fieldset textarea {
+    resize: none;
+    border: 1.5px solid var(--color-purple);
+}
+
+form fieldset input[type="submit"] {
+    align-self: self-start;
+    background: var(--gradient-01);
+    color: var(--color-white-100);
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 2.4rem; /* 171.429% */
+    text-transform: capitalize;
+
+    border: none;
+    border-radius: 1.6rem;
+    padding: 1.6rem;
+}
+
+.form img {
+    display: none;
+}
+
+footer {
+    background: var(--gradient-01);
+    color: var(--color-white-100);
+    padding: 2.6rem;
+
+    text-align: center;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    main .cards {
+        grid-template-columns: repeat(2, 1fr);
+        place-items: center;
+    }
+}
+
+@media (min-width: 1024px) {
+    main .cover {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        padding: 0 11rem 10.3rem;
+    }
+
+    main .cards {
+        grid-template-columns: repeat(2, 1fr);
+        place-items: center;
+        padding: 6.4rem 11rem;
+    }
+}
+
+@media (min-width: 1250px) {
+    main .cover img:first-child {
+        max-width: 72rem;
+    }
+
+    main .cards {
+        grid-template-columns: repeat(3, 1fr);
+        place-items: center;
+    }
+
+    main .form {
+        position: relative;
+        align-items: flex-start;
+        padding: 9.5rem 11rem;
+    }
+
+    .form img {
+        position: absolute;
+        display: block;
+        right: 0;
+        bottom: 0;
+    }
+}
