@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #F8F8FC;
+    --bg-controls-color: #121214;
+    --btn-theme: #121214;
+    --text-color: #121214;
+    --icon-disabled: #f8f8fc;
+    --icon-active: #42D3FF;
+
+    --Roboto: 'Roboto', sans-serif;
+    font-size: 62.5%;
+}
+
+body {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    background: var(--bg-color);
+    font-family: var(--Roboto);
+    font-size: 1.6rem;
+
+    transition: .4s;
+}
+
+body.dark {
+    --bg-color: #121214;
+    --bg-controls-color: #242424;
+    --btn-theme: #F8F8FC;
+    --text-color: #F8F8FC;
+}
+
+main {
+    display: grid;
+    gap: 1.6rem;
+}
+
+#changeTheme {
+    position: absolute;
+    top: 32px;
+    right: 32px;
+    appearance: none;
+    border: none;
+    background: transparent;
+    font-size: 3.2rem;
+    color: var(--btn-theme);
+    cursor: pointer;
+}
+
+main > h1 {
+    color: var(--text-color);
+    font-size: 96px;
+    font-weight: 700;
+    text-align: center;
+}
+
+main .controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6rem;
+
+    background: var(--bg-controls-color);
+
+    border-radius: 999px;
+    padding: 22px 40px;
+}
+
+.controls > i { 
+    color: var(--icon-disabled);
+    font-size: 6.4rem;
+    cursor: pointer;
+}
+
+.controls > i.active {
+    color: var(--icon-active);
+}
