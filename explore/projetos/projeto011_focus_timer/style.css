@@ -42,8 +42,8 @@ main {
 
 #changeTheme {
     position: absolute;
-    top: 32px;
-    right: 32px;
+    top: 3.2rem;
+    right: 3.2rem;
     appearance: none;
     border: none;
     background: transparent;
@@ -71,12 +71,23 @@ main .controls {
     padding: 22px 40px;
 }
 
-.controls > i { 
+.controls > button { 
     color: var(--icon-disabled);
     font-size: 6.4rem;
     cursor: pointer;
+    background-color: transparent;
+    border: none;
 }
 
-.controls > i.active {
+.controls > button.active {
     color: var(--icon-active);
+}
+
+.running .ph-play-circle,
+.running .ph-timer,
+.music-on .ph-speaker-high,
+html:not(.running) .ph-pause-circle, 
+html:not(.running) .ph-stop-circle,
+html:not(.running) .ph-speaker-none {
+    display: none;
 }
