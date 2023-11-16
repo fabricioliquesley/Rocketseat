@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="running music-on">
+<html lang="pt-br">
     <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,32 +24,49 @@
         </button>
         <h1>25:00</h1>
         <div class="controls">
-            <button class="ph ph-play-circle">
+            <button 
+                class="ph ph-play-circle" 
+                data-action="toggleRunning"
+                title="Iniciar contagem">
                 <span class="sr-only">
                     Iniciar contagem
                 </span>
             </button>
-            <button class="ph-bold ph-pause-circle">
+            <button 
+                class="ph-bold ph-pause-circle"                     data-action="toggleRunning"
+                title="Pausar contagem">
                 <span class="sr-only">
                     Pausar contagem
                 </span>
             </button>
-            <button class="ph ph-timer active">
+            <button 
+                class="ph ph-timer active" 
+                data-action="set"
+                title="Definir nova contagem">
                 <span class="sr-only">
                     Definir nova contagem
                 </span>
             </button>
-            <button class="ph-bold ph-stop-circle">
+            <button 
+                class="ph-bold ph-stop-circle"
+                data-action="reset"
+                title="Zerar contagem">
                 <span class="sr-only">
                     Zerar contagem
                 </span>
             </button>
-            <button class="ph ph-speaker-none">
+            <button 
+                class="ph ph-speaker-none"
+                data-action="toggleMusic"
+                title="Desativar música">
                 <span class="sr-only">
                     Desativar música
                 </span>
             </button>
-            <button class="ph ph-speaker-high">
+            <button 
+                class="ph ph-speaker-high"
+                data-action="toggleMusic"
+                title="Ativar música">
                 <span class="sr-only">
                     Ativar música
                 </span>
