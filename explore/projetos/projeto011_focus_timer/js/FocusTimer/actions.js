@@ -1,5 +1,7 @@
 import state from "./state.js";
 import * as timer from "./timer.js";
+import * as el from "./elements.js";
+import * as sounds from "./sounds.js";
 
 export function toggleRunning () {
     /* O metodo toggle quando adicona a class retona true, quando remove retorna false */
@@ -15,7 +17,8 @@ export function reset () {
 }
 
 export function set () {
-    console.log("set");
+    el.minutes.setAttribute('contenteditable', true);
+    el.minutes.focus()
 }
 
 export function toggleMusic () {
