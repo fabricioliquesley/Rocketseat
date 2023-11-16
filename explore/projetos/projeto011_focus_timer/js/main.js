@@ -2,4 +2,4 @@ import "./changeTheme.js";
 import * as FocusTimer from "./FocusTimer/index.js"
 
 
-FocusTimer.start(0, 7)
+FocusTimer.start(25, 0)
