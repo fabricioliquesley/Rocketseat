@@ -69,6 +69,8 @@ main > h1 {
     font-size: 96px;
     font-weight: 700;
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 main .controls {
