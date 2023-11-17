@@ -18,6 +18,7 @@ export function reset () {
 
 export function set () {
     el.minutes.setAttribute('contenteditable', true);
+    state.isRunning = false;
     el.minutes.focus()
 }
 
