@@ -4,40 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <title>FocusTimer 2</title>
 </head>
-<body>
-    <main>
-        <section class="timerWarapper">
-            <h1>
-                <span>25</span>
+<body class="flex">
+    <main class="flex">
+        <section class="timerWrapper flex">
+            <h1 class="flex">
+                <span id="minutes">25</span>
                 <span>:</span>
-                <span>00</span>
+                <span id="secondes">00</span>
             </h1>
             <div class="timerControls">
-                <ul>
-                    <li><i class="ph-bold ph-play-circle"></i></li>
-                    <li><i class="ph-bold ph-stop-circle"></i></li>
-                    <li><i class="ph-bold ph-plus-circle"></i></li>
-                    <li><i class="ph-bold ph-minus-circle"></i></li>
+                <ul class="flex">
+                    <li>
+                        <button>
+                            <i class="ph-bold ph-play-circle"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <button>
+                            <i class="ph-bold ph-stop-circle"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <button>
+                            <i class="ph-bold ph-plus-circle"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <button>
+                            <i class="ph-bold ph-minus-circle"></i>
+                        </button>
+                    </li>
                 </ul>
             </div>
         </section>
-        <section class="musicWarapper">
-            <div class="musicCard">
+        <section class="musicWrapper">
+            <button class="musicCard">
                 <i class="ph-bold ph-tree"></i>
-            </div>
-            <div class="musicCard">
+            </button>
+            <button class="musicCard active">
                 <i class="ph-bold ph-cloud-rain"></i>
-            </div>
-            <div class="musicCard">
+            </button>
+            <button class="musicCard">
                 <i class="ph-bold ph-storefront"></i>
-            </div>
-            <div class="musicCard">
+            </button>
+            <button class="musicCard">
                 <i class="ph-bold ph-fire"></i>
-            </div>
+            </button>
         </section>
     </main>
 </body>
