@@ -40,6 +40,19 @@ h1 {
 .timerWrapper {
     flex-direction: column;
     gap: 1.7rem;
+    animation: moveToRight .7s backwards;
+}
+
+@keyframes moveToRight {
+    from {
+        transform: translateX(-400px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 ul {
@@ -77,6 +90,8 @@ li button:hover i {
     font-size: 4.8rem;
     color: var(--color-gray-400);
     transition: all .4s;
+    --delay: .4s;
+    animation: appear .4s var(--delay) backwards;
 }
 
 .musicCard.active {
@@ -86,4 +101,16 @@ li button:hover i {
 
 .musicCard:not(.active):hover {
     background: #b8b8b8;
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
 }
