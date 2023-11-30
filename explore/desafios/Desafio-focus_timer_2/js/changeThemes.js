@@ -1,5 +1,5 @@
 import "./FocusTimer/sound.js";
-import { forestAudio, rainAudio } from "./FocusTimer/sound.js";
+import { coffeShopAudio, fireplaceAudio, forestAudio, rainAudio } from "./FocusTimer/sound.js";
 import state from "./FocusTimer/state.js"
 
 let themes = document.getElementsByName('themes');
@@ -43,11 +43,31 @@ function changeThemes(theme) {
         state.previousTheme = theme;
 
         document.body.classList.add(theme);
-        return console.log(state.previousTheme);
+        return changeSounds(theme);
     }
 
     document.body.classList.remove(state.previousTheme);
     document.body.classList.add(theme)
     state.previousTheme = theme;
-    return console.log(state.previousTheme);
+    return changeSounds(theme);
+}
+
+function changeSounds(theme) {
+    let audios = {
+        forest: forestAudio,
+        rain: rainAudio,
+        coffeShop: coffeShopAudio,
+        fireplace: fireplaceAudio,
+    }
+
+    if (state.previousSound == null) {
+        state.previousSound = audios[theme];
+
+        return audios[theme].play();
+    }
+
+    state.previousSound.pause();
+    state.previousSound = audios[theme];
+
+    return audios[theme].play();
 }
