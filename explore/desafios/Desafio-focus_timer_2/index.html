@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,17 +23,30 @@
                 <span id="secondes">00</span>
             </h1>
             <div class="timerControls flex">
-                <button>
-                    <i class="ph-bold ph-play-circle"></i>
+                <button 
+                    data-action="toggleRunning" 
+                    class="ph-bold ph-play-circle"
+                >
                 </button>
-                <button>
-                    <i class="ph-bold ph-stop-circle"></i>
+                <button 
+                    data-action="toggleRunning"
+                    class="ph-bold ph-pause-circle"
+                >
                 </button>
-                <button>
-                    <i class="ph-bold ph-plus-circle"></i>
+                <button 
+                    data-action="reset"
+                    class="ph-bold ph-stop-circle"
+                >
                 </button>
-                <button>
-                    <i class="ph-bold ph-minus-circle"></i>
+                <button 
+                    data-action="increment-five"
+                    class="ph-bold ph-plus-circle"
+                >
+                </button>
+                <button 
+                    data-action="decrement-five"
+                    class="ph-bold ph-minus-circle"
+                >
                 </button>
             </div>
         </section>

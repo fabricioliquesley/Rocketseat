@@ -83,15 +83,12 @@ button {
     border: none;
     background: transparent;
     cursor: pointer;
-}
-
-button i {
     font-size: 4.8rem;
     color: var(--color-gray-400);
     transition: all .4s;
 }
 
-button:hover i {
+button:hover {
     color: var(--color-blue-400);
 }
 
@@ -149,4 +146,9 @@ input[type="radio"]{
     position: absolute;
     z-index: 2;
     cursor: pointer;
+}
+
+.running .ph-play-circle,
+html:not(.running) .ph-pause-circle {
+    display: none;
 }
