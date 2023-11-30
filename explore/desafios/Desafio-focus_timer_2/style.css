@@ -10,6 +10,7 @@
     --color-gray-200: #e1e1e6;
     --color-gray-400: #323238;
     --color-blue-400: #02799d;
+    --bg-color: hsl(0, 0%, 100%);
     font-size: 62.5%;
 }
 
@@ -22,8 +23,26 @@ body {
     justify-content: center;
     width: 100%;
     height: 100vh;
+    background: var(--bg-color);
     font-family: var(--roboto);
     font-size: 1.6rem;
+}
+
+/* Temas */
+body.forest {
+    --bg-color: hsl(125, 40%, 60%);
+}
+
+body.rain {
+    --bg-color: hsl(204, 40%, 60%);
+}
+
+body.coffeShop {
+    --bg-color: hsl(290, 40%, 60%);
+}
+
+body.fireplace {
+    --bg-color: hsl(19, 40%, 60%);
 }
 
 main {
@@ -129,4 +148,5 @@ input[type="radio"]{
     height: 100%;
     position: absolute;
     z-index: 2;
+    cursor: pointer;
 }
