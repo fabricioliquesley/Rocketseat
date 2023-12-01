@@ -8,13 +8,22 @@ export function toggleRunning () {
 }
 
 export function reset () {
-    console.log('reset');
+    timer.updateDisplay();
+    state.isRunning = false;
+
+    document.documentElement.classList.remove('running');
 }
 
 export function incrementFive () {
-    console.log('incrementFive');
+    if (state.minutes == 60 || state.isRunning) return;
+    
+    state.minutes += 5;
+    timer.updateDisplay(state.minutes, state.seconds);
 }
 
 export function decrementFive () {
-    console.log('decrementFive');
+    if (state.minutes == 0 || state.isRunning) return;
+
+    state.minutes -= 5;
+    timer.updateDisplay(state.minutes, state.seconds);
 }
