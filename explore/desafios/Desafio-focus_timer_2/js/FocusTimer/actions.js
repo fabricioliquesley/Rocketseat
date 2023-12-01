@@ -1,5 +1,10 @@
+import state from "./state.js";
+import * as timer from "./timer.js";
+
 export function toggleRunning () {
-    console.log('toggleRunning');
+    state.isRunning = document.documentElement.classList.toggle('running');
+
+    timer.countdown();
 }
 
 export function reset () {
