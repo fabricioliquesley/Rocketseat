@@ -23,30 +23,44 @@
                 <span id="seconds">00</span>
             </h1>
             <div class="timerControls flex">
-                <button 
+                <button
+                    title="Iniciar contagem"
                     data-action="toggleRunning" 
                     class="ph-bold ph-play-circle"
                 >
+                    <span class="sr-only">Iniciar contagem</span>
                 </button>
-                <button 
+                <button
+                    title="Parar contagem"
                     data-action="toggleRunning"
                     class="ph-bold ph-pause-circle"
                 >
+                    <span class="sr-only">Parar contagem</span>
                 </button>
-                <button 
+                <button
+                    title="Reiniciar contagem"
                     data-action="reset"
                     class="ph-bold ph-stop-circle"
                 >
+                    <span class="sr-only">Reiniciar contagem</span>
                 </button>
-                <button 
+                <button
+                    title="Aumentar 5 minutos na contagem"
                     data-action="incrementFive"
                     class="ph-bold ph-plus-circle"
-                >
+                >  
+                    <span class="sr-only">
+                        Aumentar 5 minutos na contagem, para fazer isso é preciso parar o cronômetro.
+                    </span>
                 </button>
-                <button 
+                <button
+                    title="Diminuir 5 minutos na contagem"
                     data-action="decrementFive"
                     class="ph-bold ph-minus-circle"
                 >
+                    <span class="sr-only">
+                        Diminuir 5 minutos na contagem, para fazer isso é preciso parar o cronômetro.
+                    </span>
                 </button>
             </div>
         </section>
