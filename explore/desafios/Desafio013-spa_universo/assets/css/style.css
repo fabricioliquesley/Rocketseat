@@ -1,0 +1,30 @@
+@import url('reset.css');
+
+body {
+    background: #222;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding: 40px 72px;
+}
+
+nav a {
+    color: var(--platform-aliases-texto-base, #C4C4CC);
+    font-size: 21.667px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21.667px; /* 100% */
+    transition: all .4s;
+}
+
+nav a:hover {
+    color: white;
+}
+
+nav a:visited {
+    color: white;
+    font-weight: 700;
+}
