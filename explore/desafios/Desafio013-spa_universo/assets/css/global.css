@@ -34,11 +34,6 @@ nav a:hover {
     color: white;
 }
 
-nav a:visited {
-    color: white;
-    font-weight: 700;
-}
-
 #app {
     height: inherit;
 }
