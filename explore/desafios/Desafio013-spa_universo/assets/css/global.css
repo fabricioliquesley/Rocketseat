@@ -2,6 +2,7 @@
 @import url('home.css');
 @import url('universe.css');
 @import url('exploration.css');
+@import url('404.css');
 
 :root {
     font-size: 62.5%;
