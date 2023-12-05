@@ -111,6 +111,10 @@ table th:last-child {
 
 table td {
     padding: 1.5rem;
+}
+
+td.followers,
+td.repositoriesNumber {
     text-align: center;
 }
 
@@ -137,6 +141,11 @@ td.user img {
 
 td.user p {
     font-weight: bold;
+}
+
+td.user span {
+    display: inline-block;
+    text-align: left;
 }
 
 td .remove {
