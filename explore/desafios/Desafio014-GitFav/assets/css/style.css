@@ -87,8 +87,11 @@ tbody {
 }
 
 tbody tr {
-    border-bottom: 1px solid #4A808C;
     background: #06181C;
+}
+
+tbody tr + tr {
+    border-top: 1px solid #4A808C;
 }
 
 tbody tr:nth-child(even) {
