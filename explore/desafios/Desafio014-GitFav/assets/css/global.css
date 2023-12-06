@@ -14,6 +14,31 @@
     --roboto-mono: 'Roboto Mono', monospace;
 }
 
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    white-space: nowrap;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border-width: 0;
+}
+
 body {
+    height: 100vh;
+    background: black;
     font-size: 1.6rem;
+}
+
+body * {
+    color: white;
+    font-family: var(--roboto);
+}
+
+#app {
+    width: 112rem;
+    margin: 0 auto;
 }

@@ -12,7 +12,7 @@
         <header>
             <img src="assets/images/Gitfav.svg" alt="Logo da aplicação">
             <div class="githubSearch">
-                <label for="inputSearch">
+                <label for="inputSearch" class="sr-only">
                     Digite o Github username que quer favoritar
                 </label>
                 <input 
@@ -21,7 +21,7 @@
                     placeholder="Digite o Github username que quer favoritar"
                 >
                 <button>
-                    <img src="assets/images/Favoritar.svg" alt="icone de uma estrela">
+                    <ion-icon name="star-outline"></ion-icon>
                     <p>
                         FAVORITAR
                     </p>
@@ -67,5 +67,8 @@
             </tbody>
         </table>
     </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
