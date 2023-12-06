@@ -6,8 +6,64 @@
     <title>GitFav</title>
 </head>
 <body>
-    <h1>
-        Ola mundo
-    </h1>
+    <div id="app">
+        <header>
+            <img src="assets/images/Gitfav.svg" alt="Logo da aplicação">
+            <div class="githubSearch">
+                <label for="inputSearch">
+                    Digite o Github username que quer favoritar
+                </label>
+                <input 
+                    type="text" 
+                    id="inputSearch" 
+                    placeholder="Digite o Github username que quer favoritar"
+                >
+                <button>
+                    <img src="assets/images/Favoritar.svg" alt="icone de uma estrela">
+                    <p>
+                        FAVORITAR
+                    </p>
+                </button>
+            </div>
+        </header>
+        <table>
+            <thead>
+                <tr>
+                    <th>Usuário</th>
+                    <th>Repositorios</th>
+                    <th>Seguidores</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="user">
+                            <img src="https://github.com/maykbrito.png" alt="Foto de perfil do Usuário">
+                            <div class="detail">
+                                <p>
+                                    Mayk Brito
+                                </p>
+                                <span>
+                                    maykbrito
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        123
+                    </td>
+                    <td>
+                        1234
+                    </td>
+                    <td>
+                        <button class="remove">
+                            Remover
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
