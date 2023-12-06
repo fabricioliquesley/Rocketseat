@@ -46,3 +46,92 @@ header .githubSearch {
     font-weight: 700;
 }
 
+table {
+    position: relative;
+    max-height: 58rem;
+
+    border-collapse: collapse;
+    border: 2px solid #4A808C;
+    border-radius: 1.2rem;
+    
+    margin-top: 8.7rem;
+    display: block;
+    overflow: auto;
+}
+
+th, td {
+    width: 100%;
+    text-align: left;
+    white-space: nowrap;
+}
+
+thead {
+    position: sticky;
+    top: 0;
+    background: #043444;
+}
+
+thead tr th {
+    padding: 1.6rem 4rem;
+    color: var(--platform-aliases-ttulos, #E1E1E6);
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%; /* 3.2rem */
+}
+
+tbody {
+    width: 100%;
+    background: #092D38;
+    font-size: 2rem;
+}
+
+tbody tr {
+    border-bottom: 1px solid #4A808C;
+    background: #06181C;
+}
+
+tbody tr:nth-child(even) {
+    background: #06161B80;
+}
+
+tbody tr td {
+    width: fit-content;
+    padding: 2.4rem 4rem;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+}
+
+tbody td .user img {
+    width: 5.6rem;
+    height: 5.6rem;
+    border-radius: 50%;
+}
+
+.detail p {
+    font-weight: 700;
+}
+
+.detail span {
+    color: #E1E1E6;
+}
+
+tr .remove {
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    color: rgb(105, 30, 30);
+    cursor: pointer;
+}
+
+.remove:hover {
+    color: red;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+}
