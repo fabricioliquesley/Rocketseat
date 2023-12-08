@@ -94,6 +94,10 @@ tbody.empty {
     background: #06181C;
 }
 
+tbody.empty tr {
+    display: block;
+}
+
 tbody.empty td {
     display: flex;
     align-items: center;
@@ -102,6 +106,10 @@ tbody.empty td {
 
 tbody.empty td img {
     width: 13.2rem;
+}
+
+tbody:not(.empty) tr.message {
+    display: none;
 }
 
 tbody.empty td h2 {
