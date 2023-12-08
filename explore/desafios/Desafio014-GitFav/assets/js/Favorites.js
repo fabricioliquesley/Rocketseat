@@ -70,9 +70,10 @@ export class FavoritesView extends Favorites {
         const addButton = this.root.querySelector(".githubSearch button");
 
         addButton.onclick = () => {
-            const { value } = this.root.querySelector(".githubSearch input");
+            const input = this.root.querySelector(".githubSearch input");
 
-            this.add(value);
+            this.add(input.value);
+            input.value = '';
         }
     }
 
