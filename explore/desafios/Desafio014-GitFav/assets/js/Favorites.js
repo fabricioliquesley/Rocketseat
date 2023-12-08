@@ -3,6 +3,7 @@ import { GithubUser } from "./GithubUser.js";
 class Favorites {
     constructor(root) {
         this.root = document.querySelector(root);
+        this.tbody = this.root.querySelector('table tbody');
 
         this.load();
     }
@@ -10,9 +11,9 @@ class Favorites {
     load() {
         this.entries = JSON.parse(localStorage.getItem("@github-Favorites:")) || [];
 
-        // if (this.entries.length == 0) {
-
-        // }
+        if (this.entries.length == 0) {
+            this.tbody.classList.add('empty');
+        }
     }
 
     save() {
@@ -25,6 +26,10 @@ class Favorites {
         this.entries = filteredEntries;
         this.update();
         this.save();
+
+        if (this.entries.length == 0) {
+            location.reload()
+        }
     }
 
     async add(username) {
@@ -41,6 +46,7 @@ class Favorites {
                 throw new Error("Usuário não encontrado");
             }
 
+            this.tbody.classList.remove('empty');
 
             this.entries = [user, ...this.entries];
             this.update();
@@ -55,8 +61,6 @@ class Favorites {
 export class FavoritesView extends Favorites {
     constructor(root) {
         super(root);
-
-        this.tbody = this.root.querySelector('table tbody');
 
         this.update();
         this.onAdd();
@@ -73,22 +77,23 @@ export class FavoritesView extends Favorites {
     }
 
     update() {
-        this.removeAllTr();
-
-        this.entries.forEach(user => {
-            const row = this.createRow(user.login, user.name, user.public_repos, user.followers);
-
-            row.querySelector('.remove').onclick = () => {
-                const isOk = confirm("Tem certeza que deseja apagar esse perfil?");
-
-                if (isOk) {
-                    this.delete(user);
+        if (this.entries.length > 0) {
+            this.removeAllTr();
+    
+            this.entries.forEach(user => {
+                const row = this.createRow(user.login, user.name, user.public_repos, user.followers);
+    
+                row.querySelector('.remove').onclick = () => {
+                    const isOk = confirm("Tem certeza que deseja apagar esse perfil?");
+    
+                    if (isOk) {
+                        this.delete(user);
+                    }
                 }
-            }
-
-            this.tbody.append(row);
-        })
-
+    
+                this.tbody.append(row);
+            })
+        }
     }
 
     removeAllTr() {
