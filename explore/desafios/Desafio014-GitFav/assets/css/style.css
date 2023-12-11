@@ -108,7 +108,7 @@ tbody.empty td img {
     width: 13.2rem;
 }
 
-tbody:not(.empty) tr.message {
+tbody:not(.empty) tr.bg-empty {
     display: none;
 }
 
