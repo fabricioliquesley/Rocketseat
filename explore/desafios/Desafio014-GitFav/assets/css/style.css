@@ -1,4 +1,5 @@
 @import url('global.css');
+@import url('alerts.css');
 
 header {
     display: flex;
