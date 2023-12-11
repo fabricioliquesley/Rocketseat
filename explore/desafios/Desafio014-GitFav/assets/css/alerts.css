@@ -13,7 +13,7 @@
 
 .boxWrapper {
     position: absolute;
-    top: 40px;
+    top: -80px;
     right: -300px;
     width: 300px;
     background: white;
@@ -30,6 +30,7 @@
 }
 
 .boxWrapper p {
+    color: black;
     margin-top: 5px;
 }
 
