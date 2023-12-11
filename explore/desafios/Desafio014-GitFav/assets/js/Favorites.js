@@ -1,4 +1,5 @@
 import { GithubUser } from "./GithubUser.js";
+import { MessageAlert, MessageError, MessageSuccess } from "./alerts.js";
 
 class Favorites {
     constructor(root) {
@@ -37,13 +38,13 @@ class Favorites {
             const userExists = this.entries.find(entry => entry.login === username);
 
             if (userExists) {
-                throw new Error("Usuário ja está marcado como favorito");
+                throw new Error("exists");
             }
 
             const user = await GithubUser.search(username);
 
             if (user.login === undefined) {
-                throw new Error("Usuário não encontrado");
+                throw new Error("undefined");
             }
 
             this.tbody.classList.remove('empty');
@@ -52,8 +53,14 @@ class Favorites {
             this.update();
             this.save();
 
+            MessageSuccess.open();
+
         } catch (error) {
-            alert(error.message);
+            if (error.message == "exists") {
+                MessageAlert.open()
+            } else if (error.message == "undefined") {
+                MessageError.open()
+            }
         }
     }
 }
@@ -80,18 +87,18 @@ export class FavoritesView extends Favorites {
     update() {
         if (this.entries.length > 0) {
             this.removeAllTr();
-    
+
             this.entries.forEach(user => {
                 const row = this.createRow(user.login, user.name, user.public_repos, user.followers);
-    
+
                 row.querySelector('.remove').onclick = () => {
                     const isOk = confirm("Tem certeza que deseja apagar esse perfil?");
-    
+
                     if (isOk) {
                         this.delete(user);
                     }
                 }
-    
+
                 this.tbody.append(row);
             })
         }
