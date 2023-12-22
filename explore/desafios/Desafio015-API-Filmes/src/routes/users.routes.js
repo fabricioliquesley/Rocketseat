@@ -1,11 +1,11 @@
 const { Router } = require("express");
 
+const UserController = require("../controllers/UserController");
+
+const userController = new UserController();
+
 const usersRoutes = Router();
 
-usersRoutes.get("/:id", (request, response) => {
-    const { id } = request.params;
-
-    response.send(`O id solicitante é: ${id}`);
-});
+usersRoutes.post("/", userController.create);
 
 module.exports = usersRoutes;
