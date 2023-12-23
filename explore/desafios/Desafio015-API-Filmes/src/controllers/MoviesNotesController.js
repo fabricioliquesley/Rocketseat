@@ -32,10 +32,69 @@ class MoviesNotesController {
 
         const tags = await knex("movie_tags").where("movie_note_id", note_id).orderBy("name");
 
-        response.json({
+        response.status(201).json({
             ...movie_note,
             tags
         })
+    }
+
+    async index(request, response) {
+        const { user_id, title, tags } = request.query;
+
+        let movie_notes;
+
+        if (tags) {
+            const filterTags = tags.split(",").map(tag => tag.trim());
+
+            if (!title) {
+                movie_notes = await knex("movie_tags")
+                    .select([
+                        "movie_notes.id",
+                        "movie_notes.title",
+                        "movie_notes.description",
+                        "movie_notes.user_id",
+                    ])
+                    .where("movie_notes.user_id", user_id)
+                    .whereIn("name", filterTags)
+                    .innerJoin("movie_notes", "movie_notes.id", "movie_tags.movie_note_id")
+            } else {
+                movie_notes = await knex("movie_tags")
+                    .select([
+                        "movie_notes.id",
+                        "movie_notes.title",
+                        "movie_notes.description",
+                        "movie_notes.user_id",
+                    ])
+                    .where("movie_notes.user_id", user_id)
+                    .whereLike("movie_notes.title", `%${title}%`)
+                    .whereIn("name", filterTags)
+                    .innerJoin("movie_notes", "movie_notes.id", "movie_tags.movie_note_id")
+            }
+        } else {
+            if (title) {
+                movie_notes = await knex("movie_notes")
+                    .where({ user_id })
+                    .whereLike("title", `%${title}%`)
+                    .orderBy("title");
+            } else {
+                movie_notes = await knex("movie_notes")
+                    .where({ user_id })
+                    .orderBy("title");
+            }
+        }
+
+        const userTags = await knex("movie_tags").where({ user_id });
+
+        const movieNoteWithTags = movie_notes.map(note => {
+            const noteTags = userTags.filter(tag => tag.movie_note_id === note.id);
+
+            return {
+                ...note,
+                tags: noteTags
+            }
+        });
+
+        response.status(201).json(movieNoteWithTags)
     }
 }
 
