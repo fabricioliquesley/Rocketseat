@@ -8,11 +8,11 @@ module.exports = {
       filename: path.resolve(__dirname, 'src', "database", "moviesDatabase.db")
     },
     pool: {
-      afterCreate: (conn, cb) => conn.run("PRAGMA foreign_keys = ON", cb)
+      afterCreate: (connection, callBack) => connection.run("PRAGMA foreign_keys = ON", callBack)
     },
     migrations: {
       directory: path.resolve(__dirname, 'src', "database", "knex", "migrations")
     },
-    useNullAsDefault: true
+    useNullAsdefault: true
   },
 };
