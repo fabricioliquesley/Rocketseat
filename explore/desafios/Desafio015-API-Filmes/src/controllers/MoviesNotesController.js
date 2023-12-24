@@ -1,4 +1,5 @@
 const knex = require("../database/knex")
+const AppError = require("../utils/AppError")
 
 class MoviesNotesController {
     async create(request, response) {
@@ -95,6 +96,29 @@ class MoviesNotesController {
         });
 
         response.status(201).json(movieNoteWithTags)
+    }
+
+    async delete(request, response) {
+        const { user_id, movie_note_id } = request.query;
+
+        if (!user_id || !movie_note_id) {
+            throw new AppError("Informe o id do usuário e o id da anotação.");
+        }
+
+        const [user] = await knex("movie_notes")
+            .select("user_id").where("id", movie_note_id);
+            
+        if (user.user_id != user_id) {
+            throw new AppError("Essa anotação não pertence a esse usuário.");
+        }
+
+        await knex("movie_notes")
+            .where("id", movie_note_id)
+            .where("user_id", user_id)
+            .delete();
+    
+
+        response.status(201).json();
     }
 }
 
