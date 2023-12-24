@@ -105,9 +105,16 @@ class MoviesNotesController {
             throw new AppError("Informe o id do usuário e o id da anotação.");
         }
 
+        const [userExists] = await knex("users")
+            .where("id", user_id)
+        
+        if (!userExists) {
+            throw new AppError("Usuário não encontrado");
+        }
+
         const [user] = await knex("movie_notes")
             .select("user_id").where("id", movie_note_id);
-            
+
         if (user.user_id != user_id) {
             throw new AppError("Essa anotação não pertence a esse usuário.");
         }
