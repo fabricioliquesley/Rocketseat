@@ -4,17 +4,49 @@ export const Container = styled.header`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 100%;
     grid-area: header;
     padding: 1.6rem 4.5rem;
     border-bottom: 1px solid ${({theme}) => theme.COLORS.BACKGROUND_700};
+`;
 
-    > a {
-        color: ${({theme}) => theme.COLORS.GRAY_100};
-        font-size: 3.6rem;
-        cursor: pointer;
+export const Profile = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 
-        &:hover {
-            opacity: 0.6;
+    > img {
+        width: 7rem;
+        height: 7rem;
+        border-radius: 50%;
+    }
+
+    > div {
+        span {
+            color: ${({theme}) => theme.COLORS.GRAY_100};
+            font-size: 1.4rem;
+            font-weight: 400;
         }
+
+        strong {
+            display: block;
+            color: ${({theme}) => theme.COLORS.WHITE};
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+    }
+`;
+
+export const Logaut = styled.button`
+    display: flex;
+    color: ${({theme}) => theme.COLORS.GRAY_100};
+    font-size: 3.6rem;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.6;
     }
 `;

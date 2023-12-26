@@ -9,6 +9,7 @@ export function Details(){
                 name="Fabricio Liquesley"
                 src="https://github.com/diego3g.png"
             />
+            
             <Button title="Voltar"/>
         </Container>
     );

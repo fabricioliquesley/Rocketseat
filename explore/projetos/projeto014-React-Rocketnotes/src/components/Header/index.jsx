@@ -1,13 +1,24 @@
-import { Container } from "./styles";
-import { Profile } from "../Profile";
+import { Container, Profile, Logaut } from "./styles";
+import { RiShutDownLine } from "react-icons/ri"
 
 export function Header({ name, src }) {
     return (
         <Container>
-            <Profile name={name} src={src}/>
-            <a href="#">
-                <ion-icon name="power-outline"></ion-icon>
-            </a>
+            <Profile name={name} src={src}>
+                <img 
+                    src={src} 
+                    alt="Foto de perfil" 
+                />
+                <div>
+                    <span>Bem vindo,</span>
+                    <strong>
+                        {name}
+                    </strong>
+                </div>
+            </Profile>
+            <Logaut>
+                <RiShutDownLine/>
+            </Logaut>
         </Container>
     )
 }
