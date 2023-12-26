@@ -8,8 +8,8 @@ export const Container = styled.button`
     font-weight: 500;
     border: 0;
     padding: 0 1.6rem;
-    margin-top: 1.6rem;
     border-radius: 1rem;
+    margin-top: 1.6rem;
 
     &:disabled {
         opacity: 0.5;

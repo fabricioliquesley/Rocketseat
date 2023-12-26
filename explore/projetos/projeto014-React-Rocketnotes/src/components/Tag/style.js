@@ -8,7 +8,6 @@ export const Container = styled.li`
 
     > p {
         color: ${({theme}) => theme.COLORS.BACKGROUND_900};
-        text-align: center;
         font-size: 1.2rem;
         font-weight: 400;
     }
