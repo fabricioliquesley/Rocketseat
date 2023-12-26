@@ -59,4 +59,5 @@ export const Menu = styled.menu`
 
 export const Main = styled.main`
     grid-area: content;
+    padding: 6.4rem 4.5rem;
 `;

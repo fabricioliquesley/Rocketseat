@@ -1,6 +1,7 @@
 import { Container, Menu, Main } from "./style";
 import { Header } from "../../components/Header"
 import { HiPlusSmall } from "react-icons/hi2";
+import { Input } from "../../components/Input";
 
 export function Home() {
     return (
@@ -25,7 +26,7 @@ export function Home() {
                 </button>
             </Menu>
             <Main>
-                <h2>Main</h2>
+                <Input placeholder="Pesquisar pelo titulo"/>
             </Main>
         </Container>
     );
