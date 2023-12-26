@@ -39,14 +39,17 @@ export const Profile = styled.div`
 
 export const Logaut = styled.button`
     display: flex;
-    color: ${({theme}) => theme.COLORS.GRAY_100};
-    font-size: 3.6rem;
     cursor: pointer;
     border: none;
     background: transparent;
     cursor: pointer;
 
-    &:hover {
-        opacity: 0.6;
+    > svg {
+        color: ${({theme}) => theme.COLORS.GRAY_100};
+        font-size: 3.6rem;
+
+        &:hover {
+            opacity: 0.6;
+        }
     }
 `;
