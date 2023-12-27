@@ -7,6 +7,7 @@ import theme from './styles/theme'
 
 // import { Details } from './pages/Details';
 import { Home } from './pages/Home';
+// import { Home } from './pages/Home';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

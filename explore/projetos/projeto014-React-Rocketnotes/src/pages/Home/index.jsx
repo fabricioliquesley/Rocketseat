@@ -1,7 +1,10 @@
 import { Container, Menu, Main } from "./style";
-import { Header } from "../../components/Header"
+import { Header } from "../../components/Header";
+import { ButtonNotBg } from "../../components/ButtonNotBg";
 import { HiPlusSmall } from "react-icons/hi2";
 import { Input } from "../../components/Input";
+import { Section } from "../../components/Section";
+import { Notes } from "../../components/Notes";
 
 export function Home() {
     return (
@@ -14,10 +17,10 @@ export function Home() {
                 <div>
                     <h1>Rocketnotes</h1>
                     <nav>
-                            <a href="#">Todos</a>
-                            <a href="#">Frontend</a>
-                            <a href="#">Node</a>
-                            <a href="#">React</a>
+                        <ButtonNotBg title="Todos" isActive />
+                        <ButtonNotBg title="Frontend" />
+                        <ButtonNotBg title="Node" />
+                        <ButtonNotBg title="React" />
                     </nav>
                 </div>
                 <button>
@@ -26,7 +29,28 @@ export function Home() {
                 </button>
             </Menu>
             <Main>
-                <Input placeholder="Pesquisar pelo titulo"/>
+                <Input placeholder="Pesquisar pelo título" />
+                <Section title="Minhas notas">
+                    <Notes 
+                        data={{
+                            name: "React Modal",
+                            tags: [
+                                {id: "1", name: "react"}, 
+                                {id: "2", name: "css"}, 
+                                {id: "3", name: "javascript"},
+                            ]
+                        }}
+                    />
+                    <Notes 
+                        data={{
+                            name: "Exemplo de Middleware",
+                            tags: [
+                                {id: "1", name: "express"}, 
+                                {id: "2", name: "node"},
+                            ]
+                        }}
+                    />
+                </Section>
             </Main>
         </Container>
     );

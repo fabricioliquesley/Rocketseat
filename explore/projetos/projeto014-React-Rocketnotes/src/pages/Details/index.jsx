@@ -15,7 +15,7 @@ export function Details() {
 
             <main>
                 <Content>
-                    <ButtonNotBg title="Excluir a nota"/>
+                    <ButtonNotBg title="Excluir a nota" isActive/>
                     <Note>
                         <h2>Introdução ao React</h2>
                         <p>

@@ -13,7 +13,7 @@ export const Container = styled.div`
     > header {
         grid-area: header;
     }
-    `;
+`;
 
 export const Menu = styled.menu`
     display: flex;
@@ -36,9 +36,9 @@ export const Menu = styled.menu`
         align-items: center;
         gap: 2.4rem;
         margin-top: 6.4rem;
-        
-        > a {
-            color: ${({theme}) => theme.COLORS.GRAY_100};
+
+        button {
+            align-self: center;
         }
     }
 
@@ -60,4 +60,20 @@ export const Menu = styled.menu`
 export const Main = styled.main`
     grid-area: content;
     padding: 6.4rem 4.5rem;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 5px;
+        background: ${({theme}) => theme.COLORS.BACKGROUND_800};
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: ${({theme}) => theme.COLORS.BACKGROUND_900};
+    }
+
+    > section {
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+    }
 `;
