@@ -2,9 +2,7 @@ import { Container, Main, Content, Textarea } from "./style";
 import { Header } from "../../components/Header";
 import { Input } from "../../components/Input";
 import { Section } from "../../components/Section";
-import { LinkTag } from "../../components/Link_Tag";
-import { Add } from "../../components/Add";
-import { ButtonNotBg } from "../../components/ButtonNotBg";
+import { NoteItem } from "../../components/NotesItem";
 import { Button } from "../../components/Button";
 
 export function CreateNotes() {
@@ -18,7 +16,7 @@ export function CreateNotes() {
                 <Content>
                     <div>
                         <h2>Criar nota</h2>
-                        <ButtonNotBg title="voltar" />
+                        <a href="/">Voltar</a>
                     </div>
                     <fieldset>
                         <Input placeholder="Título" />
@@ -26,16 +24,14 @@ export function CreateNotes() {
                     </fieldset>
                     <Section title="Links úteis">
                         <ul>
-                            <LinkTag
-                                src="https://github.com/diego3g"
-                            />
+                            <NoteItem value="https://www.rocketseat.com.br/"/>
                         </ul>
-                        <Add title="Novo link" />
+                        <NoteItem isNew placeholder="Novo link"/>
                     </Section>
                     <Section title="Marcadores">
                         <div className="tagsContainer">
-                            <LinkTag text="React" />
-                            <Add title="Novo marcador" />
+                            <NoteItem value="React"/>
+                            <NoteItem isNew placeholder="Novo marcador"/>
                         </div>
                     </Section>
                     <Button title="Salvar" />

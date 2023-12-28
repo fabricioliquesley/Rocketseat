@@ -36,8 +36,10 @@ export const Content = styled.div`
         align-items: center;
         justify-content: space-between;
 
-        button {
-            margin-bottom: .6rem;
+        > a {
+            color: ${({theme}) => theme.COLORS.GRAY_100};
+            font-size: 2rem;
+            font-weight: 400;
         }
     }
 
@@ -75,6 +77,10 @@ export const Content = styled.div`
             flex-wrap: wrap;
             gap: 1.9rem;
         }
+    }
+
+    > button {
+        margin-top: 3.4rem;
     }
 `;
 
