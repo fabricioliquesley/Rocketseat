@@ -1,7 +1,8 @@
 import { Container } from "./style";
 import { Button } from "../Button";
+import { Link } from "react-router-dom"
 
-export function Form({ title, buttonName, link, children }) {
+export function Form({ title, buttonName, link, children, href }) {
     return (
         <Container>
             <div>
@@ -19,9 +20,9 @@ export function Form({ title, buttonName, link, children }) {
                     <Button title={buttonName} />
                 </fieldset>
             </div>
-            <a href="#">
+            <Link to={href}>
                 {link}
-            </a>
+            </Link>
         </Container>
     );
 }

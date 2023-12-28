@@ -4,6 +4,7 @@ import { Section } from "../../components/Section/index.jsx";
 import { Tag } from "../../components/Tag/index.jsx";
 import { Button } from "../../components/Button/index.jsx";
 import { ButtonNotBg } from "../../components/ButtonNotBg/index.jsx";
+import { Link } from "react-router-dom";
 
 export function Details() {
     return (
@@ -15,7 +16,7 @@ export function Details() {
 
             <main>
                 <Content>
-                    <ButtonNotBg title="Excluir a nota" isActive/>
+                    <ButtonNotBg title="Excluir a nota" isActive />
                     <Note>
                         <h2>Introdução ao React</h2>
                         <p>
@@ -39,8 +40,9 @@ export function Details() {
                             <Tag title="nodejs" />
                         </Tags>
                     </Section>
-
-                    <Button title="Voltar"/>
+                    <Link to="/">
+                        <Button title="Voltar" />
+                    </Link>
                 </Content>
             </main>
 

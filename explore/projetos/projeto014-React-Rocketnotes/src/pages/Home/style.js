@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
     display: grid;
@@ -21,12 +22,12 @@ export const Menu = styled.menu`
     align-items: center;
     justify-content: space-between;
     grid-area: menu;
-    background: ${({theme}) => theme.COLORS.BACKGROUND_900};
+    background: ${({ theme }) => theme.COLORS.BACKGROUND_900};
 
     > div > h1 {
         min-height: 10.3rem;
-        border-bottom: 1px solid ${({theme}) => theme.COLORS.BACKGROUND_700};
-        color: ${({theme}) => theme.COLORS.ORANGE};
+        border-bottom: 1px solid ${({ theme }) => theme.COLORS.BACKGROUND_700};
+        color: ${({ theme }) => theme.COLORS.ORANGE};
         padding: 2.97rem 3rem;
     }
 
@@ -41,20 +42,20 @@ export const Menu = styled.menu`
             align-self: center;
         }
     }
+`;
 
-    > button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: .8rem;
-        background: ${({ theme }) => theme.COLORS.ORANGE};
-        width: 100%;
-        padding: 2.7rem 0;
-        color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
-        font-size: 2rem;
-        font-weight: 400;
-        border: none;
-    }
+export const CreatBtn = styled(Link)`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .8rem;
+    background: ${({ theme }) => theme.COLORS.ORANGE};
+    width: 100%;
+    padding: 2.7rem 0;
+    color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
+    font-size: 2rem;
+    font-weight: 400;
+    border: none;
 `;
 
 export const Main = styled.main`
@@ -64,11 +65,11 @@ export const Main = styled.main`
 
     &::-webkit-scrollbar {
         width: 5px;
-        background: ${({theme}) => theme.COLORS.BACKGROUND_800};
+        background: ${({ theme }) => theme.COLORS.BACKGROUND_800};
     }
 
     &::-webkit-scrollbar-thumb {
-        background: ${({theme}) => theme.COLORS.BACKGROUND_900};
+        background: ${({ theme }) => theme.COLORS.BACKGROUND_900};
     }
 
     > section {

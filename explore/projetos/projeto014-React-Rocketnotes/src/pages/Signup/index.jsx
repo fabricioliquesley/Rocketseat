@@ -12,6 +12,7 @@ export function Signup() {
                 title="Crie sua conta"
                 buttonName="Cadastrar"
                 link="Voltar para o login"
+                href="/"
             >
                 <Input
                     icon={FiUser}

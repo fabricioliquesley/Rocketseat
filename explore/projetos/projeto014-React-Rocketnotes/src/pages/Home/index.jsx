@@ -1,4 +1,4 @@
-import { Container, Menu, Main } from "./style";
+import { Container, Menu, CreatBtn, Main } from "./style";
 import { Header } from "../../components/Header";
 import { ButtonNotBg } from "../../components/ButtonNotBg";
 import { HiPlusSmall } from "react-icons/hi2";
@@ -23,10 +23,10 @@ export function Home() {
                         <ButtonNotBg title="React" />
                     </nav>
                 </div>
-                <button>
+                <CreatBtn to="/createNotes">
                     <HiPlusSmall />
                     Criar nota
-                </button>
+                </CreatBtn>
             </Menu>
             <Main>
                 <Input placeholder="Pesquisar pelo título" />

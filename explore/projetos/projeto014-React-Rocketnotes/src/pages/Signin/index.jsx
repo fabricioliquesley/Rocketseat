@@ -11,6 +11,7 @@ export function Signin() {
                 title="Faça seu login"
                 buttonName="Entrar"
                 link="Criar conta"
+                href="/register"
             >
                 <Input
                     icon={FiMail}

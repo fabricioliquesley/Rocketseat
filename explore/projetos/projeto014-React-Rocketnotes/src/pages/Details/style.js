@@ -36,7 +36,7 @@ export const Content = styled.div`
         margin: 2.8rem 0 0 0;
     }
 
-    > button:last-child {
+    > a:last-child {
         margin-top: 13rem;
     }
 `;

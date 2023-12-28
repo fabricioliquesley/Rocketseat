@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from "react-router-dom";
 
 export const Container = styled.header`
     position: sticky;
@@ -6,14 +7,14 @@ export const Container = styled.header`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: ${({theme}) => theme.COLORS.BACKGROUND_800};
+    background: ${({ theme }) => theme.COLORS.BACKGROUND_800};
     height: 100%;
     grid-area: header;
     padding: 1.6rem 4.5rem;
-    border-bottom: 1px solid ${({theme}) => theme.COLORS.BACKGROUND_700};
+    border-bottom: 1px solid ${({ theme }) => theme.COLORS.BACKGROUND_700};
 `;
 
-export const Profile = styled.div`
+export const Profile = styled(Link)`
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -26,14 +27,14 @@ export const Profile = styled.div`
 
     > div {
         span {
-            color: ${({theme}) => theme.COLORS.GRAY_100};
+            color: ${({ theme }) => theme.COLORS.GRAY_100};
             font-size: 1.4rem;
             font-weight: 400;
         }
 
         strong {
             display: block;
-            color: ${({theme}) => theme.COLORS.WHITE};
+            color: ${({ theme }) => theme.COLORS.WHITE};
             font-size: 1.8rem;
             font-weight: 700;
         }
@@ -48,7 +49,7 @@ export const Logaut = styled.button`
     cursor: pointer;
 
     > svg {
-        color: ${({theme}) => theme.COLORS.GRAY_100};
+        color: ${({ theme }) => theme.COLORS.GRAY_100};
         font-size: 3.6rem;
 
         &:hover {

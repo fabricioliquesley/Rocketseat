@@ -4,6 +4,7 @@ import { Input } from "../../components/Input";
 import { Section } from "../../components/Section";
 import { NoteItem } from "../../components/NotesItem";
 import { Button } from "../../components/Button";
+import {Link} from "react-router-dom";
 
 export function CreateNotes() {
     return (
@@ -16,7 +17,7 @@ export function CreateNotes() {
                 <Content>
                     <div>
                         <h2>Criar nota</h2>
-                        <a href="/">Voltar</a>
+                        <Link to="/">Voltar</Link>
                     </div>
                     <fieldset>
                         <Input placeholder="Título" />
