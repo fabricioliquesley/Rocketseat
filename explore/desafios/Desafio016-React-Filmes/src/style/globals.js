@@ -15,6 +15,27 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     body {
+        background: ${({ theme }) => theme.COLORS.BACKGROUND_800};
+        color: ${({ theme }) => theme.COLORS.WHITE};
         font-size: 1.6rem;
+
+        -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    button, a {
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    button:hover, a:hover {
+        filter: brightness(0.9);
+    }
+
+    ul {
+        list-style: none;
     }
 `;
