@@ -11,14 +11,15 @@ export function Profile() {
                 <Link to="/">
                     <FiArrowLeft size={25} />
                 </Link>
-                <ImageProfile>
-                    <img src="https://github.com/diego3g.png" alt="Foto de perfil" />
-                    <div>
-                        <FiCamera />
-                        <input type="file" />
-                    </div>
-                </ImageProfile>
+                
             </header>
+            <ImageProfile>
+                <img src="https://github.com/diego3g.png" alt="Foto de perfil" />
+                <div>
+                    <FiCamera />
+                    <input type="file" />
+                </div>
+            </ImageProfile>
             <Form>
                 <fieldset>
                     <Input

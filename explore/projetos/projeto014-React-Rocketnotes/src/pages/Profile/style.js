@@ -21,10 +21,8 @@ export const Container = styled.div`
 `;
 
 export const ImageProfile = styled.div`
-    position: absolute;
-    top: 50px;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
+    margin: -100px 0;
 
     > img {
         width: 18.6rem;
