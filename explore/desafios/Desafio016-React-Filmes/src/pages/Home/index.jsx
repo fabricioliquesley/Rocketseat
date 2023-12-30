@@ -10,7 +10,7 @@ export function Home() {
             <Main>
                 <div>
                     <h1>Meus filmes</h1>
-                    <CreateMovieButton>
+                    <CreateMovieButton to="/create">
                         <FiPlus/>
                         <p>
                             Adicionar filme

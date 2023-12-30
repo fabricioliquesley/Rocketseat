@@ -1,4 +1,5 @@
-import {styled} from "styled-components";
+import { styled } from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
     display: grid;
@@ -21,7 +22,7 @@ export const Main = styled.main`
         justify-content: space-between;
 
         h1 {
-            color: ${({theme}) => theme.COLORS.WHITE};
+            color: ${({ theme }) => theme.COLORS.WHITE};
             font-family: var(--Roboto-Slab);
             font-size: 3.2rem;
             font-weight: 400;
@@ -41,22 +42,22 @@ export const Main = styled.main`
     }
 `;
 
-export const CreateMovieButton = styled.button`
+export const CreateMovieButton = styled(Link)`
     display: flex;
     align-items: center;
     gap: .25rem;
-    background: ${({theme}) => theme.COLORS.PINK};
+    background: ${({ theme }) => theme.COLORS.PINK};
     padding: 1rem 2rem;
     border: none;
     border-radius: .8rem;
 
     > svg {
-        color: ${({theme}) => theme.COLORS.BACKGROUND_800};
+        color: ${({ theme }) => theme.COLORS.BACKGROUND_800};
         font-size: 2rem;
     }
 
     > p {
-        color: ${({theme}) => theme.COLORS.BACKGROUND_800};
+        color: ${({ theme }) => theme.COLORS.BACKGROUND_800};
         font-family: var(--Roboto-Slab);
         font-size: 1.6rem;
         font-weight: 400;
