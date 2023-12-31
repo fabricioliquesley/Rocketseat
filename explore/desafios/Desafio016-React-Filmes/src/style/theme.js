@@ -6,6 +6,7 @@ export default {
     
         WHITE: "#F4EDE8",
         LIGHT_PINK: "rgba(255, 133, 155, 0.05)",
+        TAG: "#282124",
         BEGE: "#948F99",
     
         GRAY_100: "#E5E5E5",
