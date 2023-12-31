@@ -9,11 +9,11 @@ export const Container = styled.div`
     border: 2px dashed ${({ theme, isNew }) => isNew ? theme.COLORS.BEGE : "none"};
     border-radius: 1rem;
     padding: 1.6rem;
-
+    
     &:has(input:focus){
         border: 2px dashed ${({ theme }) => theme.COLORS.WHITE};
     }
-
+    
     > input {
         background: transparent;
         color: ${({ theme, isNew }) => isNew ? theme.COLORS.BEGE : theme.COLORS.WHITE};
@@ -24,8 +24,15 @@ export const Container = styled.div`
         outline: none;
     }
 
-    > svg {
-        font-size: 2rem;
-        color: ${({ theme }) => theme.COLORS.PINK};
+    > button {
+        display: grid;
+        place-items: center;
+        background: transparent;
+        border: none;
+
+        svg {
+            font-size: 2rem;
+            color: ${({ theme }) => theme.COLORS.PINK};
+        }
     }
 `;

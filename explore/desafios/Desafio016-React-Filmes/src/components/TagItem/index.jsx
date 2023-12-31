@@ -10,7 +10,9 @@ export function TagItem({value, isNew, ...rest}) {
                 disabled={!isNew}
                 {...rest}
             />
-            {isNew ? <FiPlus/> : <FiX/>}
+            <button>
+                {isNew ? <FiPlus/> : <FiX/>}
+            </button>
         </Container>
     );
 }
