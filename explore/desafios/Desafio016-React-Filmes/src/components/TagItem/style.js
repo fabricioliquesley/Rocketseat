@@ -5,8 +5,8 @@ export const Container = styled.div`
     align-items: center;
     gap: 1.6rem;
     width: fit-content;
-    background: ${({ theme, isNew }) => isNew ? "transparent" : theme.COLORS.BACKGROUND_700};
-    border: 2px dashed ${({ theme, isNew }) => isNew ? theme.COLORS.BEGE : "none"};
+    background: ${({ theme, $isNew }) => $isNew ? "transparent" : theme.COLORS.BACKGROUND_700};
+    border: 2px dashed ${({ theme, $isNew }) => $isNew ? theme.COLORS.BEGE : "none"};
     border-radius: 1rem;
     padding: 1.6rem;
     
@@ -16,7 +16,7 @@ export const Container = styled.div`
     
     > input {
         background: transparent;
-        color: ${({ theme, isNew }) => isNew ? theme.COLORS.BEGE : theme.COLORS.WHITE};
+        color: ${({ theme, $isNew }) => $isNew ? theme.COLORS.BEGE : theme.COLORS.WHITE};
         font-family: var(--Roboto);
         font-size: 1.6rem;
         font-weight: 400;

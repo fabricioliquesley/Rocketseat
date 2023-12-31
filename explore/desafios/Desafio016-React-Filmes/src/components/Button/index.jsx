@@ -1,8 +1,8 @@
 import { Container } from "./style";
 
-export function Button({ title, type = "button", ...rest}) {
+export function Button({ title, type = "button", alternate = false}) {
     return (
-        <Container type={type} {...rest}>
+        <Container type={type} $alternate={alternate}>
             {title}
         </Container>
     );

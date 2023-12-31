@@ -1,8 +1,8 @@
 import { Container } from "./style";
 
-export function Tag({children, ...rest}) {
+export function Tag({children, alternate}) {
     return (
-        <Container {...rest}>
+        <Container $alternate={alternate}>
             {children}
         </Container>
     );

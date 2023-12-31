@@ -3,7 +3,7 @@ import { Container } from "./style";
 
 export function TagItem({value, isNew, ...rest}) {
     return (
-        <Container isNew={isNew}>
+        <Container $isNew={isNew}>
             <input 
                 type="text" 
                 value={value} 
