@@ -4,11 +4,15 @@ import { IoIosStar, IoIosStarOutline, IoIosStarHalf } from "react-icons/io";
 export function RatingStar({ rating }) {
     function renderStars(rating) {
         let stars = [];
+        let n = 0;
 
         let fullStars = Math.floor(rating)
 
         for (let i = 0; i < fullStars; i++) {
-            stars.push(<IoIosStar key={i} />);
+            stars.push({
+                id: n++,
+                tag: <IoIosStar key={i} />
+            });
         }
 
         if (stars.length < 5){
@@ -18,16 +22,24 @@ export function RatingStar({ rating }) {
             let halfStars = leftovers - emptyStar;
 
             if (halfStars > 0 && halfStars < 1){
-                stars.push(<IoIosStarHalf/>)
+                stars.push({
+                    id: n++,
+                    tag: <IoIosStarHalf/>
+                })
             }
 
             for (let i = 0; i < emptyStar; i++) {
-                stars.push(<IoIosStarOutline/>);
+                stars.push({
+                    id: n++,
+                    tag: <IoIosStarOutline/>
+                });
             } 
         }
 
         return (
-            <>{stars}</>
+            <>{
+                stars.map(star => <li key={star.id}>{star.tag}</li>) 
+            }</>
         );
     }
 
