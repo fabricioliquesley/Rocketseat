@@ -3,7 +3,7 @@ const knex = require("../database/knex");
 class NotesContoller {
     async create(request, response) {
         const { title, description, tags, links } = request.body;
-        const { user_id } = request.params;
+        const user_id = request.user.id;
 
         const [note_id] = await knex("notes").insert({
             title,
@@ -56,7 +56,8 @@ class NotesContoller {
     }
 
     async index(request, response) {
-        const {user_id, title, tags} = request.query;
+        const { title, tags} = request.query;
+        const user_id = request.user.id;
 
         let notes;
 
@@ -76,7 +77,7 @@ class NotesContoller {
                 .innerJoin("notes", "notes.id", "tags.note_id")
         } else {
             notes = await knex("notes")
-                .where({ user_id })
+                .where({user_id})
                 .whereLike("title", `%${title}%`)
                 .orderBy("title");
         }
