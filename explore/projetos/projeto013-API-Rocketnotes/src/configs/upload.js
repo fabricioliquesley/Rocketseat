@@ -17,7 +17,7 @@ const MULTER = {
     })
 }
 
-module.export = {
+module.exports = {
     TMP_FOLDER,
     UPLOADS_FOLDER,
     MULTER
