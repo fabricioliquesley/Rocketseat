@@ -14,7 +14,7 @@ export function Notes({ data, ...rest }) {
 
     return (
         <Container {...rest}>
-            <h2>{data.name}</h2>
+            <h2>{data.title}</h2>
             {data.tags && renderUl(data)}
         </Container>
     );

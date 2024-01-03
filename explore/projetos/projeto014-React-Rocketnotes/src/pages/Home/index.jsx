@@ -11,9 +11,29 @@ import { api } from "../../services/api";
 
 export function Home() {
     const [tags, setTags] = useState([]);
+    const [tagsSelected, setTagsSelected] = useState([]);
+
+    const [search, setSearch] = useState("");
+    const [notes, setNotes] = useState([]);
+
+    function handleTagSelected(tagName) {
+        if (tagName == "all"){
+            return setTagsSelected([])
+        }
+
+        const alreadySelected = tagsSelected.includes(tagName);
+            
+        if (alreadySelected) {
+            const filteredTags = tagsSelected.filter(tag => tag !== tagName);
+
+            setTagsSelected(filteredTags);
+        } else {
+            setTagsSelected(prevState => [...prevState, tagName]);
+        }
+    }
 
     useEffect(() => {
-        async function fetchTags(){
+        async function fetchTags() {
             const response = await api.get("/tags");
 
             setTags(response.data);
@@ -22,6 +42,17 @@ export function Home() {
         fetchTags();
     }, [])
 
+    useEffect(() => {
+        console.log(notes)
+        async function fetchNotes(){
+            const response = await api.get(`/notes?title=${search}&tags=${tagsSelected}`);
+
+            setNotes(response.data);
+        }
+        
+        fetchNotes();
+    }, [tagsSelected, search])
+    
     return (
         <Container>
             <Header />
@@ -29,13 +60,19 @@ export function Home() {
                 <div>
                     <h1>Rocketnotes</h1>
                     <nav>
-                        <ButtonNotBg title="Todos" isActive />
+                        <ButtonNotBg
+                            title="Todas"
+                            isActive={tagsSelected.length === 0}
+                            onClick={() => handleTagSelected("all")}
+                        />
                         {
                             tags &&
                             tags.map((tag) => (
                                 <ButtonNotBg
                                     key={String(tag.id)}
                                     title={tag.name}
+                                    isActive={tagsSelected.includes(tag.name)}
+                                    onClick={() => handleTagSelected(tag.name)}
                                 />
                             ))
                         }
@@ -47,27 +84,20 @@ export function Home() {
                 </CreatBtn>
             </Menu>
             <Main>
-                <Input placeholder="Pesquisar pelo título" />
+                <Input 
+                    placeholder="Pesquisar pelo título"
+                    onChange={e => setSearch(e.target.value)}
+                />
                 <Section title="Minhas notas">
-                    <Notes
-                        data={{
-                            name: "React Modal",
-                            tags: [
-                                { id: "1", name: "react" },
-                                { id: "2", name: "css" },
-                                { id: "3", name: "javascript" },
-                            ]
-                        }}
-                    />
-                    <Notes
-                        data={{
-                            name: "Exemplo de Middleware",
-                            tags: [
-                                { id: "1", name: "express" },
-                                { id: "2", name: "node" },
-                            ]
-                        }}
-                    />
+                    {
+                        notes &&
+                        notes.map((note) => (
+                            <Notes
+                                key={String(note.id)}
+                                data={note}
+                            />
+                        ))
+                    }
                 </Section>
             </Main>
         </Container>
