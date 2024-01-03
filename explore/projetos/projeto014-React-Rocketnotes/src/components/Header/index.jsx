@@ -2,20 +2,25 @@ import { Container, Profile, Logaut } from "./styles";
 import { RiShutDownLine } from "react-icons/ri"
 import { useAuth } from "../../hooks/auth";
 
-export function Header({ name, src }) {
-    const {signOut} = useAuth()
+import { api } from "../../services/api";
+import defaultImg from "../../assets/images/avatar_placeholder.svg";
+
+export function Header() {
+    const { signOut, user } = useAuth()
+
+    const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : defaultImg;
 
     return (
         <Container>
-            <Profile name={name} src={src} to="/profile">
+            <Profile to="/profile">
                 <img
-                    src={src}
-                    alt="Foto de perfil"
+                    src={avatarUrl}
+                    alt={user.name}
                 />
                 <div>
                     <span>Bem vindo,</span>
                     <strong>
-                        {name}
+                        {user.name}
                     </strong>
                 </div>
             </Profile>

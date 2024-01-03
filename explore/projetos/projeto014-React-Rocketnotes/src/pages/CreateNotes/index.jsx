@@ -4,15 +4,12 @@ import { Input } from "../../components/Input";
 import { Section } from "../../components/Section";
 import { NoteItem } from "../../components/NotesItem";
 import { Button } from "../../components/Button";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export function CreateNotes() {
     return (
         <Container>
-            <Header
-                name="Fabricio Liquesley"
-                src="https://github.com/diego3g.png"
-            />
+            <Header />
             <Main>
                 <Content>
                     <div>
@@ -25,14 +22,14 @@ export function CreateNotes() {
                     </fieldset>
                     <Section title="Links úteis">
                         <ul>
-                            <NoteItem value="https://www.rocketseat.com.br/"/>
+                            <NoteItem value="https://www.rocketseat.com.br/" />
                         </ul>
-                        <NoteItem isNew placeholder="Novo link"/>
+                        <NoteItem isNew placeholder="Novo link" />
                     </Section>
                     <Section title="Marcadores">
                         <div className="tagsContainer">
-                            <NoteItem value="React"/>
-                            <NoteItem isNew placeholder="Novo marcador"/>
+                            <NoteItem value="React" />
+                            <NoteItem isNew placeholder="Novo marcador" />
                         </div>
                     </Section>
                     <Button title="Salvar" />

@@ -9,10 +9,7 @@ import { Notes } from "../../components/Notes";
 export function Home() {
     return (
         <Container>
-            <Header
-                name="Fabricio Liquesley"
-                src="https://github.com/diego3g.png"
-            />
+            <Header />
             <Menu>
                 <div>
                     <h1>Rocketnotes</h1>
@@ -31,22 +28,22 @@ export function Home() {
             <Main>
                 <Input placeholder="Pesquisar pelo título" />
                 <Section title="Minhas notas">
-                    <Notes 
+                    <Notes
                         data={{
                             name: "React Modal",
                             tags: [
-                                {id: "1", name: "react"}, 
-                                {id: "2", name: "css"}, 
-                                {id: "3", name: "javascript"},
+                                { id: "1", name: "react" },
+                                { id: "2", name: "css" },
+                                { id: "3", name: "javascript" },
                             ]
                         }}
                     />
-                    <Notes 
+                    <Notes
                         data={{
                             name: "Exemplo de Middleware",
                             tags: [
-                                {id: "1", name: "express"}, 
-                                {id: "2", name: "node"},
+                                { id: "1", name: "express" },
+                                { id: "2", name: "node" },
                             ]
                         }}
                     />

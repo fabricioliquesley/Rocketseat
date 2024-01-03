@@ -9,10 +9,7 @@ import { Link } from "react-router-dom";
 export function Details() {
     return (
         <Container>
-            <Header
-                name="Fabricio Liquesley"
-                src="https://github.com/diego3g.png"
-            />
+            <Header />
 
             <main>
                 <Content>
