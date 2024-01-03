@@ -6,7 +6,7 @@ export const Container = styled.div`
     gap: 1rem;
     width: 100%;
     background: ${({ theme }) => theme.COLORS.BACKGROUND_900};
-    padding: 2rem 1.6rem;
+    padding: 0 1.6rem;
     border: none;
     border-radius: 1rem;
     
@@ -17,6 +17,7 @@ export const Container = styled.div`
         font-size: 1.4rem;
         font-weight: 400;
         border: none;
+        padding: 2rem 0;
         outline: none;
 
         &:placeholder {

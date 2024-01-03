@@ -6,14 +6,15 @@ export const Container = styled.div`
     justify-content: space-between;
     gap: 1rem;
     background: ${({theme, isNew}) => isNew ? "transparent" : theme.COLORS.BACKGROUND_900};
-    padding: 2rem;
     border: 2PX dashed ${({ theme, isNew }) => isNew ? theme.COLORS.GRAY_300: "none"};
+    padding: 0 2rem;
     border-radius: 1rem;
-
+    
     > input {
         width: 100%;
         background: transparent;
         color: ${({theme}) => theme.COLORS.WHITE};
+        padding: 2rem 0;
         border: none;
         outline: none;
     }
