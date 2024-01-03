@@ -3,7 +3,7 @@ import { Container } from "./style";
 
 export function NoteItem({ value, isNew, onClick, ...rest }) {
     return (
-        <Container isNew={isNew}>
+        <Container $isnew={isNew}>
             <input 
                 type="text"
                 value={value}
