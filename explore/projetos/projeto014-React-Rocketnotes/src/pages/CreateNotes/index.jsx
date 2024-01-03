@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { Container, Main, Content, Textarea } from "./style";
 import { Header } from "../../components/Header";
 import { Input } from "../../components/Input";
@@ -7,12 +9,19 @@ import { NoteItem } from "../../components/NotesItem";
 import { Button } from "../../components/Button";
 import { Link } from "react-router-dom";
 
+import { api } from "../../services/api";
+
 export function CreateNotes() {
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+
     const [links, setLinks] = useState([]);
     const [newLink, setNewLink] = useState("");
 
     const [tags, setTags] = useState([]);
     const [newTag, setNewTag] = useState("");
+
+    const navigate = useNavigate();
 
     function handleAddLink(){
         if(newLink == ""){
@@ -40,6 +49,30 @@ export function CreateNotes() {
         setTags(prevState => prevState.filter(tag => tag !== deleted));
     }
 
+    async function handleNewNote(){
+        if(newTag){
+            return alert("Você deixou uma tag no campo para adicionar, mas não a adicionou.");
+        }
+
+        if(newLink){
+            return alert("Você deixou uma link no campo para adicionar, mas não a adicionou.");
+        }
+
+        if(!title || !description || tags.length == 0 || links.length == 0){
+            return alert("Preencha todos os campos para adicionar uma nota");
+        }
+
+        await api.post("/notes", {
+            title,
+            description,
+            tags,
+            links
+        })
+
+        alert("Nota criada com sucesso.");
+        navigate("/");
+    }
+
     return (
         <Container>
             <Header />
@@ -50,8 +83,14 @@ export function CreateNotes() {
                         <Link to="/">Voltar</Link>
                     </div>
                     <fieldset>
-                        <Input placeholder="Título" />
-                        <Textarea placeholder="Observação" />
+                        <Input 
+                            placeholder="Título"
+                            onChange={e => setTitle(e.target.value)}
+                        />
+                        <Textarea 
+                            placeholder="Observação" 
+                            onChange={e => setDescription(e.target.value)}
+                        />
                     </fieldset>
                     <Section title="Links úteis">
                         {
@@ -101,7 +140,10 @@ export function CreateNotes() {
                             />
                         </div>
                     </Section>
-                    <Button title="Salvar" />
+                    <Button 
+                        title="Salvar"
+                        onClick={handleNewNote} 
+                    />
                 </Content>
             </Main>
         </Container>
