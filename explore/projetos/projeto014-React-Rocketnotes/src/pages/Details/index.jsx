@@ -64,6 +64,7 @@ export function Details() {
                                                 <li key={String(link.id)}>
                                                     <a
                                                         href={link.url}
+                                                        target="_blank" rel="noreferrer"
                                                     >
                                                         {link.url}
                                                     </a>
