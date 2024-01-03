@@ -7,7 +7,7 @@ import { Input } from "../../components/Input";
 import { Section } from "../../components/Section";
 import { NoteItem } from "../../components/NotesItem";
 import { Button } from "../../components/Button";
-import { Link } from "react-router-dom";
+import { ButtonNotBg } from "../../components/ButtonNotBg";
 
 import { api } from "../../services/api";
 
@@ -23,42 +23,46 @@ export function CreateNotes() {
 
     const navigate = useNavigate();
 
-    function handleAddLink(){
-        if(newLink == ""){
+    function handleAddLink() {
+        if (newLink == "") {
             return;
         }
-        
+
         setLinks(prevState => [...prevState, newLink])
         setNewLink("");
     }
 
-    function handleRemoveLink(deleted){
+    function handleRemoveLink(deleted) {
         setLinks(prevState => prevState.filter(link => link !== deleted));
     }
 
-    function handleAddTag(){
-        if(newTag == ""){
+    function handleAddTag() {
+        if (newTag == "") {
             return;
         }
-        
+
         setTags(prevState => [...prevState, newTag]);
         setNewTag("");
     }
 
-    function handleRemoveTag(deleted){
+    function handleRemoveTag(deleted) {
         setTags(prevState => prevState.filter(tag => tag !== deleted));
     }
 
-    async function handleNewNote(){
-        if(newTag){
+    function handleBack(){
+        navigate(-1);
+    }
+
+    async function handleNewNote() {
+        if (newTag) {
             return alert("Você deixou uma tag no campo para adicionar, mas não a adicionou.");
         }
 
-        if(newLink){
+        if (newLink) {
             return alert("Você deixou uma link no campo para adicionar, mas não a adicionou.");
         }
 
-        if(!title || !description || tags.length == 0 || links.length == 0){
+        if (!title || !description || tags.length == 0 || links.length == 0) {
             return alert("Preencha todos os campos para adicionar uma nota");
         }
 
@@ -70,7 +74,7 @@ export function CreateNotes() {
         })
 
         alert("Nota criada com sucesso.");
-        navigate("/");
+        navigate(-1);
     }
 
     return (
@@ -80,15 +84,18 @@ export function CreateNotes() {
                 <Content>
                     <div>
                         <h2>Criar nota</h2>
-                        <Link to="/">Voltar</Link>
+                        <ButtonNotBg
+                            title="Voltar"
+                            onClick={handleBack}
+                        />
                     </div>
                     <fieldset>
-                        <Input 
+                        <Input
                             placeholder="Título"
                             onChange={e => setTitle(e.target.value)}
                         />
-                        <Textarea 
-                            placeholder="Observação" 
+                        <Textarea
+                            placeholder="Observação"
                             onChange={e => setDescription(e.target.value)}
                         />
                     </fieldset>
@@ -98,7 +105,7 @@ export function CreateNotes() {
                             <ul>
                                 {
                                     links.map((link, index) => (
-                                        <NoteItem 
+                                        <NoteItem
                                             key={String(index)}
                                             value={link}
                                             onClick={
@@ -109,8 +116,8 @@ export function CreateNotes() {
                                 }
                             </ul>
                         }
-                        <NoteItem 
-                            isNew 
+                        <NoteItem
+                            isNew
                             placeholder="Novo link"
                             value={newLink}
                             onChange={e => setNewLink(e.target.value)}
@@ -122,7 +129,7 @@ export function CreateNotes() {
                             {
                                 tags &&
                                 tags.map((tag, index) => (
-                                    <NoteItem 
+                                    <NoteItem
                                         key={String(index)}
                                         value={tag}
                                         onClick={
@@ -131,8 +138,8 @@ export function CreateNotes() {
                                     />
                                 ))
                             }
-                            <NoteItem 
-                                isNew 
+                            <NoteItem
+                                isNew
                                 placeholder="Novo marcador"
                                 value={newTag}
                                 onChange={e => setNewTag(e.target.value)}
@@ -140,9 +147,9 @@ export function CreateNotes() {
                             />
                         </div>
                     </Section>
-                    <Button 
+                    <Button
                         title="Salvar"
-                        onClick={handleNewNote} 
+                        onClick={handleNewNote}
                     />
                 </Content>
             </Main>

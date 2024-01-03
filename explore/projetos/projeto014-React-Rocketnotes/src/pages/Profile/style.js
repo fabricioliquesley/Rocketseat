@@ -14,8 +14,16 @@ export const Container = styled.div`
         background: ${({theme}) => theme.COLORS.BACKGROUND_900};
         padding: 4rem;
 
-        svg {
-            color: ${({theme}) => theme.COLORS.GRAY_100};
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+
+            svg {
+                color: ${({theme}) => theme.COLORS.GRAY_100};
+            }
         }
     }
 `;
