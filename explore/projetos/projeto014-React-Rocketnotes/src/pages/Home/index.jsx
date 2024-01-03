@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Container, Menu, CreatBtn, Main } from "./style";
 import { Header } from "../../components/Header";
 import { ButtonNotBg } from "../../components/ButtonNotBg";
@@ -6,7 +7,21 @@ import { Input } from "../../components/Input";
 import { Section } from "../../components/Section";
 import { Notes } from "../../components/Notes";
 
+import { api } from "../../services/api";
+
 export function Home() {
+    const [tags, setTags] = useState([]);
+
+    useEffect(() => {
+        async function fetchTags(){
+            const response = await api.get("/tags");
+
+            setTags(response.data);
+        }
+
+        fetchTags();
+    }, [])
+
     return (
         <Container>
             <Header />
@@ -15,9 +30,15 @@ export function Home() {
                     <h1>Rocketnotes</h1>
                     <nav>
                         <ButtonNotBg title="Todos" isActive />
-                        <ButtonNotBg title="Frontend" />
-                        <ButtonNotBg title="Node" />
-                        <ButtonNotBg title="React" />
+                        {
+                            tags &&
+                            tags.map((tag) => (
+                                <ButtonNotBg
+                                    key={String(tag.id)}
+                                    title={tag.name}
+                                />
+                            ))
+                        }
                     </nav>
                 </div>
                 <CreatBtn to="/createNotes">
