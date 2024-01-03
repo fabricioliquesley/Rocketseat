@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Container, Menu, CreatBtn, Main } from "./style";
 import { Header } from "../../components/Header";
@@ -16,13 +17,15 @@ export function Home() {
     const [search, setSearch] = useState("");
     const [notes, setNotes] = useState([]);
 
+    const navigate = useNavigate();
+
     function handleTagSelected(tagName) {
-        if (tagName == "all"){
+        if (tagName == "all") {
             return setTagsSelected([])
         }
 
         const alreadySelected = tagsSelected.includes(tagName);
-            
+
         if (alreadySelected) {
             const filteredTags = tagsSelected.filter(tag => tag !== tagName);
 
@@ -30,6 +33,10 @@ export function Home() {
         } else {
             setTagsSelected(prevState => [...prevState, tagName]);
         }
+    }
+
+    function handleDetail(id) {
+        navigate(`/details/${id}`)
     }
 
     useEffect(() => {
@@ -43,16 +50,15 @@ export function Home() {
     }, [])
 
     useEffect(() => {
-        console.log(notes)
-        async function fetchNotes(){
+        async function fetchNotes() {
             const response = await api.get(`/notes?title=${search}&tags=${tagsSelected}`);
 
             setNotes(response.data);
         }
-        
+
         fetchNotes();
     }, [tagsSelected, search])
-    
+
     return (
         <Container>
             <Header />
@@ -84,7 +90,7 @@ export function Home() {
                 </CreatBtn>
             </Menu>
             <Main>
-                <Input 
+                <Input
                     placeholder="Pesquisar pelo título"
                     onChange={e => setSearch(e.target.value)}
                 />
@@ -95,6 +101,7 @@ export function Home() {
                             <Notes
                                 key={String(note.id)}
                                 data={note}
+                                onClick={() => handleDetail(note.id)}
                             />
                         ))
                     }
