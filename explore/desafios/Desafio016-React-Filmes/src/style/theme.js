@@ -15,5 +15,11 @@ export default {
         PINK: "#FF859B",
         PURPLE_100: "#3E3B47",
         PURPLE_200: "#312E38"
+    },
+
+    ALERT: {
+        RED: "#EF5350",
+        GREEN: "#9CCC65",
+        YELLOW: "#FFCA28"
     }
 }
