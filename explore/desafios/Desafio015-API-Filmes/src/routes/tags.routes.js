@@ -8,6 +8,6 @@ const ensureAuthenticated = require("../middleware/ensureAuthenticated");
 
 const tagsRoutes = Router();
 
-tagsRoutes.get("/:user_id", ensureAuthenticated, tagsController.index);
+tagsRoutes.get("/", ensureAuthenticated, tagsController.index);
 
 module.exports = tagsRoutes;
