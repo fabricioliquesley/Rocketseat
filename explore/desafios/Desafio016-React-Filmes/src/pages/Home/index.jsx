@@ -1,12 +1,42 @@
+import { useEffect, useState } from "react";
 import { Header } from "../../components/Header";
 import { MovieCard } from "../../components/MovieCard";
 import { Container, Main, CreateMovieButton, MovieCardsContainer } from "./style";
 import { FiPlus } from "react-icons/fi";
+import { api } from "../../services/api";
+import { useNavigate } from "react-router-dom";
 
 export function Home() {
+    const [search, setSearch] = useState("");
+    const [notes, setNotes] = useState([]);
+
+    const navigate = useNavigate();
+
+    function openDetailNote(note_id){
+        navigate(`/preview/${note_id}`);
+    }
+
+    useEffect(() => {
+        async function fetchNotes(){
+            try {
+                const response = await api.get(`/movies?title=${search}`);
+
+                setNotes(response.data);
+            } catch (error) {
+                console.error(error);
+            }
+            
+        } 
+
+        fetchNotes();
+    }, [search])
+
     return (
         <Container>
-            <Header src="https://github.com/maykbrito.png" />
+            <Header 
+                src="https://github.com/maykbrito.png"
+                change={(e) => setSearch(e.target.value)}
+            />
             <Main>
                 <div>
                     <h1>Meus filmes</h1>
@@ -20,27 +50,16 @@ export function Home() {
                     </CreateMovieButton>
                 </div>
                 <MovieCardsContainer>
-                    <MovieCard
-                        movieData={{
-                            name: "Interestellar",
-                            rating: 4.5,
-                            detail: "Pragas nas colheitas fizeram a civilização humana regredir para uma sociedade agrária em futuro de data desconhecida. Cooper, ex-piloto da NASA, tem uma fazenda com sua família. Murphy, a filha de dez anos de Cooper, acredita que seu quarto está assombrado por um fantasma que tenta se comunicar com ela. ",
-                            tags: [
-                                {
-                                    id: "1",
-                                    name: "Ficção Científica"
-                                },
-                                {
-                                    id: "2",
-                                    name: "Drama"
-                                },
-                                {
-                                    id: "3",
-                                    name: "Família"
-                                },
-                            ]
-                        }}
-                    />
+                    {
+                        notes &&
+                        notes.map((note) => (
+                            <MovieCard
+                                key={String(note.id)}
+                                movieData={note}
+                                onClick={() => openDetailNote(note.id)}
+                            />
+                        ))
+                    } 
                 </MovieCardsContainer>
             </Main>
         </Container>

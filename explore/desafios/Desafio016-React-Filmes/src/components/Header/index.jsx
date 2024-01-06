@@ -5,7 +5,7 @@ import { Input } from "../Input";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hook/auth";
 
-export function Header({ src }) {
+export function Header({ src, change }) {
     const { user, signOut } = useAuth();
 
     const navigate = useNavigate();
@@ -19,7 +19,10 @@ export function Header({ src }) {
     return (
         <Container>
             <Link title="RocketMovies" isLogo />
-            <Input placeholder="Pesquisar pelo título" />
+            <Input 
+                placeholder="Pesquisar pelo título"
+                onChange={change}
+            />
             <Profile >
                 <div>
                     <Username to="/profile">

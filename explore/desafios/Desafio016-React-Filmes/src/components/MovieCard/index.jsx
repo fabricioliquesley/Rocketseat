@@ -2,7 +2,7 @@ import { RatingStar } from "../Rating";
 import { Tag } from "../Tag";
 import { Container } from "./style";
 
-export function MovieCard({ movieData }) {
+export function MovieCard({ movieData, ...rest }) {
     function renderTagList(listaTags) {
         return (
             <ul>
@@ -16,13 +16,13 @@ export function MovieCard({ movieData }) {
     }
 
     return (
-        <Container>
+        <Container {...rest}>
             <div>
-                <h2>{movieData.name}</h2>
+                <h2>{movieData.title}</h2>
                 <RatingStar rating={movieData.rating}/>
             </div>
             <p>
-                {movieData.detail}
+                {movieData.description}
             </p>
             {movieData.tags && renderTagList(movieData.tags)}
         </Container>

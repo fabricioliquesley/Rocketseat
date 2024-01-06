@@ -48,9 +48,28 @@ export const Main = styled.main`
     }
 `;
 
+export const Controls = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    > button {
+        display: grid;
+        place-content: center;
+        background: transparent;
+        border: none;
+        font-size: 2rem;
+        color: ${({theme}) => theme.COLORS.GRAY_300};
+
+        &:hover {
+            color: red;
+        }
+    }
+`;
+
 export const MovieInfo = styled.div`
     display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: 2rem;
 
     > h1 {

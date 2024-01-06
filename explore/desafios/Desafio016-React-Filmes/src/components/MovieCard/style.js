@@ -8,6 +8,7 @@ export const Container = styled.div`
     background: ${({theme}) => theme.COLORS.LIGHT_PINK};
     border-radius: 1.6rem;
     padding: 3.2rem;
+    cursor: pointer;
     
     > div {
         
