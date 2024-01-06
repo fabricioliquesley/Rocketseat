@@ -1,7 +1,7 @@
 import { FiPlus, FiX } from "react-icons/fi";
 import { Container } from "./style";
 
-export function TagItem({value, isNew, ...rest}) {
+export function TagItem({value, onClick, isNew, ...rest}) {
     return (
         <Container $isNew={isNew}>
             <input 
@@ -10,7 +10,7 @@ export function TagItem({value, isNew, ...rest}) {
                 disabled={!isNew}
                 {...rest}
             />
-            <button>
+            <button onClick={onClick}>
                 {isNew ? <FiPlus/> : <FiX/>}
             </button>
         </Container>

@@ -3,7 +3,7 @@ const AppError = require("../utils/AppError")
 
 class MoviesNotesController {
     async create(request, response) {
-        const { title, description, rating, tags_name } = request.body;
+        const { title, description, rating, tags } = request.body;
         const user_id = request.user.id;
 
         const [movie_note_id] = await knex("movie_notes").insert({
@@ -13,7 +13,7 @@ class MoviesNotesController {
             user_id
         });
 
-        const tagsInsert = tags_name.map(tag_name => {
+        const tagsInsert = tags.map(tag_name => {
             return {
                 movie_note_id,
                 user_id,
