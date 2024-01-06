@@ -6,14 +6,14 @@ import { FiPlus } from "react-icons/fi";
 export function Home() {
     return (
         <Container>
-            <Header name="Mayk Brito" src="https://github.com/maykbrito.png" />
+            <Header src="https://github.com/maykbrito.png" />
             <Main>
                 <div>
                     <h1>Meus filmes</h1>
-                    <CreateMovieButton 
+                    <CreateMovieButton
                         to="/create"
                     >
-                        <FiPlus/>
+                        <FiPlus />
                         <p>
                             Adicionar filme
                         </p>

@@ -2,7 +2,20 @@ import { Container, Profile, Avatar, Username } from "./style";
 import { Link } from "../Link"
 import { Input } from "../Input";
 
-export function Header({ name, src }) {
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hook/auth";
+
+export function Header({ src }) {
+    const { user, signOut } = useAuth();
+
+    const navigate = useNavigate();
+
+    function handleSignOut() {
+        navigate("/");
+        
+        signOut();
+    }
+
     return (
         <Container>
             <Link title="RocketMovies" isLogo />
@@ -11,10 +24,10 @@ export function Header({ name, src }) {
                 <div>
                     <Username to="/profile">
                         <strong>
-                            {name}
+                            {user.name}
                         </strong>
                     </Username>
-                    <button>
+                    <button onClick={handleSignOut}>
                         sair
                     </button>
                 </div>
