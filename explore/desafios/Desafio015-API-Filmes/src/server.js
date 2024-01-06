@@ -4,11 +4,13 @@ const AppError = require("./utils/AppError");
 const database = require("./database/sqlite");
 const express = require("express");
 const routes = require("./routes");
+const uploadConfig = require("./config/upload");
 
 const app = express();
 app.use(express.json());
 
 app.use(routes);
+app.use("/avatar", express.static(uploadConfig.UPLOAD_FOLDER))
 
 database();
 
