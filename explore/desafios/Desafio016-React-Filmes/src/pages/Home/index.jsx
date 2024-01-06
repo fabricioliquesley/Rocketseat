@@ -3,29 +3,15 @@ import { MovieCard } from "../../components/MovieCard";
 import { Container, Main, CreateMovieButton, MovieCardsContainer } from "./style";
 import { FiPlus } from "react-icons/fi";
 
-import { MessageBox } from "../../components/MessageBox";
-
 export function Home() {
-    function changeColor(){
-        const box = document.querySelector(".message")
-
-        box.style.backgroundColor = "rgba(255, 255, 255)"
-    }
-
     return (
         <Container>
             <Header name="Mayk Brito" src="https://github.com/maykbrito.png" />
             <Main>
-                <MessageBox
-                    className="message"
-                    type="Error"
-                    message="Não foi possível realizar o cadastro!"
-                />
                 <div>
                     <h1>Meus filmes</h1>
                     <CreateMovieButton 
-                        // to="/create" 
-                        onClick={changeColor}
+                        to="/create"
                     >
                         <FiPlus/>
                         <p>

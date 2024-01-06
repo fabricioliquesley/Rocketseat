@@ -1,9 +1,8 @@
 import { Container, Title } from "./style";
-import { Button } from "../../components/Button";
 import { Link } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
 
-export function Form({ title, children, buttonName, src, linkName, isRegister = false }) {
+export function Form({ title, children, src, linkName, isRegister = false }) {
     return (
         <Container>
             <Title>
@@ -19,10 +18,6 @@ export function Form({ title, children, buttonName, src, linkName, isRegister = 
                 <fieldset>
                     {children}
                 </fieldset>
-                <Button
-                    title={buttonName}
-                    type="submit"
-                />
             </div>
             <Link to={src}>
                 {
