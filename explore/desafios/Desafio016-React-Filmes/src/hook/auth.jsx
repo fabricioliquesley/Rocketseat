@@ -27,18 +27,47 @@ function AuthProvider({ children }) {
         }
     }
 
-    function signOut(){
+    function signOut() {
         localStorage.removeItem("@rocketmovies:user");
         localStorage.removeItem("@rocketmovies:token");
 
         setData({})
     }
 
+    async function updateProfile({ user, avatarFile }) {
+        try {
+            if(avatarFile){
+                const fileUploadForm = new FormData();
+
+                fileUploadForm.append("avatar", avatarFile);
+
+                console.log(fileUploadForm)
+
+                const response = await api.patch("/users/avatar", fileUploadForm);
+
+                user.avatar = response.data.avatar;
+            }
+
+            await api.put("/users", user);
+
+            localStorage.setItem("@rocketmovies:user", JSON.stringify(user));
+
+            setData({user, token: data.token});
+            alert("perfil atualizado!");
+        } catch (error) {
+            if (error.response) {
+                alert(error.response.data.message);
+            } else {
+                alert("Não foi possível atualizar o perfil!")
+            }
+        }
+    }
+
     useEffect(() => {
         const user = localStorage.getItem("@rocketmovies:user");
         const token = localStorage.getItem("@rocketmovies:token");
 
-        if(user && token) {
+        if (user && token) {
             api.defaults.headers["Authorization"] = `Bearer ${token}`;
 
             setData({
@@ -53,6 +82,7 @@ function AuthProvider({ children }) {
             value={{
                 signIn,
                 signOut,
+                updateProfile,
                 user: data.user
             }}
         >

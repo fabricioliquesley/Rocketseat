@@ -40,8 +40,8 @@ function AuthProvider({ children }) {
                 const response = await api.patch("users/avatar", fileUploadForm);
                 user.avatar = response.data.avatar;
             }
-            
 
+            
             await api.put("/users", user)
             localStorage.setItem("@rocketnotes:user", JSON.stringify(user));
 

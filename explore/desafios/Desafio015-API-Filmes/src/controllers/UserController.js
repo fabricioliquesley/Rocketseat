@@ -25,9 +25,11 @@ class UserController {
 
     async update(request, response) {
         const { name, email, password, oldPassword } = request.body;
-        const id  = request.user.id;
+        const user_id = request.user.id;
 
-        const user = await knex("users").select().where("id", id);
+        console.log(password, oldPassword)
+
+        const user = await knex("users").select().where("id", user_id);
 
         if (user.length == 0) {
             throw new AppError("Usuário não encontrado");
@@ -43,8 +45,6 @@ class UserController {
 
         user[0].name = name ?? user[0].name;
         user[0].email = email ?? user[0].email;
-
-        console.log([user[0].name, user[0].email])
 
         if (password && oldPassword) {
             const checkPassword = await compare(oldPassword, user[0].password);
@@ -63,7 +63,7 @@ class UserController {
             email: user[0].email,
             password: user[0].password,
             updated_at: knex.fn.now()
-        }).where("id", id)
+        }).where("id", user_id)
 
         response.status(201).json();
     }

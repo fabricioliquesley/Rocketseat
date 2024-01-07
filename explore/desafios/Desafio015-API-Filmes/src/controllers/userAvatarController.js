@@ -5,7 +5,6 @@ const DiskStorage = require("../provider/DiskStorage");
 class UserAvatarController {
     async update(request, response){
         const user_id = request.user.id;
-
         const avatarFileName = request.file.filename;
 
         const diskStorage = new DiskStorage();
@@ -17,10 +16,10 @@ class UserAvatarController {
         }
 
         if(user.avatar){
-            diskStorage.deleteFile(user.avatar);
+            await diskStorage.deleteFile(user.avatar);
         }
 
-        const filename = diskStorage.saveFile(avatarFileName);
+        const filename = await diskStorage.saveFile(avatarFileName);
 
         user.avatar = filename;
 

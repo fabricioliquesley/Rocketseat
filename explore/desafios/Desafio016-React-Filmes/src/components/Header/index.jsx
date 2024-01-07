@@ -5,7 +5,7 @@ import { Input } from "../Input";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hook/auth";
 
-export function Header({ src, change }) {
+export function Header({ change }) {
     const { user, signOut } = useAuth();
 
     const navigate = useNavigate();
@@ -35,7 +35,7 @@ export function Header({ src, change }) {
                     </button>
                 </div>
                 <Avatar to="/profile">
-                    <img src={src} alt="Foto de perfil" />
+                    <img src={user.avatar} alt="Foto de perfil" />
                 </Avatar>
             </Profile>
         </Container>
