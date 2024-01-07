@@ -1,9 +1,10 @@
 import { Container, Profile, Avatar, Username } from "./style";
 import { Link } from "../Link"
 import { Input } from "../Input";
-
+import defaultImg from "../../assets/images/avatar_placeholder.svg";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hook/auth";
+import { api } from "../../services/api";
 
 export function Header({ change }) {
     const { user, signOut } = useAuth();
@@ -15,6 +16,8 @@ export function Header({ change }) {
         
         signOut();
     }
+
+    const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : defaultImg;
 
     return (
         <Container>
@@ -35,7 +38,7 @@ export function Header({ change }) {
                     </button>
                 </div>
                 <Avatar to="/profile">
-                    <img src={user.avatar} alt="Foto de perfil" />
+                    <img src={avatarUrl} alt="Foto de perfil" />
                 </Avatar>
             </Profile>
         </Container>

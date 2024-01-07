@@ -8,6 +8,18 @@ export const Header = styled.header`
     width: 100%;
     background: ${({theme}) => theme.COLORS.LIGHT_PINK};
     padding: 6.4rem 14.4rem;
+
+    button {
+        display: grid;
+        place-content: center;
+        background: transparent;
+        border: none;
+
+        > svg {
+            color: ${({theme}) => theme.COLORS.GRAY_300};
+            font-size: 2.5rem;
+        }
+    }
 `;
 
 export const Avatar = styled.div`
@@ -21,6 +33,7 @@ export const Avatar = styled.div`
         width: 18.6rem;
         height: 18.6rem;
         border-radius: 50%;
+        object-fit: cover;
     }
 
     > div {
