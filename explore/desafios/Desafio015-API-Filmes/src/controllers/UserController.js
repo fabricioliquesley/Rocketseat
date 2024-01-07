@@ -27,8 +27,6 @@ class UserController {
         const { name, email, password, oldPassword } = request.body;
         const user_id = request.user.id;
 
-        console.log(password, oldPassword)
-
         const user = await knex("users").select().where("id", user_id);
 
         if (user.length == 0) {
