@@ -1,0 +1,46 @@
+@import url('reset.css');
+@import url('home.css');
+@import url('universe.css');
+@import url('exploration.css');
+@import url('404.css');
+
+:root {
+    font-size: 62.5%;
+}
+
+body {
+    position: relative;
+    height: 100vh;
+    background: #222;
+}
+
+nav {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 3.2rem;
+    padding: 4rem 7.2rem;
+}
+
+nav a {
+    color: var(--platform-aliases-texto-base, #C4C4CC);
+    font-size: 2.1667rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 2.1667rem; /* 100% */
+    transition: all .4s;
+}
+
+nav a:hover {
+    color: white;
+}
+
+#app {
+    height: inherit;
+}
+
+main.pages {
+    height: inherit;
+    background-position: bottom;
+    background-size: cover;
+}

@@ -1,0 +1,176 @@
+@import url('global.css');
+@import url('alerts.css');
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 11.5rem;
+}
+
+header .githubSearch {
+    display: flex;
+    gap: .8rem;
+}
+
+.githubSearch input {
+    width: 46.6rem;
+    background: #06181C;
+    padding: 1.6rem;
+    border: none;
+    border-radius: .5rem;
+}
+
+.githubSearch button {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+    background: #065E7C;
+    padding: 1.2rem 3.2rem;
+    border: none;
+    border-radius: .5rem;
+    font-size: 1.4rem;
+    transition: all .4s;
+    cursor: pointer;
+}
+
+.githubSearch button:hover {
+    background: white;
+}
+
+.githubSearch button:hover p,
+.githubSearch button:hover ion-icon {
+    color: #065E7C;
+}
+
+.githubSearch button p {
+    font-weight: 700;
+}
+
+table {
+    position: relative;
+    max-height: 58rem;
+
+    border-collapse: collapse;
+    border: 2px solid #4A808C;
+    border-radius: 1.2rem;
+    
+    margin-top: 8.7rem;
+    display: block;
+    overflow: auto;
+}
+
+th, td {
+    width: 100%;
+    text-align: left;
+    white-space: nowrap;
+}
+
+thead {
+    position: sticky;
+    top: 0;
+    background: #043444;
+}
+
+thead tr th {
+    padding: 1.6rem 4rem;
+    color: var(--platform-aliases-ttulos, #E1E1E6);
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%; /* 3.2rem */
+}
+
+tbody {
+    width: 100%;
+    font-size: 2rem;
+    background: #092D38;
+}
+
+tbody.empty {
+    display: grid;
+    place-content: center;
+    width: 100%;
+    height: 50rem;
+    background: #06181C;
+}
+
+tbody.empty tr {
+    display: block;
+}
+
+tbody.empty td {
+    display: flex;
+    align-items: center;
+    gap: 6rem;
+}
+
+tbody.empty td img {
+    width: 13.2rem;
+}
+
+tbody:not(.empty) tr.bg-empty {
+    display: none;
+}
+
+tbody.empty td h2 {
+    color: #4E5455;
+    font-family: var(--roboto-mono);
+    font-size: 4rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 2.4781rem; /* 61.953% */
+}
+
+tbody tr {
+    background: #06181C;
+}
+
+tbody tr + tr {
+    border-top: 1px solid #4A808C;
+}
+
+tbody tr:nth-child(even) {
+    background: #06161B80;
+}
+
+tbody tr td {
+    width: fit-content;
+    padding: 2.4rem 4rem;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+}
+
+tbody td .user img {
+    width: 5.6rem;
+    height: 5.6rem;
+    border-radius: 50%;
+}
+
+.detail p {
+    font-weight: 700;
+}
+
+.detail span {
+    color: #E1E1E6;
+}
+
+tr .remove {
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    color: rgb(105, 30, 30);
+    cursor: pointer;
+}
+
+.remove:hover {
+    color: red;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+}

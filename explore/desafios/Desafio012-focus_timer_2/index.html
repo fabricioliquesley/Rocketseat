@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <title>FocusTimer 2</title>
+</head>
+<body class="flex">
+    <main class="flex">
+        <section class="timerWrapper flex">
+            <h1 class="flex">
+                <span id="minutes">25</span>
+                <span>:</span>
+                <span id="seconds">00</span>
+            </h1>
+            <div class="timerControls flex">
+                <button
+                    title="Iniciar contagem"
+                    data-action="toggleRunning" 
+                    class="ph-bold ph-play-circle"
+                >
+                    <span class="sr-only">Iniciar contagem</span>
+                </button>
+                <button
+                    title="Parar contagem"
+                    data-action="toggleRunning"
+                    class="ph-bold ph-pause-circle"
+                >
+                    <span class="sr-only">Parar contagem</span>
+                </button>
+                <button
+                    title="Reiniciar contagem"
+                    data-action="reset"
+                    class="ph-bold ph-stop-circle"
+                >
+                    <span class="sr-only">Reiniciar contagem</span>
+                </button>
+                <button
+                    title="Aumentar 5 minutos na contagem"
+                    data-action="incrementFive"
+                    class="ph-bold ph-plus-circle"
+                >  
+                    <span class="sr-only">
+                        Aumentar 5 minutos na contagem, para fazer isso é preciso parar o cronômetro.
+                    </span>
+                </button>
+                <button
+                    title="Diminuir 5 minutos na contagem"
+                    data-action="decrementFive"
+                    class="ph-bold ph-minus-circle"
+                >
+                    <span class="sr-only">
+                        Diminuir 5 minutos na contagem, para fazer isso é preciso parar o cronômetro.
+                    </span>
+                </button>
+            </div>
+        </section>
+        <section class="musicWrapper">
+            <div class="musicCard">
+                <input type="radio" name="themes" value="forest">
+                <i class="ph-bold ph-tree"></i>
+            </div>
+            <div class="musicCard" style="--delay: 600ms">
+                <input type="radio" name="themes" value="rain">
+                <i class="ph-bold ph-cloud-rain"></i>
+            </div>
+            <div class="musicCard" style="--delay: 800ms">
+                <input type="radio" name="themes" value="coffeShop">
+                <i class="ph-bold ph-storefront"></i>
+            </div>
+            <div class="musicCard" style="--delay: 1s">
+                <input type="radio" name="themes" value="fireplace">
+                <i class="ph-bold ph-fire"></i>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/main.js" type="module"></script>
+</body>
+</html>

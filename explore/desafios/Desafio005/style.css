@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #2F2E41;
+    --text-special: #00BFA6;
+    --text-primary: #FFFFFF;
+    --text-secondary: #C2C2C2;
+
+    --JetBrains: 'JetBrains Mono', monospace;
+    --Open-Sans: 'Open Sans', sans-serif;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.page {
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 100vh;
+    background: var(--bg);
+
+    padding: 71px 20px 23px;
+}
+
+.page .header {
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1280px;
+}
+
+.header nav ul {
+    gap: 64px;
+    list-style: none;
+}
+
+.header nav ul li a {
+    color: var(--text-primary);
+    font-family: var(--JetBrains);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px;
+
+    text-decoration: none;
+    transition: .2s;
+}
+
+.header nav ul li a:hover {
+    color: var(--text-special);
+    text-decoration: underline;
+}
+
+.page .main {
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1280px;
+}
+
+.main .text{
+    width: 614px;
+    text-align: center;
+}
+
+.text h1 {
+    color: var(--text-primary);
+    font-family: var(--JetBrains);
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 40px;
+
+    margin-bottom: 59px;
+}
+
+.text h1 span {
+    color: var(--text-special);
+}
+
+.text p {
+    color: var(--text-secondary);
+    font-family: var(--Open-Sans);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+}
+
+.text p strong {
+    font-weight: 700;
+}
+
+.text p span,
+footer p span {
+    color: var(--text-special);
+    font-weight: 700;
+}
+
+.page footer {
+    width: 570px;
+    text-align: center;
+
+    border-top: 2px solid var(--text-special);
+    padding-top: 27px;
+}
+
+footer p {
+    color: var(--text-primary);
+    font-family: var(--JetBrains);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px;
+}
+
+#padlock {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+}

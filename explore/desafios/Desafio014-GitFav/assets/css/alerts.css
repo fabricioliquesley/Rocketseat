@@ -1,0 +1,79 @@
+.alert {
+    --color: rgb(255, 196, 0);
+    /* --color: #ebbc3d; */
+}
+
+.error {
+    --color: rgb(255, 0, 0);
+}
+
+.success {
+    --color: rgb(0, 100, 0);
+}
+
+.boxWrapper {
+    position: absolute;
+    top: -80px;
+    right: -300px;
+    width: 300px;
+    background: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 10px 20px 20px;
+
+    /* animation-name: appear; */
+    animation-duration: .8s;
+    animation-fill-mode: forwards;
+}
+
+.boxWrapper h2 {
+    color: var(--color);
+}
+
+.boxWrapper p {
+    color: black;
+    margin-top: 5px;
+}
+
+.boxWrapper ion-icon {
+    position: absolute;
+    color: var(--color);
+    top: 5px;
+    right: 5px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.progressBar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: var(--color);
+    height: 6px;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+}
+
+@keyframes appear {
+    0% {
+        right: -300px;
+    }
+
+    75% {
+        right: 50px;
+    }
+
+    100% {
+        right: 30px;
+    }
+}
+
+@keyframes vanish {
+    0% {
+        right: 30px;
+    }
+
+    100% {
+        right: -300px;
+    }
+}

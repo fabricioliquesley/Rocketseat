@@ -1,0 +1,146 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-white-100: #ffffff;
+    --color-black: #000000;
+    --color-gray-100: #E4EDF1;
+    --color-purple-200: #34355B;
+    --color-yellow-500: #FF9500;
+    --color-gradient: linear-gradient(45deg, #190361 0%, #B0F 100%);
+
+    --Dancing-Script: 'Dancing Script', cursive;
+    --DM-Sans: 'DM Sans', sans-serif;
+    --Montserrat: 'Montserrat', sans-serif;
+
+    font-size: 62.5%;
+}
+
+body {
+    display: grid;
+    place-content: center;
+    width: 100%;
+    height: 100vh;
+    background: var(--color-gradient);
+    font-size: 1.6rem;
+}
+
+div.hide {
+    display: none;
+}
+
+main {
+    background: var(--color-white-100);
+    border-radius: .5rem;
+    padding: 4.8rem 6.4rem;
+    box-shadow: 0px 20px 50px 0px rgba(0, 0, 0, 0.80);
+}
+
+.screen1,
+.screen2 {
+    width: 30rem;
+    text-align: center;
+}
+
+h1 {
+    color: var(--color-purple-200);
+    font-family: var(--Montserrat);
+    font-size: 2.4rem;
+    font-weight: 700;
+}
+
+p {
+    color: var(--color-purple-200);
+    font-family: var(--DM-Sans);
+    font-size: 1.5rem;
+    font-weight: 400;
+
+    margin-top: 1.4rem;
+}
+
+img {
+    margin-top: 2.64rem;
+}
+
+.screen2 {
+    display: grid;
+    gap: 1.7rem;
+}
+
+.screen2 h1, .screen2 p {
+    margin: 0;
+}
+
+.screen2 .message {
+    background: var(--color-gray-100);
+    padding: 1rem;
+    box-shadow: 2px 2px 2px 0px rgba(85, 85, 85, 0.50);
+}
+
+.message p {
+    color: var(--color-black);
+    font-family: var(--Dancing-Script);
+    font-size: 2.4rem;
+}
+
+.screen2 img {
+    margin: 4.3rem 0 4.23rem;
+}
+
+.openNewCookie {
+    width: fit-content;
+    background: var(--color-yellow-500);
+    color: white;
+    font-family: var(--DM-Sans);
+    font-size: 1.5rem;
+    font-weight: 700;
+
+    margin: 0 auto;
+    border: 0;
+    border-radius: .4rem;
+    padding: 1.6rem;
+
+    cursor: pointer;
+}
+
+#openCookie:hover {
+    animation: openCookie .2s infinite alternate;
+    cursor: pointer;
+}
+
+.message {
+    position: relative;
+    animation: showMessage 1s ease-out;
+    transform-origin: bottom;
+}
+
+@keyframes openCookie {
+    0%, 100% {
+        transform: translate(0px);
+    }
+
+    25% {
+        transform: translateX(5px) translateY(-5px) rotate(1deg);
+    }
+
+    75% {
+        transform: translateX(-5px) translateY(-5px) rotate(-1deg);
+    }
+}
+
+@keyframes showMessage {
+    from {
+        opacity: 0;
+        transform: scale(0);
+        bottom: -130px;
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+        bottom: 0;
+    }
+}

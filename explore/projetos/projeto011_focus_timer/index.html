@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus Timer</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+    <main>
+        <button id="changeTheme">
+            <i id="changeThemeBtnIcon" class="ph-bold ph-moon"></i>
+            <span class="sr-only">
+                Mudar para dark mode
+            </span>
+        </button>
+        <h1>
+            <span id="minutes">25</span>
+            :
+            <spa id="seconds">00</spa>
+        </h1>
+        <div class="controls">
+            <button 
+                class="ph ph-play-circle" 
+                data-action="toggleRunning"
+                title="Iniciar contagem">
+                <span class="sr-only">
+                    Iniciar contagem
+                </span>
+            </button>
+            <button 
+                class="ph-bold ph-pause-circle"                     data-action="toggleRunning"
+                title="Pausar contagem">
+                <span class="sr-only">
+                    Pausar contagem
+                </span>
+            </button>
+            <button 
+                class="ph ph-timer" 
+                data-action="set"
+                title="Definir nova contagem">
+                <span class="sr-only">
+                    Definir nova contagem
+                </span>
+            </button>
+            <button 
+                class="ph-bold ph-stop-circle"
+                data-action="reset"
+                title="Zerar contagem">
+                <span class="sr-only">
+                    Zerar contagem
+                </span>
+            </button>
+            <button 
+                class="ph ph-speaker-none"
+                data-action="toggleMusic"
+                title="Desativar música">
+                <span class="sr-only">
+                    Desativar música
+                </span>
+            </button>
+            <button 
+                class="ph ph-speaker-high"
+                data-action="toggleMusic"
+                title="Ativar música">
+                <span class="sr-only">
+                    Ativar música
+                </span>
+            </button>
+        </div>
+    </main>
+
+    <script src="./js/main.js" type="module"></script>
+</body>
+</html>
