@@ -1,3 +1,3 @@
-# Curso Rocketseat
+# Rocketnotes
 
-Repositório para guardar os códigos criados durante as aulas.
+Aplicação para criar notas e guardar links uteis.

@@ -1,1 +1,0 @@
-Primeira API criada durante o treinamento explore da rockteseat.
