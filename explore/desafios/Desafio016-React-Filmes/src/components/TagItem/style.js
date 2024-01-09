@@ -8,7 +8,7 @@ export const Container = styled.div`
     background: ${({ theme, $isNew }) => $isNew ? "transparent" : theme.COLORS.BACKGROUND_700};
     border: 2px dashed ${({ theme, $isNew }) => $isNew ? theme.COLORS.BEGE : "none"};
     border-radius: 1rem;
-    padding: 1.6rem;
+    padding: 0 1.6rem;
     
     &:has(input:focus){
         border: 2px dashed ${({ theme }) => theme.COLORS.WHITE};
@@ -20,6 +20,7 @@ export const Container = styled.div`
         font-family: var(--Roboto);
         font-size: 1.6rem;
         font-weight: 400;
+        padding: 1.6rem 0;
         border: none;
         outline: none;
     }
