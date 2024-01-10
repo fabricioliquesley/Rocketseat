@@ -7,6 +7,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { FaPencil } from "react-icons/fa6";
 import { Tag } from "../../components/Tag";
 import { Button } from "../../components/Button";
+import defaultImg from "../../assets/images/avatar_placeholder.svg";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
@@ -26,6 +27,8 @@ export function Preview() {
     
     const [note, setNote] = useState({});
     const [isEditMode, setIsEditMode] = useState(false);
+
+    const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : defaultImg;
 
     async function updatedNote(){
         if(note.title == undefined){
@@ -97,9 +100,7 @@ export function Preview() {
 
     return (
         <Container>
-            <Header
-                src="https://github.com/maykbrito.png"
-            />
+            <Header />
             <Main $editMode={isEditMode}>
                 <div>
                     <Controls>
@@ -120,13 +121,13 @@ export function Preview() {
                         <RatingStar rating={data.rating} />
                     </MovieInfo>
                     <UserInfo>
-                        <img src="https://github.com/maykbrito.png" />
+                        <img src={avatarUrl} />
                         <p>
                             {user.name}
                         </p>
                         <div>
                             <FiClock />
-                            <span>30/12/23 às 08:00</span>
+                            <span>{data.updated_at}</span>
                         </div>
                     </UserInfo>
                 </div>

@@ -101,7 +101,7 @@ export function Create() {
                 </TagsContainer>
                 <div className="btnContainer">
                     <Button 
-                        title="Salvar alterações"
+                        title="Salvar nota"
                         onClick={handleCreateNote}
                     />
                 </div>
