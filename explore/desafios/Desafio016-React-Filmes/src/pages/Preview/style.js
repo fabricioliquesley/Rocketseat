@@ -52,17 +52,27 @@ export const Controls = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
+    > div {
+        display: flex;
+        align-items: center;
+        gap: 1.6rem;
 
-    > button {
-        display: grid;
-        place-content: center;
-        background: transparent;
-        border: none;
-        font-size: 2rem;
-        color: ${({theme}) => theme.COLORS.GRAY_300};
+        > button {
+            display: grid;
+            place-content: center;
+            background: transparent;
+            border: none;
+            font-size: 2rem;
+            color: ${({theme}) => theme.COLORS.GRAY_300};
 
-        &:hover {
-            color: red;
+            &:first-child:hover {
+                color: ${({theme}) => theme.COLORS.PINK}
+            }
+
+            &:last-child:hover {
+                color: red;
+            }
         }
     }
 `;
