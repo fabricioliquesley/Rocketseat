@@ -101,10 +101,6 @@ export function Create() {
                 </TagsContainer>
                 <div className="btnContainer">
                     <Button 
-                        title="Excluir filme" 
-                        alternate
-                    />
-                    <Button 
                         title="Salvar alterações"
                         onClick={handleCreateNote}
                     />

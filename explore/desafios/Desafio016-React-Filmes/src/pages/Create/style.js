@@ -15,6 +15,8 @@ export const Main = styled.main`
     grid-area: content;
     gap: 4rem;
     width: 100%;
+    max-width: 100rem;
+    margin: 0 auto;
     padding: 4rem 6rem;
     overflow-y: auto;
 
