@@ -99,6 +99,18 @@ class MoviesNotesController {
 
         response.status(201).json();
     }
+
+    async update(request, response) {
+        const {title, description, note_id} = request.body;
+
+        await knex("movie_notes").update({
+            title: title,
+            description: description,
+            updated_at: knex.fn.now()
+        }).where("id", note_id);
+
+        response.json();
+    }
 }
 
 module.exports = MoviesNotesController;

@@ -13,5 +13,6 @@ movieNotesRoutes.post("/", moviesNotesController.create);
 movieNotesRoutes.get("/:note_id", moviesNotesController.show);
 movieNotesRoutes.get("/", moviesNotesController.index);
 movieNotesRoutes.delete("/", moviesNotesController.delete);
+movieNotesRoutes.put("/", moviesNotesController.update)
 
 module.exports = movieNotesRoutes;
