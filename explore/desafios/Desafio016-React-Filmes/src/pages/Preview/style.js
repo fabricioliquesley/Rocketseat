@@ -36,9 +36,7 @@ export const Main = styled.main`
     }
 
     > article {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
+        position: relative;
 
         p {
             color: ${({theme}) => theme.COLORS.WHITE};
@@ -46,6 +44,20 @@ export const Main = styled.main`
             font-family: var(--Roboto-Slab);
             font-size: 1.6rem;
             font-weight: 400;
+
+            border: ${({theme, $editMode}) => $editMode ? "1px solid" + theme.COLORS.PINK : "none"};
+            border-radius: 1rem;
+            padding: ${({$editMode}) => $editMode ? "2rem" : "0"};
+
+            &::before {
+                display: ${({$editMode}) => $editMode ? "block" : "none"};
+                position: absolute;
+                top: -11px;
+                content: 'Clique para editar';
+                background: ${({theme}) => theme.COLORS.BACKGROUND_800};
+                color: ${({theme}) => theme.COLORS.PINK};
+                padding: 0 .7rem;
+            }
         }
     }
 `;
@@ -80,6 +92,7 @@ export const Controls = styled.div`
 `;
 
 export const MovieInfo = styled.div`
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -89,6 +102,22 @@ export const MovieInfo = styled.div`
         font-family: var(--Roboto-Slab);
         font-size: 3.6rem;
         font-weight: 500;
+
+        border: ${({theme, $editMode}) => $editMode ? "1px solid" + theme.COLORS.PINK : "none"};
+        border-radius: 1rem;
+        padding: ${({$editMode}) => $editMode ? "2rem" : "0"};
+
+        &::before {
+            display: ${({$editMode}) => $editMode ? "block" : "none"};
+            position: absolute;
+            top: -11px;
+            content: 'Clique para editar';
+            background: ${({theme}) => theme.COLORS.BACKGROUND_800};
+            padding: 0 .7rem;
+            color: ${({theme}) => theme.COLORS.PINK};
+            font-size: 1.6rem;
+            font-weight: normal;
+        }
     }
 `;
 

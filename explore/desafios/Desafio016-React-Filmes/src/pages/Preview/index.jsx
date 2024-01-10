@@ -100,7 +100,7 @@ export function Preview() {
             <Header
                 src="https://github.com/maykbrito.png"
             />
-            <Main>
+            <Main $editMode={isEditMode}>
                 <div>
                     <Controls>
                         <Link title="Voltar" />
@@ -113,7 +113,7 @@ export function Preview() {
                             </button>
                         </div>
                     </Controls>
-                    <MovieInfo>
+                    <MovieInfo $editMode={isEditMode}>
                         <h1 id="contentTitle">
                             {data.title}
                         </h1>
@@ -145,7 +145,6 @@ export function Preview() {
 
                 </TagsContainer>
                 <article>
-                    <span>Clique para editar</span>
                     <p id="contentDescription">
                         {data.description}
                     </p>
