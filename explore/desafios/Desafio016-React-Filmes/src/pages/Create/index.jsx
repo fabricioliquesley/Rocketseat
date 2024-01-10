@@ -18,8 +18,8 @@ export function Create() {
 
     const navigate = useNavigate();
 
-    function handleAddTag(){
-        if (newTag == ""){
+    function handleAddTag() {
+        if (newTag == "") {
             return
         }
 
@@ -27,17 +27,21 @@ export function Create() {
         setNewTag("");
     }
 
-    function handleRemoveTag(tagDelete){
+    function handleRemoveTag(tagDelete) {
         setTags(prevState => prevState.filter(tag => tag !== tagDelete));
     }
 
-    async function handleCreateNote(){
-        if(newTag){
+    async function handleCreateNote() {
+        if (newTag) {
             return alert("Existe uma tag para adicionar!")
         }
 
-        if(!title || !description || !rating || tags.length == 0){
+        if (!title || !description || !rating || tags.length == 0) {
             return alert("Preencha todos os campos!");
+        }
+
+        if (rating > 5 || rating < 0) {
+            return alert("Somente valores de 0 a 5!");
         }
 
         await api.post("/movies", {
@@ -90,7 +94,7 @@ export function Create() {
                                 />
                             ))
                         }
-                        <TagItem 
+                        <TagItem
                             isNew
                             placeholder="Novo marcador"
                             value={newTag}
@@ -100,7 +104,7 @@ export function Create() {
                     </div>
                 </TagsContainer>
                 <div className="btnContainer">
-                    <Button 
+                    <Button
                         title="Salvar nota"
                         onClick={handleCreateNote}
                     />
