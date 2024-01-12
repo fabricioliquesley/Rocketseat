@@ -26,8 +26,10 @@ class NoteCreateService {
                 name
             }
         });
-
+        
         await this.userRepository.insertTags(tagsInsert);
+
+        return note_id;
     }
 }
 
