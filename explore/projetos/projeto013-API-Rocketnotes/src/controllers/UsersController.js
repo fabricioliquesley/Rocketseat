@@ -1,22 +1,16 @@
-/*
-    É uma boa prática que uma controller tenha no máximo 5 métodos.
-
-    index - GET para listar vários registros.
-    show - GET para exibir um registros especifico.
-    create - POST para criar um registro.
-    update - PUT para atualizar um  registro.
-    delete - DELETE para remover um registro.
-*/
 const { hash, compare } = require("bcryptjs")
 const AppError = require("../utils/AppError");
+
+const UserRepository = require("../repositories/UserRepository");
 const sqliteConnection = require('../database/sqlite');
 
 class UsersController {
     async create(request, response) {
         const { name, email, password } = request.body;
 
-        const database = await sqliteConnection();
-        const checkUserExists = await database.get("SELECT * FROM users WHERE email = (?)", [email])
+        const userRepository = new UserRepository()
+
+        const checkUserExists = await userRepository.findByEmail(email);
 
         if (checkUserExists) {
             throw new AppError("Este e-mail já está cadastrado.");
@@ -24,10 +18,7 @@ class UsersController {
 
         const hashedPassword = await hash(password, 8);
 
-        await database.run(
-            "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
-            [name, email, hashedPassword]
-        )
+        await userRepository.create({ name, email, password: hashedPassword });
 
         return response.status(201).json();
 
@@ -60,7 +51,7 @@ class UsersController {
         if (password && old_password) {
             const checkOldPassword = await compare(old_password, user.password);
 
-            if(!checkOldPassword){
+            if (!checkOldPassword) {
                 throw new AppError("A senha antiga não é igual a cadastrada.");
             }
 
