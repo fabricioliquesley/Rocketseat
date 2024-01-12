@@ -1,36 +1,25 @@
 const knex = require("../database/knex");
 
-class NotesContoller {
+const NotesRepository = require("../repositories/NotesRepository");
+const NoteCreateService = require("../services/NoteCreateService");
+
+class NotesController {
     async create(request, response) {
         const { title, description, tags, links } = request.body;
         const user_id = request.user.id;
 
-        const [note_id] = await knex("notes").insert({
-            title,
-            description,
+        const notesRepository = new NotesRepository();
+        const noteCreateService = new NoteCreateService(notesRepository);
+
+        noteCreateService.execute({
+            title, 
+            description, 
+            tags, 
+            links, 
             user_id
-        });
+        })
 
-        const linksInsert = links.map(link => {
-            return {
-                note_id,
-                url: link
-            }
-        });
-
-        await knex("links").insert(linksInsert);
-
-        const tagsInsert = tags.map(name => {
-            return {
-                note_id,
-                user_id,
-                name
-            }
-        });
-
-        await knex("tags").insert(tagsInsert);
-
-        return response.json();
+        return response.status(201).json();
     }
 
     async show(request, response) {
@@ -99,4 +88,4 @@ class NotesContoller {
     }
 }
 
-module.exports = NotesContoller;
+module.exports = NotesController;
