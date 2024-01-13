@@ -1,10 +1,10 @@
 class NoteCreateService {
-    constructor(userRepository){
-        this.userRepository = userRepository;
+    constructor(noteRepository){
+        this.noteRepository = noteRepository;
     }
 
     async execute({title, description, tags, links, user_id}){
-        const note_id = await this.userRepository.insertNote({
+        const note_id = await this.noteRepository.insertNote({
             title,
             description,
             user_id
@@ -17,7 +17,7 @@ class NoteCreateService {
             }
         });
 
-        await this.userRepository.insertLinks(linksInsert);
+        await this.noteRepository.insertLinks(linksInsert);
 
         const tagsInsert = tags.map(name => {
             return {
@@ -27,7 +27,7 @@ class NoteCreateService {
             }
         });
         
-        await this.userRepository.insertTags(tagsInsert);
+        await this.noteRepository.insertTags(tagsInsert);
 
         return note_id;
     }
