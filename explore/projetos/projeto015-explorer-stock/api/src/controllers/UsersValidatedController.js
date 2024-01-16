@@ -1,13 +1,12 @@
 const knex = require("../database/knex");
-const { hash } = require("bcryptjs");
 const AppError = require("../utils/AppError");
 
-class UsersController {
+class UsersValidatedController {
   async index(request, response) {
     const { user } = request;
 
     const checkUserExists = await knex("users").where({ id: user.id });
-
+    
     if (checkUserExists.length === 0) {
       throw new AppError("Unauthorized", 401);
     }
@@ -16,4 +15,4 @@ class UsersController {
   }
 }
 
-module.exports = UsersController;
+module.exports = UsersValidatedController;
