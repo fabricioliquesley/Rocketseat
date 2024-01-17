@@ -42,10 +42,12 @@ function AuthProvider({ children }) {
   useEffect(() => {
     const user = localStorage.getItem("@estock:user");
 
-    if (user) {
+    if (user && user.includes("id")) {
       setData({
         user: JSON.parse(user)
       });
+    } else {
+      signOut();
     }
   }, []);
 
