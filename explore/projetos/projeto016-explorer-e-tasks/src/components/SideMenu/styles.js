@@ -11,9 +11,14 @@ export const Container = styled.aside`
   flex-direction: column;
 
   @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    display: none;
     position: absolute;
     grid-area: none;
     z-index: 1;
+
+    &[data-menu-is-open="true"]{
+      display: flex;
+    }
   }
 `;
 

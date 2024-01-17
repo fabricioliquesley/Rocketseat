@@ -13,6 +13,8 @@ export function Home() {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState("all");
 
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
+
   useEffect(() => {
     switch (filter) {
       case "pending":
@@ -26,10 +28,15 @@ export function Home() {
 
   return (
     <Container>
-      <SideMenu />
+      <SideMenu 
+        menuIsOpen={menuIsOpen}
+        onCloseMenu={() => setMenuIsOpen(false)}
+      />
 
       <FixedContent>
-        <Header />
+        <Header 
+          onOpenMenu={() => setMenuIsOpen(true)}
+        />
         <Priorities />
         <Search setFilter={setFilter} filter={filter} />
       </FixedContent>
