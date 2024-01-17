@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { DEVICE_BREAKPOINT } from "../../styles/deviceBreakPoint";
 
 export const Container = styled.section`
   padding: 32px;
@@ -10,7 +11,7 @@ export const Header = styled.header`
   align-items: center;
 
   > h1 {
-    font-size: 24px;
+    font-size: 2.5rem;
     color: ${({ theme }) => theme.COLORS.RED_200};
     display: flex;
     align-items: center;
@@ -25,11 +26,16 @@ export const Header = styled.header`
 export const Tasks = styled.div`
   border: 1px dashed  ${({ theme }) => theme.COLORS.RED_200};
   min-height: 154px;
-  border-radius: 7px;
-  margin-top: 16px;
+  border-radius: 0.43rem;
+  margin-top: 1rem;
 
   display: flex;
-  gap: 16px;
-  padding: 24px;
+  gap: 1rem;
+  padding: 1.5rem;
   flex-wrap: wrap;
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    align-items: center;
+    justify-content: center;
+  }
 `;
