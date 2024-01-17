@@ -11,13 +11,15 @@ export const Container = styled.aside`
   flex-direction: column;
 
   @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
-    display: none;
+    position: absolute;
     grid-area: none;
+    z-index: 1;
   }
 `;
 
 export const Header = styled.header`
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding: 32px 24px;
 `;

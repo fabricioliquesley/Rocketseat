@@ -1,4 +1,4 @@
-import { CheckCircle, House, Folder, PlusSquare, Note, SignOut } from "@phosphor-icons/react";
+import { CheckCircle, House, Folder, PlusSquare, Note, SignOut, X } from "@phosphor-icons/react";
 
 import { Container, Footer, Nav, Title, Header, Button } from "./styles";
 
@@ -7,6 +7,9 @@ export function SideMenu() {
     <Container>
       <Header>
         <Title><CheckCircle /> e-Tasks</Title>
+        <Button>
+          <X />
+        </Button>
       </Header>
 
       <Nav>
@@ -17,7 +20,7 @@ export function SideMenu() {
       </Nav>
 
       <Footer>
-        <img src="https://github.com/rodrigorgtic.png" alt="Foto do usuário" />
+        <img src="https://github.com/maykbrito.png" alt="Foto do usuário" />
         <div>
           <strong>Rodrigo Gonçalves</strong>
           <small>rodrigo@email.com</small>
