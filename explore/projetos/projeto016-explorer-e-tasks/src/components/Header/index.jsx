@@ -1,13 +1,18 @@
-import { Plus } from "@phosphor-icons/react";
+import { Plus, List } from "@phosphor-icons/react";
 
 import { Button } from "../Button";
 
-import { Container } from "./styles";
+import { Container, Menu } from "./styles";
 
 export function Header() {
   return (
     <Container>
-      <h1>Tarefas</h1>
+      <div>
+        <Menu>
+          <List />
+        </Menu>
+        <h1>Tarefas</h1>
+      </div>
       <Button icon={Plus} title="Nova tarefa" />
     </Container>
   );

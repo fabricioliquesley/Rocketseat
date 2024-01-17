@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { DEVICE_BREAKPOINT } from "../../styles/deviceBreakPoint";
 
 export const Container = styled.header`
   display: flex;
@@ -12,6 +13,28 @@ export const Container = styled.header`
   border-bottom-color: ${({ theme }) => theme.COLORS.GRAY_500};
 
   > h1 {
-    font-size: 32px;
+    font-size: 2rem;
+  }
+
+  > div {
+    display: inherit;
+    align-items: center;
+    gap: 1rem;
+  }
+`;
+
+export const Menu = styled.button`
+  display: none;
+  place-content: center;
+  background: transparent;
+  border: none;
+
+  > svg {
+    font-size: 2.5rem;
+    color: ${({ theme }) => theme.COLORS.BLUE_200};
+  }
+
+  @media (max-width: ${DEVICE_BREAKPOINT.MD}) {
+    display: grid;
   }
 `;
