@@ -42,7 +42,7 @@ function AuthProvider({ children }) {
   useEffect(() => {
     const user = localStorage.getItem("@estock:user");
 
-    if (user && user.includes("id")) {
+    if (user  && user.includes("id")) {
       setData({
         user: JSON.parse(user)
       });
