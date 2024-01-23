@@ -1,6 +1,6 @@
 # Cat blogs - Challenge 7
 
-![cover image](image.png)
+![cover image](assets/cover_readme.png)
 
 ### Description
 
