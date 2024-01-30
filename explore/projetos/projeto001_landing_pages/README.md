@@ -1,6 +1,8 @@
 <h1 align="center" style="color: #FF9900">Project 01</h1>
 <br>
-<img alt="Preview do projeto desenvolvido." src="./assets/readme_cover.png" width="100%">
+<div align="center">
+    <img alt="Preview do projeto desenvolvido." src="./assets/readme_cover.png" width="100%" style="max-width: 800px">
+</div>
 
 ### Description
 
