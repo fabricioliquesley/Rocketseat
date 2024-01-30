@@ -19,7 +19,7 @@
 
 ### Description
 
-This project was created to study the reproduction of designs created in `figma`, used semantic tags to create the structure of the page and used <kbd style="color: #68cdfe">CSS3</kbd> to style the page according to the design.
+This project was created to study the reproduction of designs created in `figma`, used semantic tags to create the structure of the page and used `CSS3` to style the page according to the design.
 
 ### 📋 subjects studied
 
