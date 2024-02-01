@@ -9,8 +9,9 @@
 This is the first coded project to study <strong style="color: #aa3000">HTML5</strong> tags and page styling with <strong style="color: #007099">CSS3</strong>.
 
 ### 📋 Topics studied
-* Images on web pages
-* Links on web pages
-* Flex Box
-* Position
-* CSS variables
+
+- Images on web pages
+- Links on web pages
+- Flex Box
+- Position
+- CSS variables

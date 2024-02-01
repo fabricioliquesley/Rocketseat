@@ -23,8 +23,8 @@ This project was created to study the creation of forms on web pages, adding val
 
 ### 📋 subjects studied
 
-* HTML5 semantic tags
-* HTML5 form tags
-* Flex Box
-* CSS variables
-* Custom checkbox
+- HTML5 semantic tags
+- HTML5 form tags
+- Flex Box
+- CSS variables
+- Custom checkbox

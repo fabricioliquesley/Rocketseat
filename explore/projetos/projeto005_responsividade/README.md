@@ -1,4 +1,6 @@
-<h1 align="center" style="color: #69B99D">Project 02</h1>
+<h1 align="center">
+    Project 05
+</h1>
 <br>
 <div align="center">
     <img 
@@ -19,12 +21,11 @@
 
 ### Description
 
-This project was created to study the reproduction of designs created in `figma`, used semantic tags to create the structure of the page and used `CSS3` to style the page according to the design.
+This project was created to study the adaptation of web pages when displayed on different screen sizes, using [`media queries`](https://developer.mozilla.org/pt-BR/docs/Web/CSS/CSS_media_queries/Using_media_queries) to change the layout of the page and the style of the elements that make it up.
 
 ### 📋 subjects studied
 
 - HTML5 semantic tags
-- Images in web pages
-- Custom fonts
 - Flex Box
-- Position
+- CSS variables
+- Media queries
