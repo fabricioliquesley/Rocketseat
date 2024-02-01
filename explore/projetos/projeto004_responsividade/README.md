@@ -1,4 +1,6 @@
-<h1 align="center" style="color: #42D3FF">Project 03</h1>
+<h1 align="center">
+    Project 04
+</h1>
 <br>
 <div align="center">
     <img 
@@ -19,12 +21,11 @@
 
 ### Description
 
-This project was created to study the creation of forms on web pages, adding validations to the form and using `CSS3` to change the style of the form and indicate whether the user has filled in the form correctly.
+This project was created to study the adaptation of web pages when displayed on different screen sizes, using [`media queries`](https://developer.mozilla.org/pt-BR/docs/Web/CSS/CSS_media_queries/Using_media_queries) to change the layout of the page and the style of the elements that make it up.
 
 ### 📋 subjects studied
 
-* HTML5 semantic tags
-* HTML5 form tags
-* Flex Box
-* CSS variables
-* Custom checkbox
+- HTML5 semantic tags
+- Flex Box
+- CSS variables
+- Media queries

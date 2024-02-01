@@ -26,5 +26,5 @@ This project was created to study the reproduction of designs created in `figma`
 * HTML5 semantic tags
 * Images in web pages
 * Custom fonts
-* FlexBox
+* Flex Box
 * Position

@@ -11,6 +11,6 @@ This is the first coded project to study <strong style="color: #aa3000">HTML5</s
 ### 📋 Topics studied
 * Images on web pages
 * Links on web pages
-* Flexible box
+* Flex Box
 * Position
 * CSS variables
