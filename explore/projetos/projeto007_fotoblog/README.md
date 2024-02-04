@@ -2,9 +2,8 @@
     Project 07
 </h1>
 <br>
-<div align="center">
-    <img src="./images/desktop.gif"/>
-</div>
+
+[![SCWpY.gif](https://s13.gifyu.com/images/SCWpY.gif)](https://gifyu.com/image/SCWpY)
 
 ### 🛠 Technologies used
 
