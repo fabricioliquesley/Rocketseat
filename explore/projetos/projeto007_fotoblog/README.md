@@ -3,7 +3,7 @@
 </h1>
 <br>
 <div align="center">
-    <img src="./images/desktop.gif">
+    ![Visualização projeto](https://www.webmobilefirst.com/en/screencasts/-N60otuqkB/)
 </div>
 
 ### 🛠 Technologies used
