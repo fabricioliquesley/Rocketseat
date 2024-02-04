@@ -3,7 +3,7 @@
 </h1>
 <br>
 
-![preview](https://s13.gifyu.com/images/SCWpY.gif)
+![preview](./images/desktop.gif)
 
 ### 🛠 Technologies used
 
