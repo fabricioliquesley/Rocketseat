@@ -3,7 +3,7 @@
 </h1>
 <br>
 
-[![SCWpY.gif](https://s13.gifyu.com/images/SCWpY.gif)](https://gifyu.com/image/SCWpY)
+![preview](https://s13.gifyu.com/images/SCWpY.gif)
 
 ### 🛠 Technologies used
 
