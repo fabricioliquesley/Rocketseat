@@ -3,7 +3,7 @@
 </h1>
 <br>
 <div align="center">
-    ![Visualização projeto](https://www.youtube.com/watch?v=T70t3mDiwvg)
+    [![Visualização projeto](https://www.webmobilefirst.com/en/screencasts/-N60otuqkB/)
 </div>
 
 ### 🛠 Technologies used
