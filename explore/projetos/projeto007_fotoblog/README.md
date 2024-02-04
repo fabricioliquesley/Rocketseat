@@ -3,8 +3,7 @@
 </h1>
 <br>
 <div align="center">
-    <img src="./images/desktop.png"/>
-    [![page views]("./images/desktop.png")]("./images/readme_cover.mp4")
+    <img src="./images/desktop.gif"/>
 </div>
 
 ### 🛠 Technologies used
