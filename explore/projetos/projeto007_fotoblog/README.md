@@ -3,16 +3,8 @@
 </h1>
 <br>
 <div align="center">
-    [![Visualização projeto]("./images/desktop.png)](https://www.webmobilefirst.com/en/screencasts/-N60otuqkB/)
+    <img src="./images/desktop.png"/>
 </div>
-
-<figure class="video_container">
-    <video 
-        controls="true" allowfullscreen="true">
-        <source src="https://www.webmobilefirst.com/en/screencasts/-N60otuqkB/" type="video/mp4">
-    </video>
-</figure>
-
 
 ### 🛠 Technologies used
 
