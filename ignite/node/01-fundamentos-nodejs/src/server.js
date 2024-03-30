@@ -1,29 +1,26 @@
 import http from 'node:http';
 import { json } from './middlewares/json.js';
-
-const users = [];
+import { routes } from './routes.js';
+import { extractQueryParams } from './utils/extract-query-params.js';
 
 const server = http.createServer(async (request, response) => {
 	const { method, url } = request;
 
 	await json(request, response);
 
-	if (method === 'GET' && url === '/users') {
-		return response.end(JSON.stringify(users));
-	}
+	const route = routes.find(route => {
+		return route.method === method && route.path.test(url);
+	})
 
-	if (method === 'POST' && url === '/users') {
-		const { name, email } = request.body;
+	if (route) {
+		const routeParams = request.url.match(route.path);
 
-		users.push(
-			{
-				id: 1,
-				name,
-				email
-			}
-		);
+		const { query, ...params } = routeParams.groups;
 
-		return response.writeHead(201).end();
+		request.params = params;
+		request.query = query ? extractQueryParams(query) : {};
+
+		return route.handler(request, response);
 	}
 
 	return response.writeHead(404).end();
