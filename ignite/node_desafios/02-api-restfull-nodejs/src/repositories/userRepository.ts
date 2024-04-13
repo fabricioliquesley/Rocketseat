@@ -1,9 +1,9 @@
 import { knex } from "../database";
-import { randomUUID } from "crypto";
 
 type bodySchema = {
   table: string;
   data: {
+    id: string;
     name: string;
     email: string;
     password: string;
@@ -16,15 +16,15 @@ interface User {
 
 export class UserRepository implements User {
   async createUser({ table, data }: bodySchema): Promise<void> {
-    const { name, email, password } = data;
+    const { id, name, email, password } = data;
 
     await knex(table).insert({
-      id: randomUUID(),
+      id,
       name,
       email,
       password,
     });
 
-    console.log(name, email, password);
+    return;
   }
 }
