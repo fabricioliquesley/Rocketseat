@@ -21,9 +21,33 @@ describe("User routes", () => {
     const response = await request(app.server).post("/users").send({
       name: "New user",
       email: "user@example.com",
-      password: "secretPassword"
-    })
+      password: "secretPassword",
+    });
 
     expect(response.status).toEqual(201);
+  });
+
+  it("should be able to create a user session", async () => {
+    await request(app.server).post("/users").send({
+      name: "New user",
+      email: "user@example.com",
+      password: "secretPassword",
+    });
+
+    const createSessionResponse = await request(app.server)
+      .post("/users/session")
+      .send({
+        email: "user@example.com",
+        password: "secretPassword",
+      });
+
+    expect(createSessionResponse.body.user).toEqual(
+      expect.objectContaining({
+        id: expect.stringContaining('-'),
+        name: "New user",
+        email: "user@example.com",
+        created_at: expect.stringContaining('2024')
+      })
+    );
   });
 });
