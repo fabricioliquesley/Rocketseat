@@ -1,8 +1,11 @@
 import { FastifyInstance } from "fastify";
-import { array, z } from "zod";
+import { z } from "zod";
 import { UserRepository } from "../repositories/userRepository";
+import { UserServices } from "../services/usersServices";
 
 export async function userRoutes(app: FastifyInstance) {
+  const usersServices = new UserServices(new UserRepository());
+
   app.post("/users", async (request, reply) => {
     const bodySchema = z.object({
       name: z.string(),
@@ -26,12 +29,7 @@ export async function userRoutes(app: FastifyInstance) {
 
     const { name, email, password } = result.data;
 
-    const userRepository = new UserRepository();
-
-    await userRepository.createUser({
-      table: "users",
-      data: { name, email, password },
-    });
+    await usersServices.createUser({data: {name, email, password}});
 
     return reply.status(201).send();
   });
