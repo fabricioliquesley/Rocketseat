@@ -3,8 +3,8 @@ import { knex } from "../database";
 type bodySchema = {
   table: string;
   data: {
-    id: string;
-    name: string;
+    id?: string;
+    name?: string;
     email: string;
     password: string;
   };
@@ -12,6 +12,7 @@ type bodySchema = {
 
 interface User {
   createUser({ table, data }: bodySchema): void;
+  getUser({ table, data }: bodySchema): object;
 }
 
 export class UserRepository implements User {
@@ -26,5 +27,13 @@ export class UserRepository implements User {
     });
 
     return;
+  }
+
+  async getUser({ table, data }: bodySchema): Promise<object> {
+    const { email, password } = data;
+
+    const user = await knex(table).select("id", "name", "email", "created_at").where({ email, password }).first();
+
+    return user;
   }
 }
