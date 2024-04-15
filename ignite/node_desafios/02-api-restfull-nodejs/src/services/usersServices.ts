@@ -12,7 +12,7 @@ type bodySchema = {
 
 type repositorySchema = {
   createUser({ table, data }: bodySchema): void;
-  createSession({ table, data }: bodySchema): object;
+  getUser({ table, data }: bodySchema): object;
 };
 
 interface Services {
@@ -46,7 +46,7 @@ export class UserServices implements Services {
   async createSession({ data }: bodySchema): Promise<object> {
     const { email, password } = data;
 
-    const userSession = await this.#userRepository.createSession({
+    const userSession = await this.#userRepository.getUser({
       table: "users",
       data: {
         email,

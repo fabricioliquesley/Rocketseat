@@ -5,7 +5,8 @@ import { UserServices } from "../services/usersServices";
 import { throwParametersError } from "../utils/throwParametersError";
 
 export async function userRoutes(app: FastifyInstance) {
-  const usersServices = new UserServices(new UserRepository());
+  const userRepository = new UserRepository();
+  const usersServices = new UserServices(userRepository);
 
   app.post("/", async (request, reply) => {
     const bodySchema = z.object({
