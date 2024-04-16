@@ -140,4 +140,56 @@ describe("Meal routes", () => {
 
     expect(deleteResponse.body).toEqual(1);
   });
+
+  it("should bee able to edit a meal", async () => {
+    await request(app.server).post("/users").send({
+      name: "New user",
+      email: "user@example.com",
+      password: "secretPassword",
+    });
+
+    const createSessionResponse = await request(app.server)
+      .post("/users/session")
+      .send({
+        email: "user@example.com",
+        password: "secretPassword",
+      });
+
+    const cookie = createSessionResponse.get("Set-Cookie");
+
+    const mealIdResponse = await request(app.server)
+      .post("/meals")
+      .send({
+        name: "Frango grelhado",
+        description: "Fatias de peito de frango grelhada, com batata doce!",
+        diet_compliant: "yes",
+      })
+      .set("cookie", String(cookie));
+
+    const mealId = mealIdResponse.body.mealId;
+
+    const meal = await request(app.server)
+      .get(`/meals/${mealId}`)
+      .set("Cookie", String(cookie));
+
+    const editMealResponse = await request(app.server)
+      .put(`/meals/edit/${mealId}`)
+      .send({
+        name: "Pizza",
+        description: "3 fatias de pizza",
+        diet_compliant: "no",
+      })
+      .set("Cookie", String(cookie));
+
+    const expectObject = {
+      id: meal.body.meal.id,
+      name: "Pizza",
+      description: "3 fatias de pizza",
+      diet_compliant: "no",
+      created_at: meal.body.meal.created_at,
+      user_id: meal.body.meal.user_id
+    }
+
+    expect(editMealResponse.body.meal).toEqual(expectObject);
+  });
 });
