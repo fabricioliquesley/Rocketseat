@@ -41,26 +41,59 @@ export async function mealRoutes(app: FastifyInstance) {
     return reply.status(201).send({ mealId });
   });
 
-  app.put("/edit/:mealId", async () => {});
+  app.put(
+    "/edit/:mealId",
+    async (request: FastifyRequest<{ Params: Params }>, reply) => {
+      const bodySchema = z.object({
+        name: z.string(),
+        description: z.string(),
+        diet_compliant: z.enum(["yes", "no"]),
+      });
+
+      const { mealId } = request.params;
+      const { name, description, diet_compliant } = bodySchema.parse(
+        request.body
+      );
+
+      const sessionId = request.cookies.sessionId;
+
+      const editResponse = await mealServices.editMeal({
+        data: { name, description, diet_compliant, user_id: sessionId },
+        mealId,
+      });
+
+      if (editResponse == 2) {
+        return reply
+          .status(400)
+          .send({ message: "ERROR: this user cannot update the meal!" });
+      }      
+
+      return reply.status(200).send({ meal: editResponse });
+    }
+  );
 
   app.delete(
     "/:mealId",
     async (request: FastifyRequest<{ Params: Params }>, reply) => {
       const mealId = request.params.mealId;
 
-      const sessionId = request.cookies.sessionId;      
+      const sessionId = request.cookies.sessionId;
 
       const deleteResponse = await mealServices.deleteMeal({
         mealId: mealId,
         sessionId: sessionId,
-      });      
+      });
 
       if (deleteResponse == 2) {
-        return reply.status(200).send({ message: "ERROR: this user cannot delete the meal!"});
+        return reply
+          .status(400)
+          .send({ message: "ERROR: this user cannot delete the meal!" });
       }
 
       if (deleteResponse == 0) {
-        return reply.status(200).send({ message: "ERROR: Meal could not be excluded!"});
+        return reply
+          .status(400)
+          .send({ message: "ERROR: Meal could not be excluded!" });
       }
 
       return reply.status(200).send(deleteResponse);
