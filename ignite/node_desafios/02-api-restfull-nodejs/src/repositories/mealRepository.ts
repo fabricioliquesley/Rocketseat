@@ -1,11 +1,12 @@
 import { knex } from "../database";
 
 export interface RepositorySchema {
-  getUser({}: parametersSchemaNoData): Promise<{id: string}>;
+  getUser({}: parametersSchemaNoData): Promise<{ id: string }>;
   createMeal({}: parametersSchema): Promise<string>;
   getAllMeals({}: parametersSchemaNoData): Promise<object[]>;
-  getMeal({}: parametersSchemaNoData): Promise<{user_id: string}>;
+  getMeal({}: parametersSchemaNoData): Promise<{ user_id: string }>;
   deleteMeal({}: parametersSchemaNoData): Promise<number>;
+  editMeal({}: parametersEditSchema): Promise<number>;
 }
 
 type parametersSchema = {
@@ -18,7 +19,18 @@ type parametersSchema = {
     user_id: string;
     created_at: string;
   };
+  mealId?: string;
 };
+
+type parametersEditSchema = {
+  table?: string;
+  data: {
+    name: string;
+    description: string;
+    diet_compliant: string;
+  };
+  mealId?: string;
+}
 
 type parametersSchemaNoData = {
   table: string;
@@ -51,10 +63,13 @@ export class MealRepository implements RepositorySchema {
     return meals;
   }
 
-  async getMeal({ table, mealId }: parametersSchemaNoData): Promise<{user_id: string}> {
+  async getMeal({
+    table,
+    mealId,
+  }: parametersSchemaNoData): Promise<{ user_id: string }> {
     type mealType = {
-      user_id: string
-    }
+      user_id: string;
+    };
 
     const meal: mealType = await knex(table).where("id", mealId).first();
 
@@ -67,9 +82,26 @@ export class MealRepository implements RepositorySchema {
     return result;
   }
 
-  async getUser({ table, sessionId }: parametersSchemaNoData): Promise<{id: string}> {
+  async getUser({
+    table,
+    sessionId,
+  }: parametersSchemaNoData): Promise<{ id: string }> {
     const user = await knex(table).where("id", sessionId).first();
 
     return user;
+  }
+
+  async editMeal({ table, data, mealId }: parametersEditSchema): Promise<number> {
+    const { name, description, diet_compliant } = data;
+
+    const result = await knex(table)
+      .update({
+        name,
+        description,
+        diet_compliant,
+      })
+      .where("id", mealId);
+
+    return result;
   }
 }
