@@ -3,6 +3,8 @@ import { RepositorySchema } from "../repositories/mealRepository";
 
 interface Meal {
   createMeal({}: parametersSchema): Promise<string>;
+  getAllMeals({}: parametersSchemaNoData): Promise<object>;
+  getMeal({}: parametersSchemaNoData): Promise<object>;
 }
 
 type parametersSchema = {
@@ -13,6 +15,12 @@ type parametersSchema = {
     user_id: string;
     diet_compliant: string;
   };
+};
+
+type parametersSchemaNoData = {
+  table?: string;
+  sessionId?: string;
+  mealId?: string;
 };
 
 export class MealServices implements Meal {
@@ -38,5 +46,23 @@ export class MealServices implements Meal {
     });
 
     return mealId;
+  }
+
+  async getAllMeals({ sessionId }: parametersSchemaNoData): Promise<object[]> {
+    const userMeals: object[] = await this.#mealRepository.getAllMeals({
+      table: "meals",
+      sessionId,
+    });
+
+    return userMeals;
+  }
+
+  async getMeal({ mealId }: parametersSchemaNoData): Promise<object> {
+    const userMeal: object = await this.#mealRepository.getMeal({
+      table: "meals",
+      mealId,
+    });
+
+    return userMeal;
   }
 }
