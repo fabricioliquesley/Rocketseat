@@ -1,9 +1,11 @@
 import { knex } from "../database";
 
 export interface RepositorySchema {
+  getUser({}: parametersSchemaNoData): Promise<{id: string}>;
   createMeal({}: parametersSchema): Promise<string>;
   getAllMeals({}: parametersSchemaNoData): Promise<object[]>;
-  getMeal({}: parametersSchemaNoData): Promise<object>;
+  getMeal({}: parametersSchemaNoData): Promise<{user_id: string}>;
+  deleteMeal({}: parametersSchemaNoData): Promise<number>;
 }
 
 type parametersSchema = {
@@ -49,9 +51,25 @@ export class MealRepository implements RepositorySchema {
     return meals;
   }
 
-  async getMeal({ table, mealId }: parametersSchemaNoData): Promise<object> {
-    const meal: object = await knex(table).where("id", mealId).first();
+  async getMeal({ table, mealId }: parametersSchemaNoData): Promise<{user_id: string}> {
+    type mealType = {
+      user_id: string
+    }
+
+    const meal: mealType = await knex(table).where("id", mealId).first();
 
     return meal;
+  }
+
+  async deleteMeal({ table, mealId }: parametersSchemaNoData): Promise<number> {
+    const result = await knex(table).del().where("id", mealId);
+
+    return result;
+  }
+
+  async getUser({ table, sessionId }: parametersSchemaNoData): Promise<{id: string}> {
+    const user = await knex(table).where("id", sessionId).first();
+
+    return user;
   }
 }
