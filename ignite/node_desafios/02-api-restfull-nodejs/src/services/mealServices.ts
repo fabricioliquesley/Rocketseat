@@ -1,10 +1,12 @@
 import { randomUUID } from "crypto";
 import { RepositorySchema } from "../repositories/mealRepository";
+import { z } from "zod";
 
 interface Meal {
   createMeal({}: parametersSchema): Promise<string>;
   getAllMeals({}: parametersSchemaNoData): Promise<object>;
   getMeal({}: parametersSchemaNoData): Promise<object>;
+  deleteMeal({}: parametersSchemaNoData): Promise<number>;
 }
 
 type parametersSchema = {
@@ -64,5 +66,27 @@ export class MealServices implements Meal {
     });
 
     return userMeal;
+  }
+
+  async deleteMeal({ mealId, sessionId }: parametersSchemaNoData): Promise<number> {
+    type mealSchema = {
+      user_id: string
+    }
+
+    type userSchema = {
+      id: string
+    }
+
+    const user: userSchema = await this.#mealRepository.getUser({table: "users", sessionId});
+
+    const meal: mealSchema = await this.#mealRepository.getMeal({table: "meals", mealId});
+
+    if (user?.id != meal?.user_id) {
+      return 2;
+    }    
+
+    const result = this.#mealRepository.deleteMeal({ table: "meals", mealId });
+
+    return result;
   }
 }
