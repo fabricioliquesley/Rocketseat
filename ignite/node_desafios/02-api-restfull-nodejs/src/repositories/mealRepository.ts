@@ -2,6 +2,8 @@ import { knex } from "../database";
 
 export interface RepositorySchema {
   createMeal({}: parametersSchema): Promise<string>;
+  getAllMeals({}: parametersSchemaNoData): Promise<object[]>;
+  getMeal({}: parametersSchemaNoData): Promise<object>;
 }
 
 type parametersSchema = {
@@ -14,6 +16,12 @@ type parametersSchema = {
     user_id: string;
     created_at: string;
   };
+};
+
+type parametersSchemaNoData = {
+  table: string;
+  sessionId?: string;
+  mealId?: string;
 };
 
 export class MealRepository implements RepositorySchema {
@@ -30,5 +38,20 @@ export class MealRepository implements RepositorySchema {
     });
 
     return id;
+  }
+
+  async getAllMeals({
+    table,
+    sessionId,
+  }: parametersSchemaNoData): Promise<object[]> {
+    const meals: object[] = await knex(table).where("user_id", sessionId);
+
+    return meals;
+  }
+
+  async getMeal({ table, mealId }: parametersSchemaNoData): Promise<object> {
+    const meal: object = await knex(table).where("id", mealId).first();
+
+    return meal;
   }
 }
