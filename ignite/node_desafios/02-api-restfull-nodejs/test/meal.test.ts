@@ -106,4 +106,38 @@ describe("Meal routes", () => {
 
     expect(meal.body.meal.id).toEqual(mealId);
   });
+
+  it("should bee able to delete a meal", async () => {
+    await request(app.server).post("/users").send({
+      name: "New user",
+      email: "user@example.com",
+      password: "secretPassword",
+    });
+
+    const createSessionResponse = await request(app.server)
+      .post("/users/session")
+      .send({
+        email: "user@example.com",
+        password: "secretPassword",
+      });
+
+    const cookie = createSessionResponse.get("Set-Cookie");
+
+    const mealIdResponse = await request(app.server)
+      .post("/meals")
+      .send({
+        name: "Frango grelhado",
+        description: "Fatias de peito de frango grelhada, com batata doce!",
+        diet_compliant: "yes",
+      })
+      .set("cookie", String(cookie));
+
+    const mealId = mealIdResponse.body.mealId;
+
+    const deleteResponse = await request(app.server)
+      .del(`/meals/${mealId}`)
+      .set("Cookie", String(cookie));
+
+    expect(deleteResponse.body).toEqual(1);
+  });
 });
