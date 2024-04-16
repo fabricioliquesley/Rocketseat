@@ -1,4 +1,4 @@
-import { FastifyInstance, FastifyRequest} from "fastify";
+import { FastifyInstance, FastifyRequest } from "fastify";
 import { z } from "zod";
 import { throwParametersError } from "../utils/throwParametersError";
 import { MealRepository } from "../repositories/mealRepository";
@@ -41,9 +41,31 @@ export async function mealRoutes(app: FastifyInstance) {
     return reply.status(201).send({ mealId });
   });
 
-  app.put("/edit/:id", async () => {});
+  app.put("/edit/:mealId", async () => {});
 
-  app.delete("/:id", async () => {});
+  app.delete(
+    "/:mealId",
+    async (request: FastifyRequest<{ Params: Params }>, reply) => {
+      const mealId = request.params.mealId;
+
+      const sessionId = request.cookies.sessionId;      
+
+      const deleteResponse = await mealServices.deleteMeal({
+        mealId: mealId,
+        sessionId: sessionId,
+      });      
+
+      if (deleteResponse == 2) {
+        return reply.status(200).send({ message: "ERROR: this user cannot delete the meal!"});
+      }
+
+      if (deleteResponse == 0) {
+        return reply.status(200).send({ message: "ERROR: Meal could not be excluded!"});
+      }
+
+      return reply.status(200).send(deleteResponse);
+    }
+  );
 
   app.get("/", async (request, reply) => {
     const sessionId = request.cookies.sessionId;
@@ -55,15 +77,16 @@ export async function mealRoutes(app: FastifyInstance) {
     return reply.status(200).send({ meals });
   });
 
-  app.get("/:mealId", async (request: FastifyRequest<{ Params: Params }>, reply) => {
-    
+  app.get(
+    "/:mealId",
+    async (request: FastifyRequest<{ Params: Params }>, reply) => {
+      const mealId = request.params.mealId;
 
-    const mealId = request.params.mealId;
+      const meal = await mealServices.getMeal({
+        mealId,
+      });
 
-    const meal = await mealServices.getMeal({
-      mealId,
-    });
-
-    return reply.status(200).send({ meal });
-  });
+      return reply.status(200).send({ meal });
+    }
+  );
 }
