@@ -29,7 +29,7 @@ export async function mealRoutes(app: FastifyInstance) {
 
     const sessionId = request.cookies.sessionId;
 
-    const mealId = await mealServices.createMeal({
+    const meal_Id = await mealServices.createMeal({
       data: {
         name,
         description,
@@ -38,7 +38,7 @@ export async function mealRoutes(app: FastifyInstance) {
       },
     });
 
-    return reply.status(201).send({ mealId });
+    return reply.status(201).send({ mealId: meal_Id });
   });
 
   app.put(
@@ -66,7 +66,7 @@ export async function mealRoutes(app: FastifyInstance) {
         return reply
           .status(400)
           .send({ message: "ERROR: this user cannot update the meal!" });
-      }      
+      }
 
       return reply.status(200).send({ meal: editResponse });
     }
@@ -122,4 +122,12 @@ export async function mealRoutes(app: FastifyInstance) {
       return reply.status(200).send({ meal });
     }
   );
+
+  app.get("/metrics", async (request, reply) => {
+    const sessionId = request.cookies.sessionId;
+
+    const metrics = await mealServices.getMetrics({ sessionId });
+
+    return reply.status(200).send({ metrics });
+  });
 }
