@@ -24,11 +24,26 @@ beforeEach(() => {
 
 describe("Meal routes", () => {
   it("should be able to create a new meal", async () => {
+    await request(app.server).post("/users").send({
+      name: "New user",
+      email: "user@example.com",
+      password: "secretPassword",
+    });
+
+    const createSessionResponse = await request(app.server)
+      .post("/users/session")
+      .send({
+        email: "user@example.com",
+        password: "secretPassword",
+      });
+
+    const cookie = createSessionResponse.get("Set-Cookie");
+
     const response = await request(app.server).post("/meals").send({
       name: "Frango grelhado",
       description: "Fatias de peito de frango grelhada, com batata doce!",
       diet_compliant: "yes",
-    });
+    }).set("Cookie", String(cookie));
 
     expect(response.body).toEqual(
       expect.objectContaining({
@@ -57,7 +72,7 @@ describe("Meal routes", () => {
       name: "Frango grelhado",
       description: "Fatias de peito de frango grelhada, com batata doce!",
       diet_compliant: "yes",
-    });
+    }).set("Cookie", String(cookie));
 
     const mealsList = await request(app.server)
       .get("/meals")
@@ -96,7 +111,7 @@ describe("Meal routes", () => {
       name: "Frango grelhado",
       description: "Fatias de peito de frango grelhada, com batata doce!",
       diet_compliant: "yes",
-    });
+    }).set("Cookie", String(cookie));
 
     const mealId = mealIdResponse.body.mealId;
 
@@ -187,9 +202,74 @@ describe("Meal routes", () => {
       description: "3 fatias de pizza",
       diet_compliant: "no",
       created_at: meal.body.meal.created_at,
-      user_id: meal.body.meal.user_id
-    }
+      user_id: meal.body.meal.user_id,
+    };
 
     expect(editMealResponse.body.meal).toEqual(expectObject);
+  });
+
+  it("should be able to get all metrics of a user profile", async () => {
+    await request(app.server).post("/users").send({
+      name: "New user",
+      email: "user@example.com",
+      password: "secretPassword",
+    });
+
+    const createSessionResponse = await request(app.server)
+      .post("/users/session")
+      .send({
+        email: "user@example.com",
+        password: "secretPassword",
+      });
+
+    const cookie = createSessionResponse.get("Set-Cookie");
+
+    await request(app.server)
+      .post("/meals")
+      .send({
+        name: "Frango grelhado",
+        description: "Fatias de peito de frango grelhada, com batata doce!",
+        diet_compliant: "yes",
+      })
+      .set("cookie", String(cookie));
+
+    await request(app.server)
+      .post("/meals")
+      .send({
+        name: "Salada tropical",
+        description: "Uma deliciosa salada feita com frutas e verduras!",
+        diet_compliant: "yes",
+      })
+      .set("cookie", String(cookie));
+
+    await request(app.server)
+      .post("/meals")
+      .send({
+        name: "Batata frita",
+        description: "Batata frita com bacon e chedar!",
+        diet_compliant: "no",
+      })
+      .set("cookie", String(cookie));
+
+    await request(app.server)
+      .post("/meals")
+      .send({
+        name: "Arroz integral",
+        description: "Uma porção de arroz integral!",
+        diet_compliant: "yes",
+      })
+      .set("cookie", String(cookie));
+
+    const metricsResponse = await request(app.server)
+      .get("/meals/metrics")
+      .set("Cookie", String(cookie));
+
+    expect(metricsResponse.body.metrics).toEqual({
+      dietIn: 3,
+      dietOut: 1,
+      totalMeal: 4,
+      bestSequence: 2,
+      currentSequence: 1,
+    });
   });
 });

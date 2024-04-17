@@ -12,8 +12,8 @@ afterAll(async () => {
 });
 
 beforeEach(() => {
-  execSync("npm run knex migrate:rollback --all");
-  execSync("npm run knex migrate:latest");
+  execSync("npm run knex -- migrate:rollback --all");
+  execSync("npm run knex -- migrate:latest");
 });
 
 describe("User routes", () => {
