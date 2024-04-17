@@ -1,5 +1,6 @@
 import { randomUUID } from "crypto";
 import { RepositorySchema } from "../repositories/mealRepository";
+import { z } from "zod";
 
 interface Meal {
   createMeal({}: parametersSchema): Promise<string>;
@@ -7,7 +8,16 @@ interface Meal {
   getMeal({}: parametersSchemaNoData): Promise<object>;
   deleteMeal({}: parametersSchemaNoData): Promise<number>;
   editMeal({}: parametersSchema): Promise<editResponse>;
+  getMetrics({}: parametersSchemaNoData): Promise<metricsResponse>;
 }
+
+type metricsResponse = {
+  dietIn: string | number;
+  dietOut: string | number;
+  totalMeal: number;
+  bestSequence: number | string;
+  currentSequence: number | string;
+};
 
 type editResponse =
   | {
@@ -47,6 +57,38 @@ export class MealServices implements Meal {
   async createMeal({ data }: parametersSchema): Promise<string> {
     const { name, description, diet_compliant, user_id } = data;
 
+    const currentSequence = Number(await this.#mealRepository.getCurrentSequence({
+      table: "users",
+      sessionId: String(user_id),
+    }));
+
+    const bestSequence = Number(await this.#mealRepository.getBestSequence({
+      table: "users",
+      sessionId: String(user_id),
+    }));
+
+    if (diet_compliant == "yes") {
+      await this.#mealRepository.updateCurrentSequence({
+        table: "users",
+        sessionId: String(user_id),
+        value: currentSequence + 1,
+      });
+
+      if (bestSequence < currentSequence + 1) {
+        await this.#mealRepository.updateBestSequence({
+          table: "users",
+          sessionId: String(user_id),
+          value: currentSequence + 1,
+        });
+      }
+    } else {
+      await this.#mealRepository.updateCurrentSequence({
+        table: "users",
+        sessionId: String(user_id),
+        value: 0,
+      });
+    }
+
     const mealId = await this.#mealRepository.createMeal({
       table: "meals",
       data: {
@@ -54,7 +96,7 @@ export class MealServices implements Meal {
         name,
         description,
         created_at: new Date().toLocaleString(),
-        user_id,
+        user_id: String(user_id),
         diet_compliant,
       },
     });
@@ -157,9 +199,46 @@ export class MealServices implements Meal {
       description,
       diet_compliant,
       user_id: String(meal.user_id),
-      created_at: String(meal.created_at)
+      created_at: String(meal.created_at),
     };
 
     return editMeal;
+  }
+
+  async getMetrics({
+    sessionId,
+  }: parametersSchemaNoData): Promise<metricsResponse> {
+    const metricsSchema = z.object({
+      dietIn: z.string().or(z.number()),
+      dietOut: z.string().or(z.number()),
+      totalMeal: z.number(),
+    });
+
+    const { dietIn, dietOut, totalMeal } = metricsSchema.parse(
+      await this.#mealRepository.getMetrics({
+        table: "meals",
+        sessionId,
+      })
+    );
+
+    const current_sequence = await this.#mealRepository.getCurrentSequence({
+      table: "users",
+      sessionId,
+    });
+
+    const best_sequence = await this.#mealRepository.getBestSequence({
+      table: "users",
+      sessionId,
+    });
+
+    const metrics: metricsResponse = {
+      dietIn,
+      dietOut,
+      totalMeal,
+      bestSequence: best_sequence,
+      currentSequence: current_sequence,
+    };
+
+    return metrics;
   }
 }
