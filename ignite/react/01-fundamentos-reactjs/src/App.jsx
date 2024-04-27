@@ -1,7 +1,20 @@
-function App() {
+import { Header } from "./components/Header"
+import { Post } from "./components/Post"
+
+import "./global.css"
+
+export function App() {
   return (
-    <h1>Hello World</h1>
+    <main>
+      <Header />
+      <Post
+        author="Fabrício Santos"
+        content="JavaScript é incrível ❤"
+      />
+      <Post
+        author={"Gabriel Guedes"}
+        content={"Esculte minha musica nova"}
+      />
+    </main>
   )
 }
-
-export default App
