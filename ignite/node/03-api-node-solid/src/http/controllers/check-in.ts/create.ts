@@ -19,11 +19,6 @@ export async function createCheckIn(
     }),
   });
 
-  const requestUserSchema = z.object({
-    sub: z.string(),
-  });
-
-  const { sub } = requestUserSchema.parse(request.user);
   const { gymId } = createCheckInParamsSchema.parse(request.params);
   const { latitude, longitude } = createCheckInBodySchema.parse(request.body);
 
@@ -31,7 +26,7 @@ export async function createCheckIn(
 
   await checkInUseCase.execute({
     gymId,
-    userId: sub,
+    userId: request.user.sub,
     userLatitude: latitude,
     userLongitude: longitude,
   });

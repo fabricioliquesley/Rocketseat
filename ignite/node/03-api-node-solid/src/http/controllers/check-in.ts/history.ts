@@ -7,17 +7,12 @@ export async function history(request: FastifyRequest, reply: FastifyReply) {
     page: z.coerce.number().min(1).default(1),
   });
 
-  const requestUserSchema = z.object({
-    sub: z.string(),
-  });
-
-  const { sub } = requestUserSchema.parse(request.user);
   const { page } = checkInHistoryQuerySchema.parse(request.query);
 
   const fetchCheckInsHistoryUseCase = makeFetchUserCheckInsHistoryUseCase();
 
   const { checkIns } = await fetchCheckInsHistoryUseCase.execute({
-    userId: sub,
+    userId: request.user.sub,
     page,
   });
 
