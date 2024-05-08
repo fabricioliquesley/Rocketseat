@@ -19,12 +19,12 @@
 - [x] O usuário não deve poder fazer 2 check-ins no mesmo dia;
 - [x] O usuário não pode fazer check-in se não estiver perto (100m) da academia;
 - [x] O check-in só pode ser validado até 20 minutos após criado;
-- [] O check-in só pode ser validado por administradores;
-- [] A academia só pode ser cadastrada por administradores;
+- [X] O check-in só pode ser validado por administradores;
+- [X] A academia só pode ser cadastrada por administradores;
 
 ## RFNs (Requisitos não funcionais)
 
 - [x] A senha do usuário precisa estar criptografada;
 - [x] Os dados da aplicação precisa estar persistidos em um banco PostgreSQL;
 - [x] Todas listas de dados precisam estar paginadas com 20 itens por página;
-- [] O usuário deve ser identificado por um token JWT;
+- [X] O usuário deve ser identificado por um token JWT;
