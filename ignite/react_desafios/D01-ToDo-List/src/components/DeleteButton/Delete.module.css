@@ -1,0 +1,17 @@
+.deleteButton {
+  background: transparent;
+  padding: 0.8rem;
+
+  &:hover {
+    background: var(--gray-400);
+    & > svg {
+      color: var(--danger);
+    } 
+  }
+}
+
+.deleteButton svg {
+  width: 1.4rem;
+  height: 1.6rem;
+  color: var(--gray-300);
+}
