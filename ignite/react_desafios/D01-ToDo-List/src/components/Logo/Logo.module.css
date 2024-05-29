@@ -1,0 +1,16 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.wrapper h2,
+.wrapper h2 b {
+  color: var(--blue);
+  font-size: 4rem;
+  font-weight: 900;
+}
+
+.wrapper h2 b {
+  color: var(--purple-dark);
+}
