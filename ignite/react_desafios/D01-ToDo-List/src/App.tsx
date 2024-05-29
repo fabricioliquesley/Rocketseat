@@ -3,7 +3,7 @@ import styles from "./App.module.css";
 import { Logo } from "./components/Logo";
 import { Input } from "./components/Input";
 import { SubmitButton } from "./components/SubmitButton";
-import { DeleteButton } from "./components/DeleteButton";
+import { Task } from "./components/Task";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         <Input placeholder="Adicione uma nova tarefa" />
         <SubmitButton />
       </form>
-      <DeleteButton />
+      <Task />
     </div>
   );
 }
