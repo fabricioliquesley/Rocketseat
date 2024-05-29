@@ -1,4 +1,4 @@
-input {
+.input {
   width: 100%;
   border-radius: 0.8rem;
   border: 1px solid var(--gray-700);
@@ -10,7 +10,7 @@ input {
   font-size: 1.6rem;
 }
 
-input:focus {
+.input:focus {
   color: var(--gray-100);
   border: 1px solid var(--purple-dark);
 }
