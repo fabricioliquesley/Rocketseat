@@ -2,8 +2,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 73.6rem;
   max-width: 73.6rem;
   margin-top: 7.2rem;
+  padding-bottom: 10rem;
 }
 
 .formWrapper {
@@ -11,4 +13,65 @@
   gap: 0.8rem;
   width: 100%;
   margin-top: 6.2rem;
+}
+
+.tasks_wrapper {
+  width: 100%;
+  margin-top: 6.4rem;
+}
+
+.tasks_wrapper .tasks_wrapper_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tasks_wrapper_header div span:first-child {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.tasks_wrapper_header div .created_tasks {
+  color: var(--blue);
+}
+
+.tasks_wrapper_header div .ready_tasks {
+  color: var(--purple);
+}
+
+.tasks_wrapper_header div .amount {
+  border-radius: 99.9rem;
+  background: var(--gray-400);
+  padding: 0.2rem 0.8rem;
+  font-size: 1.2rem;
+  margin-left: 0.8rem;
+}
+
+.tasks_wrapper .tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-top: 2.4rem;
+}
+
+.tasks .empty_tasks {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.6rem;
+  padding: 6.4rem 2.4rem;
+
+  border-radius: 0.8rem;
+  border-top: 1px solid var(--Grey-400, #333);
+}
+
+.tasks .empty_tasks p {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-top: 1.6rem;
+}
+
+.tasks .empty_tasks p b {
+  font-weight: 400;
 }
