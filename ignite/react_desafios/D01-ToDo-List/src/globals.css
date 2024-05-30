@@ -31,6 +31,7 @@ body {
   color: var(--gray-300);
   -webkit-font-smoothing: antialiased;
   font-size: 1.6rem;
+  overflow-x: hidden;
 }
 
 body::after {
