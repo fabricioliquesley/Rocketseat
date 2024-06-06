@@ -1,6 +1,19 @@
+import { useContext } from "react";
+import { CyclesContext } from "../../context/CyclesContext";
+import { formatDistanceToNow } from "date-fns";
+import { ptBR } from "date-fns/locale";
+
 import { HistoryContainer, HistoryList, TaskStatus } from "./styles";
 
 export function History() {
+  const { cycles } = useContext(CyclesContext);
+
+  const STATUS = {
+    ready: "Concluído",
+    interrupted: "Interrompido",
+    inProgress: "Em andamento",
+  };
+
   return (
     <HistoryContainer>
       <h1>Meu histórico</h1>
@@ -15,30 +28,25 @@ export function History() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Tarefa 1</td>
-              <td>20 minutos</td>
-              <td>Há cerca de 2 meses</td>
-              <td>
-                <TaskStatus status="ready">Concluído</TaskStatus>
-              </td>
-            </tr>
-            <tr>
-              <td>Tarefa 2</td>
-              <td>20 minutos</td>
-              <td>Há cerca de 2 meses</td>
-              <td>
-                <TaskStatus status="interrupted">Interrompido</TaskStatus>
-              </td>
-            </tr>
-            <tr>
-              <td>Tarefa 3</td>
-              <td>20 minutos</td>
-              <td>Há cerca de 2 meses</td>
-              <td>
-                <TaskStatus status="inProgress">Em andamento</TaskStatus>
-              </td>
-            </tr>
+            {cycles.map((cycle) => {
+              return (
+                <tr key={cycle.id}>
+                  <td>{cycle.task}</td>
+                  <td>{cycle.minutesAmount} minutos</td>
+                  <td>
+                    {formatDistanceToNow(cycle.startDate, {
+                      addSuffix: true,
+                      locale: ptBR
+                    })}
+                  </td>
+                  <td>
+                    <TaskStatus status={cycle.status}>
+                      {STATUS[cycle.status]}
+                    </TaskStatus>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </HistoryList>
