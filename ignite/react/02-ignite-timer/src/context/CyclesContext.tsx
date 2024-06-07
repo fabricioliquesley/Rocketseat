@@ -1,17 +1,10 @@
 import { ReactNode, createContext, useReducer, useState } from "react";
+import { ActionTypes, Cycle, CyclesReducer } from "../reducers/Cycles";
 
 export type TaskStatus = "ready" | "interrupted" | "inProgress";
 
 interface CyclesContextProviderProps {
   children: ReactNode;
-}
-
-interface Cycle {
-  id: string;
-  task: string;
-  minutesAmount: number;
-  startDate: Date;
-  status: TaskStatus;
 }
 
 interface CycleFormData {
@@ -31,44 +24,13 @@ interface CyclesContextType {
 
 export const CyclesContext = createContext({} as CyclesContextType);
 
-interface CyclesState {
-  cycles: Cycle[];
-  activeCycleId: string | null;
-}
-
 export function CyclesContextProvider({
   children,
 }: CyclesContextProviderProps) {
-  const [cyclesState, dispatch] = useReducer(
-    (state: CyclesState, action: any) => {
-      switch (action.type) {
-        case "ADD_NEW_CYCLE":
-          return {
-            ...state,
-            cycles: [...state.cycles, action.payload.newCycle],
-            activeCycleId: action.payload.newCycle.id,
-          };
-        case "FINISH_CYCLE":
-          return {
-            ...state,
-            cycles: state.cycles.map((cycle) => {
-              if (cycle.status === "inProgress") {
-                cycle.status = action.payload.status;
-              }
-
-              return cycle;
-            }),
-            activeCycleId: null,
-          };
-        default:
-          return state;
-      }
-    },
-    {
-      cycles: [],
-      activeCycleId: null,
-    }
-  );
+  const [cyclesState, dispatch] = useReducer(CyclesReducer, {
+    cycles: [],
+    activeCycleId: null,
+  });
 
   const [amountSecondsPassed, setAmountSecondsPassed] = useState(0);
 
@@ -88,7 +50,7 @@ export function CyclesContextProvider({
     };
 
     dispatch({
-      type: "ADD_NEW_CYCLE",
+      type: ActionTypes.ADD_NEW_CYCLE,
       payload: {
         newCycle,
       },
@@ -98,7 +60,7 @@ export function CyclesContextProvider({
 
   function finishCycle(status: TaskStatus) {
     dispatch({
-      type: "FINISH_CYCLE",
+      type: ActionTypes.FINISH_CYCLE,
       payload: {
         status,
       },
