@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext, useReducer, useState } from "react";
 
 export type TaskStatus = "ready" | "interrupted" | "inProgress";
 
@@ -31,12 +31,48 @@ interface CyclesContextType {
 
 export const CyclesContext = createContext({} as CyclesContextType);
 
+interface CyclesState {
+  cycles: Cycle[];
+  activeCycleId: string | null;
+}
+
 export function CyclesContextProvider({
   children,
 }: CyclesContextProviderProps) {
-  const [cycles, setCycles] = useState<Cycle[]>([]);
-  const [activeCycleId, setActiveCycleId] = useState<string | null>(null);
+  const [cyclesState, dispatch] = useReducer(
+    (state: CyclesState, action: any) => {
+      switch (action.type) {
+        case "ADD_NEW_CYCLE":
+          return {
+            ...state,
+            cycles: [...state.cycles, action.payload.newCycle],
+            activeCycleId: action.payload.newCycle.id,
+          };
+        case "FINISH_CYCLE":
+          return {
+            ...state,
+            cycles: state.cycles.map((cycle) => {
+              if (cycle.status === "inProgress") {
+                cycle.status = action.payload.status;
+              }
+
+              return cycle;
+            }),
+            activeCycleId: null,
+          };
+        default:
+          return state;
+      }
+    },
+    {
+      cycles: [],
+      activeCycleId: null,
+    }
+  );
+
   const [amountSecondsPassed, setAmountSecondsPassed] = useState(0);
+
+  const { cycles, activeCycleId } = cyclesState;
 
   const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId);
 
@@ -51,23 +87,22 @@ export function CyclesContextProvider({
       status: "inProgress",
     };
 
-    setCycles((state) => [...state, newCycle]);
-    setActiveCycleId(id);
+    dispatch({
+      type: "ADD_NEW_CYCLE",
+      payload: {
+        newCycle,
+      },
+    });
     setAmountSecondsPassed(0);
   }
 
   function finishCycle(status: TaskStatus) {
-    setCycles((state) =>
-      state.map((cycle) => {
-        if (cycle.status === "inProgress") {
-          cycle.status = status;
-        }
-
-        return cycle;
-      })
-    );
-
-    setActiveCycleId(null);
+    dispatch({
+      type: "FINISH_CYCLE",
+      payload: {
+        status,
+      },
+    });
   }
 
   function changeAmountSecondsPassed(seconds: number) {
