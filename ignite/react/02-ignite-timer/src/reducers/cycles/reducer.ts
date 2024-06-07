@@ -1,3 +1,4 @@
+import { produce } from "immer";
 import { TaskStatus } from "../../context/CyclesContext";
 import { ActionTypes } from "./actions";
 
@@ -17,26 +18,23 @@ interface CyclesState {
 export const CyclesReducer = (state: CyclesState, action: any) => {
   switch (action.type) {
     case ActionTypes.ADD_NEW_CYCLE:
-      return {
-        ...state,
-        cycles: [...state.cycles, action.payload.newCycle],
-        activeCycleId: action.payload.newCycle.id,
-      };
-    case ActionTypes.FINISH_CYCLE:
-      return {
-        ...state,
-        cycles: state.cycles.map((cycle) => {
-          if (cycle.status === "inProgress") {
-            cycle.status = action.payload.status;
-          }
+      return produce(state, (draft) => {
+        draft.cycles.push(action.payload.newCycle);
+        draft.activeCycleId = action.payload.newCycle.id;
+      });
+    case ActionTypes.FINISH_CYCLE: 
+      const currentCycleIndex = state.cycles.findIndex(
+        (cycle) => cycle.id === state.activeCycleId
+      );
 
-          return cycle;
-        }),
-        activeCycleId: null,
-      };
+      if (currentCycleIndex < 0) return state;
+
+      return produce(state, (draft) => {
+        draft.cycles[currentCycleIndex].status = action.payload.status;
+        draft.activeCycleId = null;
+      });
     default:
       return state;
   }
 };
 export { ActionTypes };
-
