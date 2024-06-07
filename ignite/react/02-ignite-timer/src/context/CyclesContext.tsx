@@ -1,5 +1,6 @@
 import { ReactNode, createContext, useReducer, useState } from "react";
-import { ActionTypes, Cycle, CyclesReducer } from "../reducers/Cycles";
+import { Cycle, CyclesReducer } from "../reducers/cycles/reducer";
+import { addNewCycleAction, finishCycleAction } from "../reducers/cycles/actions";
 
 export type TaskStatus = "ready" | "interrupted" | "inProgress";
 
@@ -49,22 +50,12 @@ export function CyclesContextProvider({
       status: "inProgress",
     };
 
-    dispatch({
-      type: ActionTypes.ADD_NEW_CYCLE,
-      payload: {
-        newCycle,
-      },
-    });
+    dispatch(addNewCycleAction(newCycle));
     setAmountSecondsPassed(0);
   }
 
   function finishCycle(status: TaskStatus) {
-    dispatch({
-      type: ActionTypes.FINISH_CYCLE,
-      payload: {
-        status,
-      },
-    });
+    dispatch(finishCycleAction(status));
   }
 
   function changeAmountSecondsPassed(seconds: number) {
