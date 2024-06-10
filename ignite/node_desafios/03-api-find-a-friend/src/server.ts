@@ -1,10 +1,6 @@
 import { app } from "./app";
 import { env } from "@/env";
 
-app.get("/", () => {
-  return "hello world"
-})
-
 const start = async () => {
   try {
     await app.listen({ port: env.PORT, host: "0.0.0.0" }).then(() => {
@@ -15,4 +11,5 @@ const start = async () => {
     process.exit(1)
   }
 }
+
 start()
