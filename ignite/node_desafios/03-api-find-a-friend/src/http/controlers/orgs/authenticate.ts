@@ -19,20 +19,47 @@ export async function authenticate(
 
     const { org } = await authenticateService.executeAuthenticate({
       email,
-      password
+      password,
     });
 
-    return reply.status(200).send({
-      org,
-    });
+    const token = await reply.jwtSign(
+      {},
+      {
+        sign: {
+          sub: org.id,
+        },
+      }
+    );
+
+    const refreshToken = await reply.jwtSign(
+      {},
+      {
+        sign: {
+          sub: org.id,
+          expiresIn: "7d",
+        },
+      }
+    );
+
+    return reply
+      .setCookie("refreshToken", refreshToken, {
+        path: "/",
+        secure: true,
+        sameSite: true,
+        httpOnly: true,
+      })
+      .status(200)
+      .send({
+        token,
+      });
   } catch (error) {
     if (error instanceof z.ZodError) {
       return reply.status(400).send({
-        message: 'Validation error',
+        message: "Validation error",
         issues: error.errors,
       });
     }
-    
+
     if (error instanceof invalidCredentialsError) {
       return reply.status(409).send({ message: error.message });
     }
