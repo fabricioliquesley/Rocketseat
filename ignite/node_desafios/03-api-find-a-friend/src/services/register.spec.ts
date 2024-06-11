@@ -35,7 +35,7 @@ describe("Register services", () => {
       whatsApp_number: "(31) 7070-7070",
     });
 
-    await expect(async () => {
+    expect(async () => {
       await sut.executeRegister({
         email,
         password: "1234",
