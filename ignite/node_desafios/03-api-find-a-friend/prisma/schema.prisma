@@ -13,11 +13,11 @@ enum Gender {
 }
 
 model Pet {
-  id      String @id @default(uuid())
-  specie  String
-  gender  Gender
-  details String
-  orgId   String
+  id       String @id @default(uuid())
+  category String
+  gender   Gender
+  details  String
+  orgId    String
 
   org Org @relation(fields: [orgId], references: [id])
 
