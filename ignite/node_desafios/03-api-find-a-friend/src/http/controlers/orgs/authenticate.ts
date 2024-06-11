@@ -1,0 +1,42 @@
+import { invalidCredentialsError } from "@/services/erros/invalid-credentials-error";
+import { makeAuthenticateService } from "@/services/factories/make-authenticate-service";
+import { FastifyRequest, FastifyReply } from "fastify";
+import { z } from "zod";
+
+const authenticateBodySchema = z.object({
+  email: z.string().email(),
+  password: z.string(),
+});
+
+export async function authenticate(
+  request: FastifyRequest,
+  reply: FastifyReply
+) {
+  try {
+    const { email, password } = authenticateBodySchema.parse(request.body);
+
+    const authenticateService = makeAuthenticateService();
+
+    const { org } = await authenticateService.executeAuthenticate({
+      email,
+      password
+    });
+
+    return reply.status(200).send({
+      org,
+    });
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return reply.status(400).send({
+        message: 'Validation error',
+        issues: error.errors,
+      });
+    }
+    
+    if (error instanceof invalidCredentialsError) {
+      return reply.status(409).send({ message: error.message });
+    }
+
+    throw error;
+  }
+}
