@@ -4,23 +4,25 @@ import { ZodError } from "zod";
 import { env } from "./env";
 import fastifyJwt from "@fastify/jwt";
 import fastifyCookie from "@fastify/cookie";
+import { petsRoutes } from "./http/controlers/pets/routes";
 
-export const app = fastify()
+export const app = fastify();
 
 app.register(fastifyJwt, {
   secret: env.SECRET_JWT,
   cookie: {
     cookieName: "refreshToken",
-    signed: false
+    signed: false,
   },
   sign: {
-    expiresIn: "10m"
-  }
-})
+    expiresIn: "10m",
+  },
+});
 
-app.register(fastifyCookie)
+app.register(fastifyCookie);
 
-app.register(orgsRoutes)
+app.register(orgsRoutes);
+app.register(petsRoutes);
 
 app.setErrorHandler((error, _, reply) => {
   if (error instanceof ZodError) {
