@@ -7,8 +7,8 @@ export class InMemoryPetsRepository implements PetsRepository {
 
   async createPet(data: Prisma.PetUncheckedCreateInput): Promise<Pet> {
     const pet: Pet = {
-      id: randomUUID(),
-      specie: data.specie,
+      id: data.id ?? randomUUID(),
+      category: data.category,
       gender: data.gender,
       details: data.details,
       orgId: data.orgId,
@@ -17,5 +17,15 @@ export class InMemoryPetsRepository implements PetsRepository {
     this.items.push(pet);
 
     return pet;
+  }
+
+  async findPetById(id: string): Promise<Pet | null> {
+    const pet = this.items.find(pet => pet.id === id);
+
+    if (!pet) {
+      return null;
+    }
+
+    return pet
   }
 }
