@@ -8,4 +8,12 @@ export class PrismaPetsRepository implements PetsRepository {
 
     return pet;
   }
+
+  async findPetById(id: string): Promise<Pet | null> {
+    const pet = await prisma.pet.findUnique({
+      where: { id },
+    });
+
+    return pet;
+  }
 }
