@@ -57,4 +57,40 @@ describe("get pets service", () => {
       await sut.executeGetPets({ city: "Maranhão" });
     }).rejects.toBeInstanceOf(PetNotFoundError);
   });
+
+  it("must be able to list pets by characteristics", async () => {
+    petsRepository.orgs.push({
+      id: "12",
+      address: "Maranhão",
+      email: "org.maranhao@gmail.com",
+      name: "MaraOrg",
+      password_hash: "123",
+      whatsApp_number: "0000-0000",
+    });
+
+    for (let i = 0; i < 6; i++) {
+      let eyeColor = "preto";
+      let animalType = "cadela"
+
+      if (i == 2 || i == 5) {
+        eyeColor = "azul"
+        animalType = "gata"
+      };
+
+      petsRepository.items.push({
+        id: String(i),
+        category: "dog",
+        gender: "male",
+        details: `Lola é uma ${animalType}  #${i + 1}, cor do olho ${eyeColor}`,
+        orgId: "12",
+      });
+    }
+
+    const { pets } = await sut.executeGetPets({
+      city: "Maranhão",
+      searchDescription: "gata azul"
+    }); 
+
+    expect(pets.length).toEqual(2);
+  });
 });
