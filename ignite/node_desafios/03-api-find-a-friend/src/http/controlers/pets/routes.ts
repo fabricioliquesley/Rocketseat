@@ -7,5 +7,5 @@ import { getPets } from "./get-pets";
 export async function petsRoutes(app: FastifyInstance) {
   app.post("/pets/register", { onRequest: [verifyJWT] }, register);
   app.get("/pets", getPetDetails);
-  app.get("/organization/pets", getPets)
+  app.post("/organization/pets", getPets)
 }
