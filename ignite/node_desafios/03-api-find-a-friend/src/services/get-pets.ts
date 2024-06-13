@@ -28,7 +28,6 @@ export class GetPetsService {
 
       pets = pets.filter(pet => fetchWordsInText(pet.details, keysWords));
     }
-    console.log(pets);
 
     return { pets };
   }
