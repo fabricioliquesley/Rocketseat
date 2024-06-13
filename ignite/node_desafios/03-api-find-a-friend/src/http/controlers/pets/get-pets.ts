@@ -6,12 +6,28 @@ const getPetsQuerySchema = z.object({
   city: z.string(),
 });
 
+const getPetDetailsBodySchema = z.object({
+  searchDescription: z.string().nullish(),
+});
+
 export async function getPets(request: FastifyRequest, reply: FastifyReply) {
-  const { city } = getPetsQuerySchema.parse(request.query);
+  try {
+    const { city } = getPetsQuerySchema.parse(request.query);
+    const { searchDescription } = getPetDetailsBodySchema.parse(request.body);
 
-  const getPetsService = makeGetPetsService();
+    const getPetsService = makeGetPetsService();
 
-  const { pets } = await getPetsService.executeGetPets({ city });
+    const { pets } = await getPetsService.executeGetPets({ city, searchDescription });
 
-  return reply.status(200).send({ pets });
+    return reply.status(200).send({ pets });
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return reply.status(400).send({
+        message: "Validation error",
+        issues: error.errors,
+      });
+    }
+
+    throw error;
+  }
 }
