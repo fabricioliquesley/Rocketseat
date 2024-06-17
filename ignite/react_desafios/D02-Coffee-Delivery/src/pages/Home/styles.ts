@@ -89,4 +89,11 @@ export const CoffeeListSession = styled.section`
     font-weight: 800;
     line-height: 130%;
   }
+
+  & > div {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 3.2rem;
+    row-gap: 4rem;
+  }
 `;

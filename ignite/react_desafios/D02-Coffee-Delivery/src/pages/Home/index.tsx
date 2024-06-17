@@ -1,7 +1,13 @@
-import { InfoItem, IntroductionSession, ItemsContainer, CoffeeListSession } from "./styles";
+import {
+  InfoItem,
+  IntroductionSession,
+  ItemsContainer,
+  CoffeeListSession,
+} from "./styles";
 
 import coffeeCup from "../../assets/coffe_cup.png";
 import { Coffee, Package, ShoppingCart, Timer } from "@phosphor-icons/react";
+import { CoffeeItem } from "./components/CoffeeItem";
 
 export function Home() {
   return (
@@ -47,6 +53,12 @@ export function Home() {
       </IntroductionSession>
       <CoffeeListSession>
         <h3>Nossos cafés</h3>
+        <div>
+          <CoffeeItem />
+          <CoffeeItem />
+          <CoffeeItem />
+          <CoffeeItem />
+        </div>
       </CoffeeListSession>
     </main>
   );
