@@ -19,6 +19,6 @@ export const GlobalStyled = createGlobalStyle`
   body, input, button {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
-    padding: 16rem;
+    padding: 0 16rem;
   }
 `;
