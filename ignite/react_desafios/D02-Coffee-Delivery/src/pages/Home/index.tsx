@@ -5,9 +5,11 @@ import {
   CoffeeListSession,
 } from "./styles";
 
-import coffeeCup from "../../assets/coffe_cup.png";
+import coffeeCup from "../../assets/coffee_cup.png";
 import { Coffee, Package, ShoppingCart, Timer } from "@phosphor-icons/react";
 import { CoffeeItem } from "./components/CoffeeItem";
+
+import { coffees } from "../../utils/coffees";
 
 export function Home() {
   return (
@@ -54,10 +56,9 @@ export function Home() {
       <CoffeeListSession>
         <h3>Nossos cafés</h3>
         <div>
-          <CoffeeItem />
-          <CoffeeItem />
-          <CoffeeItem />
-          <CoffeeItem />
+          {coffees.map((coffee) => (
+            <CoffeeItem coffeeData={coffee} key={coffee.id} />
+          ))}
         </div>
       </CoffeeListSession>
     </main>

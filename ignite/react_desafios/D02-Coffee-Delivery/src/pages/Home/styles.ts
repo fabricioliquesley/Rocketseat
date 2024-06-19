@@ -93,7 +93,7 @@ export const CoffeeListSession = styled.section`
   & > div {
     display: flex;
     flex-wrap: wrap;
-    column-gap: 3.2rem;
+    column-gap: 2rem;
     row-gap: 4rem;
   }
 `;

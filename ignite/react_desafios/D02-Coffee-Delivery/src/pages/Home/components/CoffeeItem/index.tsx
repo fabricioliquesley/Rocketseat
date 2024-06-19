@@ -1,21 +1,33 @@
 import { Badge, BadgeList, ContentContainer, Controls } from "./styles";
 
-import ilustrativeCoffe from "../../../../assets/coffe1.png";
 import { Minus, Plus, ShoppingCart } from "@phosphor-icons/react";
 
-export function CoffeeItem() {
+export type coffeeProps = {
+  id: string;
+  imgURL: string;
+  tags: string[];
+  title: string;
+  description: string;
+  price: number;
+};
+
+interface CoffeeItemProps {
+  coffeeData: coffeeProps;
+}
+
+export function CoffeeItem({ coffeeData }: CoffeeItemProps) {
   return (
     <ContentContainer>
-      <img src={ilustrativeCoffe} alt="Imagem ilustrativa do café" />
+      <img src={coffeeData.imgURL} alt="Imagem ilustrativa do café" />
       <BadgeList>
-        <Badge>tradicional</Badge>
+        {coffeeData.tags.map(tag => <Badge>{tag}</Badge>)}
       </BadgeList>
-      <h3>Expresso Tradicional</h3>
-      <p>O tradicional café feito com água quente e grãos moídos</p>
+      <h3>{coffeeData.title}</h3>
+      <p>{coffeeData.description}</p>
       <Controls>
         <h4>
           <b>R$ </b>
-          9,90
+          {coffeeData.price.toString().replace(".", ",")}
         </h4>
         <div>
           <div>
