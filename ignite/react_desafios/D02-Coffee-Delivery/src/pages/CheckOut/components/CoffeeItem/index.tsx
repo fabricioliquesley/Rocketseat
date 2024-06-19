@@ -1,6 +1,6 @@
 import { ContentContainer } from "./styles";
 
-import coffeeCup from "../../../../assets/coffe1.png";
+import coffeeCup from "../../../../assets/coffee1.png";
 import { Minus, Plus, Trash } from "@phosphor-icons/react";
 
 export function CoffeeItem() {
