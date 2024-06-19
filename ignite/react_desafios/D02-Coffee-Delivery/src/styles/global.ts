@@ -12,12 +12,16 @@ export const GlobalStyled = createGlobalStyle`
   }
 
   body {
-    background: ${props => props.theme["base-background"]};
+    background: ${(props) => props.theme["base-background"]};
     font-size: 1.6rem;
   }
 
   body, input, button {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
+  }
+
+  button {
+    cursor: pointer;
   }
 `;
