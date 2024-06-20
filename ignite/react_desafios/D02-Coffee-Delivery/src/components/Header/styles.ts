@@ -2,9 +2,13 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
+  position: sticky;
+  top: 0;
+  z-index: 4;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background: ${props => props.theme["base-background"]};
   padding: 3.2rem 16rem;
 
   & > div {
