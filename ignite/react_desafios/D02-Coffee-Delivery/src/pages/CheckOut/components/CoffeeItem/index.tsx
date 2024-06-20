@@ -1,33 +1,58 @@
 import { ContentContainer } from "./styles";
 
-import coffeeCup from "../../../../assets/coffee1.png";
 import { Minus, Plus, Trash } from "@phosphor-icons/react";
+import { coffeeProps } from "../../../Home/components/CoffeeItem";
+import { formatPrice } from "../../../../utils/formatPrice";
+import { useContext } from "react";
+import { CartContext } from "../../../../context/CartContext";
 
-export function CoffeeItem() {
+type coffeePropsWithQuantity = coffeeProps & {
+  quantity: number;
+};
+
+interface CoffeeItemProps {
+  coffeeData: coffeePropsWithQuantity;
+}
+
+export function CoffeeItem({ coffeeData }: CoffeeItemProps) {
+  const { addCoffee, removeAUnityOfCoffee, removeCoffee } = useContext(CartContext);
+
+  function handleIncreaseQuantity() {
+    addCoffee(coffeeData.id, 1)
+  }
+
+  function handleDecreaseQuantity() {
+    removeAUnityOfCoffee(coffeeData.id)
+  }
+
+  function handleRemoveCoffee() {
+    removeCoffee(coffeeData.id);
+  }
+
   return (
     <ContentContainer>
       <div className="info">
-        <img src={coffeeCup} />
+        <img src={coffeeData.imgURL} />
         <div>
-          <p>Expresso Tradicional</p>
+          <p>{coffeeData.title}</p>
           <div>
             <div>
-              <button>
+              <button onClick={handleDecreaseQuantity}>
                 <Minus />
               </button>
-              <span>1</span>
-              <button>
+              <span>{coffeeData.quantity}</span>
+              <button onClick={handleIncreaseQuantity}>
                 <Plus />
               </button>
             </div>
-            <button>
-              <Trash size={16}/>
+            <button onClick={handleRemoveCoffee}>
+              <Trash size={16} />
               Remover
             </button>
           </div>
         </div>
       </div>
-      <p>R$ 9,90</p>
+      <p>R$ {formatPrice(coffeeData.price)}</p>
     </ContentContainer>
   );
 }
