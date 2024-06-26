@@ -1,0 +1,60 @@
+{
+  "transactions": [
+    {
+      "id": "1",
+      "description": "Desenvolvimento de site",
+      "type": "income",
+      "category": "venda",
+      "price": 14000,
+      "createdAt": "2024-06-23T19:01:28.958Z"
+    },
+    {
+      "id": "2",
+      "description": "PlayStation 5",
+      "type": "outcome",
+      "category": "compra",
+      "price": 3800,
+      "createdAt": "2024-06-26T19:01:28.958Z"
+    },
+    {
+      "id": "3",
+      "description": "Nintendo Switch",
+      "type": "outcome",
+      "category": "compra",
+      "price": 2200,
+      "createdAt": "2024-06-26T19:05:00.000Z"
+    },
+    {
+          "id": "4",
+          "description": "Xbox Series X",
+          "type": "income",
+          "category": "venda",
+          "price": 3500,
+          "createdAt": "2024-06-26T19:06:00.000Z"
+    },
+    {
+          "id": "5",
+          "description": "Apple iPhone 14",
+          "type": "outcome",
+          "category": "compra",
+          "price": 5500,
+          "createdAt": "2024-06-26T19:07:00.000Z"
+    },
+    {
+          "id": "6",
+          "description": "Samsung Galaxy S23",
+          "type": "outcome",
+          "category": "compra",
+          "price": 4300,
+          "createdAt": "2024-06-26T19:08:00.000Z"
+    },
+    {
+          "id": "7",
+          "description": "Dell XPS 15 Laptop",
+          "type": "income",
+          "category": "VENDA",
+          "price": 7500,
+          "createdAt": "2024-06-26T19:09:00.000Z"
+    }
+  ]
+}
