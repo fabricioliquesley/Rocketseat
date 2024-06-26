@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Header } from "../../components/Header";
 import { Summary } from "../../components/Summary";
 import { SearchForm } from "./components/SearchForm/indfex";
@@ -7,29 +7,11 @@ import {
   TransactionsContainer,
   TransactionsTable,
 } from "./styles";
-
-type transaction = {
-  id: string;
-  description: string;
-  type: "income" | "outcome";
-  category: string;
-  price: number;
-  createdAt: string;
-};
+import { TransactionContext } from "../../context/TransactionsContext";
+import { dateFormatter, priceFormatter } from "../../utils/formatter";
 
 export function Transactions() {
-  const [transactions, setTransactions] = useState<transaction[]>([]);
-
-  async function loadTransactions() {
-    const response = await fetch("http://localhost:3000/transactions");
-    const data = await response.json();
-
-    setTransactions(data);
-  }
-
-  useEffect(() => {
-    loadTransactions();
-  }, []);
+  const { transactions } = useContext(TransactionContext);
 
   return (
     <div>
@@ -44,11 +26,12 @@ export function Transactions() {
                 <td>{transaction.description}</td>
                 <td>
                   <PriceHighlight variant={transaction.type}>
-                    {transaction.price}
+                    {transaction.type === "outcome" && "- "}
+                    {priceFormatter.format(transaction.price)}
                   </PriceHighlight>
                 </td>
                 <td>{transaction.category}</td>
-                <td>{transaction.createdAt}</td>
+                <td>{dateFormatter.format(new Date(transaction.createdAt))}</td>
               </tr>
             ))}
           </tbody>
