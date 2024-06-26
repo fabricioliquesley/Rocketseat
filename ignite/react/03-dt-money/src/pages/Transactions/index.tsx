@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Header } from "../../components/Header";
 import { Summary } from "../../components/Summary";
 import { SearchForm } from "./components/SearchForm/indfex";
@@ -7,7 +8,29 @@ import {
   TransactionsTable,
 } from "./styles";
 
+type transaction = {
+  id: string;
+  description: string;
+  type: "income" | "outcome";
+  category: string;
+  price: number;
+  createdAt: string;
+};
+
 export function Transactions() {
+  const [transactions, setTransactions] = useState<transaction[]>([]);
+
+  async function loadTransactions() {
+    const response = await fetch("http://localhost:3000/transactions");
+    const data = await response.json();
+
+    setTransactions(data);
+  }
+
+  useEffect(() => {
+    loadTransactions();
+  }, []);
+
   return (
     <div>
       <Header />
@@ -16,22 +39,18 @@ export function Transactions() {
         <SearchForm />
         <TransactionsTable>
           <tbody>
-            <tr>
-              <td>Desenvolvimento de site</td>
-              <td>
-                <PriceHighlight variant="income">R$ 12.000,00</PriceHighlight>
-              </td>
-              <td>Venda</td>
-              <td>13/08/2024</td>
-            </tr>
-            <tr>
-              <td>PlayStation 5</td>
-              <td>
-                <PriceHighlight variant="outcome">- R$ 4.000,00</PriceHighlight>
-              </td>
-              <td>Compras</td>
-              <td>13/08/2024</td>
-            </tr>
+            {transactions.map((transaction) => (
+              <tr key={transaction.id}>
+                <td>{transaction.description}</td>
+                <td>
+                  <PriceHighlight variant={transaction.type}>
+                    {transaction.price}
+                  </PriceHighlight>
+                </td>
+                <td>{transaction.category}</td>
+                <td>{transaction.createdAt}</td>
+              </tr>
+            ))}
           </tbody>
         </TransactionsTable>
       </TransactionsContainer>
