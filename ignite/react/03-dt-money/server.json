@@ -25,36 +25,60 @@
       "createdAt": "2024-06-26T19:05:00.000Z"
     },
     {
-          "id": "4",
-          "description": "Xbox Series X",
-          "type": "income",
-          "category": "venda",
-          "price": 3500,
-          "createdAt": "2024-06-26T19:06:00.000Z"
+      "id": "4",
+      "description": "Xbox Series X",
+      "type": "income",
+      "category": "venda",
+      "price": 3500,
+      "createdAt": "2024-06-26T19:06:00.000Z"
     },
     {
-          "id": "5",
-          "description": "Apple iPhone 14",
-          "type": "outcome",
-          "category": "compra",
-          "price": 5500,
-          "createdAt": "2024-06-26T19:07:00.000Z"
+      "id": "5",
+      "description": "Apple iPhone 14",
+      "type": "outcome",
+      "category": "compra",
+      "price": 5500,
+      "createdAt": "2024-06-26T19:07:00.000Z"
     },
     {
-          "id": "6",
-          "description": "Samsung Galaxy S23",
-          "type": "outcome",
-          "category": "compra",
-          "price": 4300,
-          "createdAt": "2024-06-26T19:08:00.000Z"
+      "id": "6",
+      "description": "Samsung Galaxy S23",
+      "type": "outcome",
+      "category": "compra",
+      "price": 4300,
+      "createdAt": "2024-06-26T19:08:00.000Z"
     },
     {
-          "id": "7",
-          "description": "Dell XPS 15 Laptop",
-          "type": "income",
-          "category": "VENDA",
-          "price": 7500,
-          "createdAt": "2024-06-26T19:09:00.000Z"
+      "id": "7",
+      "description": "Dell XPS 15 Laptop",
+      "type": "income",
+      "category": "VENDA",
+      "price": 7500,
+      "createdAt": "2024-06-26T19:09:00.000Z"
+    },
+    {
+      "description": "Viagem para EUA",
+      "category": "Lazer",
+      "price": 6000,
+      "type": "outcome",
+      "createdAt": "2024-06-27T12:10:22.190Z",
+      "id": "uSO3imP"
+    },
+    {
+      "description": "Pstel",
+      "category": "Alimentação",
+      "price": 5,
+      "type": "outcome",
+      "createdAt": "2024-06-27T12:23:27.289Z",
+      "id": "nOZFVIj"
+    },
+    {
+      "description": "Coxinha",
+      "category": "Alimentação",
+      "price": 6,
+      "type": "outcome",
+      "createdAt": "2024-06-27T12:30:02.965Z",
+      "id": "dGy26T0"
     }
   ]
 }
