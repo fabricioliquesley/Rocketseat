@@ -5,6 +5,7 @@ export const LinkContainer = styled.a`
   align-items: center;
   gap: .8rem;
   width: fit-content;
+  border-bottom: 1px solid transparent;
 
   color: ${props => props.theme.blue};
   font-size: 1.2rem;
@@ -12,6 +13,6 @@ export const LinkContainer = styled.a`
   line-height: 160%;
 
   &:hover {
-    border-bottom: 1px solid ${props => props.theme.blue};
+    border-bottom-color: ${props => props.theme.blue};
   }
 `;
