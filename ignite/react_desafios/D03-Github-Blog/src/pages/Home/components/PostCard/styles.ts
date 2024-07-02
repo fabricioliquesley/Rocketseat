@@ -19,6 +19,7 @@ export const CardContainer = styled.div`
   & > header {
     display: flex;
     justify-content: space-between;
+    gap: .8rem;
 
     > h3 {
       max-width: 28rem;

@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { ProfileProvider } from "../../contexts/profileContext";
 import { Input } from "./components/Input";
 import { PostCard } from "./components/PostCard";
@@ -7,11 +8,10 @@ import {
   PublicationsSections,
   PublicationsContainer,
 } from "./styles";
+import { PostsContext } from "../../contexts/postsContext";
 
 export function Home() {
-  const posts = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-  ];
+  const {posts} = useContext(PostsContext)
 
   return (
     <HomeContainer>
@@ -28,7 +28,7 @@ export function Home() {
         </div>
         <PublicationsContainer>
           {posts.map((post) => (
-            <PostCard />
+            <PostCard postData={post} key={post.number}/>
           ))}
         </PublicationsContainer>
       </PublicationsSections>
