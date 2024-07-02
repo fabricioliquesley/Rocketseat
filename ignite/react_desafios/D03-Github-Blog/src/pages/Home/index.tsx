@@ -1,3 +1,4 @@
+import { ProfileProvider } from "../../contexts/profileContext";
 import { Input } from "./components/Input";
 import { PostCard } from "./components/PostCard";
 import { ProfileCard } from "./components/ProfileCard";
@@ -14,7 +15,9 @@ export function Home() {
 
   return (
     <HomeContainer>
-      <ProfileCard />
+      <ProfileProvider>
+        <ProfileCard />
+      </ProfileProvider>
       <PublicationsSections>
         <div className="searchBox">
           <div className="header">

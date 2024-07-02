@@ -3,36 +3,36 @@ import { Link } from "../../../../components/Link";
 import { Avatar, CardContainer, ProfileInfo } from "./styles";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faBuilding, faUserGroup } from "@fortawesome/free-solid-svg-icons";
+import { useContext } from "react";
+import { ProfileContext } from "../../../../contexts/profileContext";
 
 export function ProfileCard() {
+  const { profile } = useContext(ProfileContext);
+
   return (
     <CardContainer>
-      <Avatar
-        src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        alt=""
-      />
+      <Avatar src={profile.avatar_url} alt="" />
       <ProfileInfo>
         <div className="header">
-          <strong>Cameron Williamson</strong>
-          <Link name="GITHUB" to="#" />
+          <strong>{profile.name}</strong>
+          <Link name="GITHUB" to={profile.html_url} />
         </div>
-        <p>
-          Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
-          viverra massa quam dignissim aenean malesuada suscipit. Nunc, volutpat
-          pulvinar vel mass.
-        </p>
+        <p>{profile.bio}</p>
         <div className="profileDetails">
           <div>
             <FontAwesomeIcon icon={faGithub} />
-            <span>cameronwll</span>
+            <span>{profile.login}</span>
           </div>
           <div>
             <FontAwesomeIcon icon={faBuilding} />
-            <span>Rocketseat</span>
+            <span>{profile.company}</span>
           </div>
           <div>
             <FontAwesomeIcon icon={faUserGroup} />
-            <span>32 seguidores</span>
+            <span>
+              {profile.followers}{" "}
+              {profile.followers > 1 ? "seguidores" : "seguidor"}
+            </span>
           </div>
         </div>
       </ProfileInfo>
