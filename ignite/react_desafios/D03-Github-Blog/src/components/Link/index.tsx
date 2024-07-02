@@ -9,7 +9,7 @@ interface LinkProps {
 
 export function Link({ name, to }: LinkProps) {
   return (
-    <LinkContainer href={to}>
+    <LinkContainer href={to} target="_blank">
       {name} <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
     </LinkContainer>
   );
