@@ -1,4 +1,10 @@
-import { ReactNode, createContext, useEffect, useState } from "react";
+import {
+  ReactNode,
+  createContext,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { api } from "../lib/axios";
 
 interface ProfileProps {
@@ -24,15 +30,15 @@ export const ProfileContext = createContext({} as ProfileContextType);
 export function ProfileProvider({ children }: ProfileProviderProps) {
   const [profile, setProfile] = useState({} as ProfileProps);
 
-  useEffect(() => {
-    async function fetchProfile() {
-      const profileResponse = await api.get("/users/maykbrito");
+  const fetchProfile = useCallback(async () => {
+    const profileResponse = await api.get("/users/maykbrito");
 
-      setProfile(profileResponse.data);
-    }
-
-    fetchProfile();
+    setProfile(profileResponse.data);
   }, []);
+
+  useEffect(() => {
+    fetchProfile();
+  }, [fetchProfile]);
   return (
     <ProfileContext.Provider value={{ profile }}>
       {children}
