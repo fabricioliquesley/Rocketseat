@@ -14,11 +14,32 @@ export const PostContent = styled.article`
   & > p {
     color: ${(props) => props.theme["base-text"]};
     line-height: 160%;
+
+    &:has(img) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  & > p > img {
+    max-width: 80rem;
+    margin: 0 auto;
   }
 
   & > a {
-    color: ${props => props.theme["blue"]};
+    color: ${(props) => props.theme["blue"]};
     line-height: 160%;
     text-decoration: underline;
+  }
+
+  & > pre {
+    background: ${(props) => props.theme["base-post"]};
+    padding: 1.6rem;
+    border-radius: 0.6rem;
+
+    p {
+      color: ${(props) => props.theme["base-title"]};
+      line-height: 160%;
+    }
   }
 `;
