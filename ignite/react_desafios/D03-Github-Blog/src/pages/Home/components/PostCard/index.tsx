@@ -9,12 +9,12 @@ interface PostCardProps {
 }
 
 export function PostCard({ postData }: PostCardProps) {
-  const { title, created_at, body } = postData;
+  const { number, title, created_at, body } = postData;
 
   const navigate = useNavigate()
 
   function navigateToPost() {
-    navigate("/post")
+    navigate(`/post/${number}`)
   }
 
   return (
