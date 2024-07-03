@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { ProfileProvider } from "../../contexts/profileContext";
-import { Input } from "./components/Input";
+import { SearchForm } from "./components/SearchForm";
 import { PostCard } from "./components/PostCard";
 import { ProfileCard } from "./components/ProfileCard";
 import {
@@ -11,7 +11,7 @@ import {
 import { PostsContext } from "../../contexts/postsContext";
 
 export function Home() {
-  const {posts} = useContext(PostsContext)
+  const { posts } = useContext(PostsContext);
 
   return (
     <HomeContainer>
@@ -24,11 +24,11 @@ export function Home() {
             <h3>Publicações</h3>
             <span>6 publicações</span>
           </div>
-          <Input placeholder="Buscar conteúdo" type="text" />
+          <SearchForm placeholder="Buscar conteúdo" type="text" />
         </div>
         <PublicationsContainer>
           {posts.map((post) => (
-            <PostCard postData={post} key={post.number}/>
+            <PostCard postData={post} key={post.number} />
           ))}
         </PublicationsContainer>
       </PublicationsSections>
