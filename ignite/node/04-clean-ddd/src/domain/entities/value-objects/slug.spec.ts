@@ -1,4 +1,4 @@
-import { expect, test } from "vitest";
+import {test, expect} from "vitest"
 import { Slug } from "./slug";
 
 test("it should be able to create a ne slug from text", () => {
