@@ -1,22 +1,61 @@
-import { randomUUID } from "node:crypto";
+import { Entity } from "@/core/entities/entity";
+import { UniqueEntityId } from "@/core/entities/unique-entity-id";
+import { Optional } from "@/core/types/optional";
 
 interface AnswerProps {
-  id?: string;
+  questionId: UniqueEntityId;
+  authorId: UniqueEntityId;
+  updatedAt?: Date;
+  createdAt: Date;
   content: string;
-  authorId: string;
-  questionId: string;
 }
 
-export class Answer {
-  public id: string;
-  public content: string;
-  public authorId: string;
-  public questionId: string;
+export class Answer extends Entity<AnswerProps> {
+  get questionId() {
+    return this.props.questionId;
+  }
 
-  constructor({content, id, authorId, questionId}: AnswerProps) {
-    this.content = content;
-    this.authorId = authorId;
-    this.id = id ?? randomUUID();
-    this.questionId = questionId;
+  get authorId() {
+    return this.props.authorId;
+  }
+
+  get updatedAt() {
+    return this.props.updatedAt;
+  }
+
+  get createdAt() {
+    return this.props.createdAt;
+  }
+
+  get content() {
+    return this.props.content;
+  }
+
+  get excerpt() {
+    return this.content.substring(0, 120).trimEnd().concat("...");
+  }
+
+  private changeUpdatedAt() {
+    this.props.updatedAt = new Date();
+  }
+
+  set content(content: string) {
+    this.props.content = content;
+    this.changeUpdatedAt();
+  }
+
+  static create(
+    props: Optional<AnswerProps, "createdAt">,
+    id?: UniqueEntityId
+  ) {
+    const answer = new Answer(
+      {
+        ...props,
+        createdAt: new Date(),
+      },
+      id
+    );
+
+    return answer;
   }
 }
