@@ -1,0 +1,36 @@
+import { AnswersRepository } from "@/domain/forum/application/repositories/answers-repository";
+import { Answer } from "@/domain/forum/enterprise/entities/answer";
+
+export class InMemoryAnswersRepository implements AnswersRepository {
+  public items: Answer[] = [];
+
+  async findById(id: string): Promise<Answer | null> {
+    const answer = await this.items.find(
+      (answer) => answer.id.toString() === id
+    );
+
+    if (!answer) return null;
+
+    return answer;
+  }
+
+  async create(answer: Answer): Promise<void> {
+    this.items.push(answer);
+  }
+
+  async delete(answer: Answer): Promise<void> {
+    const answerIndex = await this.items.findIndex(
+      (item) => item.id === answer.id
+    );
+
+    await this.items.splice(answerIndex, 1);
+  }
+
+  async save(answer: Answer): Promise<void> {
+    const answerIndex = await this.items.findIndex(
+      (item) => item.id === answer.id
+    );
+
+    this.items[answerIndex] = answer;
+  }
+}
