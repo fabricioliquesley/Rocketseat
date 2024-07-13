@@ -1,10 +1,11 @@
+import { PaginationParams } from "@/core/repositories/pagination-params";
 import { AnswersRepository } from "@/domain/forum/application/repositories/answers-repository";
 import { Answer } from "@/domain/forum/enterprise/entities/answer";
 
 export class InMemoryAnswersRepository implements AnswersRepository {
   public items: Answer[] = [];
 
-  async findById(id: string): Promise<Answer | null> {
+  async findById(id: string) {
     const answer = await this.items.find(
       (answer) => answer.id.toString() === id
     );
@@ -14,11 +15,19 @@ export class InMemoryAnswersRepository implements AnswersRepository {
     return answer;
   }
 
-  async create(answer: Answer): Promise<void> {
+  async findManyByQuestionId(questionId: string, { page }: PaginationParams) {
+    const answers = await this.items
+      .filter((answer) => answer.questionId.toString() === questionId)
+      .slice((page - 1) * 20, page * 20);
+
+    return answers;
+  }
+
+  async create(answer: Answer) {
     this.items.push(answer);
   }
 
-  async delete(answer: Answer): Promise<void> {
+  async delete(answer: Answer) {
     const answerIndex = await this.items.findIndex(
       (item) => item.id === answer.id
     );
@@ -26,7 +35,7 @@ export class InMemoryAnswersRepository implements AnswersRepository {
     await this.items.splice(answerIndex, 1);
   }
 
-  async save(answer: Answer): Promise<void> {
+  async save(answer: Answer) {
     const answerIndex = await this.items.findIndex(
       (item) => item.id === answer.id
     );
