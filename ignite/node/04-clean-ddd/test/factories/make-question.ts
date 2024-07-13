@@ -8,7 +8,7 @@ import {
 import { Slug } from "@/domain/forum/enterprise/entities/value-objects/slug";
 
 export function makeQuestion(
-  override: Partial<QuestionProps>,
+  override?: Partial<QuestionProps>,
   id?: UniqueEntityId
 ) {
   const question = Question.create({
