@@ -5,14 +5,26 @@ import { makeAnswer } from "test/factories/make-answer";
 import { InMemoryQuestionsRepository } from "test/repositories/in-memory-questions-repository";
 import { makeQuestion } from "test/factories/make-question";
 import { NotAllowedError } from "./errors/not-allowed-error";
+import { InMemoryQuestionAttachmentsRepository } from "test/repositories/in-memory-question-attachments-repository";
+import { InMemoryAnswerAttachmentsRepository } from "test/repositories/in-memory-answer-attachments-repository";
 
+let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentsRepository;
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository;
+let inMemoryAnswerAttachmentsRepository: InMemoryAnswerAttachmentsRepository;
 let inMemoryAnswersRepository: InMemoryAnswersRepository;
 let sut: ChooseBestAnswerUseCase;
 
 beforeEach(() => {
-  inMemoryQuestionsRepository = new InMemoryQuestionsRepository();
-  inMemoryAnswersRepository = new InMemoryAnswersRepository();
+  inMemoryQuestionAttachmentsRepository =
+    new InMemoryQuestionAttachmentsRepository();
+  inMemoryQuestionsRepository = new InMemoryQuestionsRepository(
+    inMemoryQuestionAttachmentsRepository
+  );
+  inMemoryAnswerAttachmentsRepository =
+    new InMemoryAnswerAttachmentsRepository();
+  inMemoryAnswersRepository = new InMemoryAnswersRepository(
+    inMemoryAnswerAttachmentsRepository
+  );
   sut = new ChooseBestAnswerUseCase(
     inMemoryQuestionsRepository,
     inMemoryAnswersRepository
@@ -47,9 +59,9 @@ describe("Choose Best Answer", () => {
     const result = await sut.execute({
       answerId: fakeAnswer.id.toString(),
       authorId: "IX02",
-    })
+    });
 
-    expect(result.isLeft()).toBe(true)
-    expect(result.value).toBeInstanceOf(NotAllowedError)
+    expect(result.isLeft()).toBe(true);
+    expect(result.value).toBeInstanceOf(NotAllowedError);
   });
 });
