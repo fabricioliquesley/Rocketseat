@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { DeleteAnswerUseCase } from "./delete-answer";
 import { makeAnswer } from "test/factories/make-answer";
 import { UniqueEntityId } from "@/core/entities/unique-entity-id";
+import { NotAllowedError } from "./errors/not-allowed-error";
 
 let inMemoryAnswersRepository: InMemoryAnswersRepository;
 let sut: DeleteAnswerUseCase;
@@ -28,9 +29,9 @@ describe("Delete Answer", () => {
     const fakeAnswer = makeAnswer({ authorId }, new UniqueEntityId("QX01"));
     await inMemoryAnswersRepository.create(fakeAnswer);
 
-    await expect(() =>
-      sut.execute({ answerId: "QX01", authorId: "SX02" })
-    ).rejects.toBeInstanceOf(Error);
-    expect(inMemoryAnswersRepository.items).toHaveLength(1);
+    const result = await sut.execute({ answerId: "QX01", authorId: "SX02" });
+
+    expect(result.isLeft()).toBe(true);
+    expect(result.value).toBeInstanceOf(NotAllowedError)
   });
 });

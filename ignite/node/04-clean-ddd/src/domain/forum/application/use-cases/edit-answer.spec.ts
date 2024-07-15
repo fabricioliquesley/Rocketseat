@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { EditAnswerUseCase } from "./edit-answer";
 import { UniqueEntityId } from "@/core/entities/unique-entity-id";
 import { makeAnswer } from "test/factories/make-answer";
+import { NotAllowedError } from "./errors/not-allowed-error";
 
 let inMemoryAnswerRepository: InMemoryAnswersRepository;
 let sut: EditAnswerUseCase;
@@ -18,13 +19,14 @@ describe("Edit Answer", () => {
     const fakeAnswer = makeAnswer({ authorId }, new UniqueEntityId("AX01"));
     await inMemoryAnswerRepository.create(fakeAnswer);
 
-    const { answer } = await sut.execute({
+    const result = await sut.execute({
       answerId: "AX01",
       authorId: authorId.toString(),
       content: "New answer content",
     });
 
-    expect(answer).toMatchObject({
+    expect(result.isRight()).toBe(true)
+    expect(result.value?.answer).toMatchObject({
       content: "New answer content",
     });
   });
@@ -34,12 +36,13 @@ describe("Edit Answer", () => {
     const fakeAnswer = makeAnswer({ authorId }, new UniqueEntityId("AX01"));
     await inMemoryAnswerRepository.create(fakeAnswer);
 
-    await expect(() =>
-      sut.execute({
-        answerId: "AX01",
-        authorId: "IX02",
-        content: "New content",
-      })
-    ).rejects.toBeInstanceOf(Error);
+    const result = await sut.execute({
+      answerId: "AX01",
+      authorId: "IX02",
+      content: "New content",
+    });
+
+    expect(result.isLeft()).toBe(true);
+    expect(result.value).toBeInstanceOf(NotAllowedError);
   });
 });

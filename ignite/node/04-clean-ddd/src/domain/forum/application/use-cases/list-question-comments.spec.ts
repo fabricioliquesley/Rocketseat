@@ -25,12 +25,12 @@ describe("List Question Comments", () => {
       makeQuestionComment({ questionId: new UniqueEntityId("QX01") })
     );
 
-    const { questionComments } = await sut.execute({
+    const result = await sut.execute({
       questionId: "QX01",
       page: 1,
     });
 
-    expect(questionComments).toHaveLength(3);
+    expect(result.value?.questionComments).toHaveLength(3);
   });
 
   it("Should be able to list paginated question comments", async () => {
@@ -40,8 +40,8 @@ describe("List Question Comments", () => {
       );
     }
 
-    const { questionComments } = await sut.execute({ questionId: "QX02", page: 2 });
+    const result = await sut.execute({ questionId: "QX02", page: 2 });
 
-    expect(questionComments).toHaveLength(2);
+    expect(result.value?.questionComments).toHaveLength(2);
   });
 });

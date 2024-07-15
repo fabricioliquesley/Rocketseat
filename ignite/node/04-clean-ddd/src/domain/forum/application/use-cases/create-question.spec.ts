@@ -12,13 +12,13 @@ describe("Create Question", () => {
   });
 
   it("should be able to create an question", async () => {
-    const { question } = await sut.execute({
+    const result = await sut.execute({
       authorId: "XX01",
       title: "Question 1",
       content: "How to make borders in css?",
     });
 
-    expect(question.id).toBeTruthy();
-    expect(inMemoryQuestionsRepository.items[0].id).toEqual(question.id)
+    expect(result.isRight()).toBe(true)
+    expect(inMemoryQuestionsRepository.items[0]).toEqual(result.value?.question)
   });
 });

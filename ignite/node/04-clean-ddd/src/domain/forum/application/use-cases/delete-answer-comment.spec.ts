@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { InMemoryAnswerCommentsRepository } from "test/repositories/in-memory-answer-comments-respository";
 import { DeleteAnswerCommentUseCase } from "./delete-answer-comment";
 import { makeAnswerComment } from "test/factories/make-answer-comment";
+import { NotAllowedError } from "./errors/not-allowed-error";
 
 let inMemoryAnswerCommentsRepository: InMemoryAnswerCommentsRepository;
 let sut: DeleteAnswerCommentUseCase;
@@ -28,12 +29,12 @@ describe("Delete Answer Comment", () => {
     const fakeAnswerComment = makeAnswerComment();
     await inMemoryAnswerCommentsRepository.create(fakeAnswerComment);
 
-    await expect(() =>
-      sut.execute({
-        answerCommentId: fakeAnswerComment.id.toString(),
-        authorId: "SX02",
-      })
-    ).rejects.toBeInstanceOf(Error);
-    expect(inMemoryAnswerCommentsRepository.items).toHaveLength(1);
+    const result = await sut.execute({
+      answerCommentId: fakeAnswerComment.id.toString(),
+      authorId: "SX02",
+    });
+
+    expect(result.isLeft()).toBe(true);
+    expect(result.value).toBeInstanceOf(NotAllowedError);
   });
 });

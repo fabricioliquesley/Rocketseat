@@ -31,9 +31,9 @@ describe("List Answers to a Question", () => {
       })
     );
 
-    const { answers } = await sut.execute({ questionId: "QX01", page: 1 });
+    const result = await sut.execute({ questionId: "QX01", page: 1 });
 
-    expect(answers).toHaveLength(2);
+    expect(result.value?.answers).toHaveLength(2);
   });
 
   it("Should be able to list paginated answers", async () => {
@@ -43,8 +43,8 @@ describe("List Answers to a Question", () => {
       );
     }
 
-    const { answers } = await sut.execute({ questionId: "QX02", page: 2 });
+    const result = await sut.execute({ questionId: "QX02", page: 2 });
 
-    expect(answers).toHaveLength(2);
+    expect(result.value?.answers).toHaveLength(2);
   });
 });
