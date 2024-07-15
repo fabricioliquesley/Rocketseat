@@ -3,13 +3,16 @@ import { ListQuestionAnswersUseCase } from "./list-question-answers";
 import { beforeEach, describe, expect, it } from "vitest";
 import { makeAnswer } from "test/factories/make-answer";
 import { UniqueEntityId } from "@/core/entities/unique-entity-id";
+import { InMemoryAnswerAttachmentsRepository } from "test/repositories/in-memory-answer-attachments-repository";
 
+let inMemoryAnswerAttachmentsRepository: InMemoryAnswerAttachmentsRepository;
 let inMemoryAnswersRepository: InMemoryAnswersRepository;
 let sut: ListQuestionAnswersUseCase;
 
 describe("List Answers to a Question", () => {
   beforeEach(() => {
-    inMemoryAnswersRepository = new InMemoryAnswersRepository();
+    inMemoryAnswerAttachmentsRepository = new InMemoryAnswerAttachmentsRepository();
+    inMemoryAnswersRepository = new InMemoryAnswersRepository(inMemoryAnswerAttachmentsRepository);
     sut = new ListQuestionAnswersUseCase(inMemoryAnswersRepository);
   });
 
