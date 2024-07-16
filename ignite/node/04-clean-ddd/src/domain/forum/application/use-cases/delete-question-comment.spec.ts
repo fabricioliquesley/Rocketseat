@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { InMemoryQuestionCommentsRepository } from "test/repositories/in-memory-question-comments-respository";
+import { InMemoryQuestionCommentsRepository } from "test/repositories/in-memory-question-comments-repository";
 import { DeleteQuestionCommentUseCase } from "./delete-question-comment";
 import { makeQuestionComment } from "test/factories/make-question-comment";
 import { NotAllowedError } from "@/core/errors/use-case-errors/not-allowed-error";

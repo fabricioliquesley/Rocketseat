@@ -12,7 +12,7 @@ import { InMemoryNotificationsRepository } from "test/repositories/in-memory-not
 import { makeQuestion } from "test/factories/make-question";
 import { waitFor } from "test/utils/wait-for";
 import { makeQuestionComment } from "test/factories/make-question-comment";
-import { InMemoryQuestionCommentsRepository } from "test/repositories/in-memory-question-comments-respository";
+import { InMemoryQuestionCommentsRepository } from "test/repositories/in-memory-question-comments-repository";
 import { OnQuestionCommentCreated } from "./on-question-comment-created";
 
 let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentsRepository;
