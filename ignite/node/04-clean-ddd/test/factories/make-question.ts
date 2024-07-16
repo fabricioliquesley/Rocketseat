@@ -12,9 +12,8 @@ export function makeQuestion(
   id?: UniqueEntityId
 ) {
   const question = Question.create({
-    authorId: new UniqueEntityId("SX01"),
+    authorId: new UniqueEntityId(),
     title: faker.lorem.sentence(),
-    slug: Slug.create("question-1"),
     content: faker.lorem.text(),
     ...override,
   }, id);

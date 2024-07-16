@@ -9,8 +9,8 @@ export function makeAnswer(
 ) {
   const question = Answer.create(
     {
-      authorId: new UniqueEntityId("SX01"),
-      questionId: new UniqueEntityId("PX01"),
+      authorId: new UniqueEntityId(),
+      questionId: new UniqueEntityId(),
       content: faker.lorem.text(),
       ...override,
     },
