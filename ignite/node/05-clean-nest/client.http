@@ -14,7 +14,7 @@ content-type: application/json
 
 # @name authenticate
 POST {{baseURL}}/sessions
-Content-Type: "application/json"
+content-Type: application/json
 
 {
   "email": "fabricio2@gmail.com",
