@@ -8,9 +8,9 @@ import { QuestionBestAnswerChosenEvent } from "../events/question-best-answer-ch
 
 export interface QuestionProps {
   attachments: QuestionAttachmentList;
-  bestAnswerId?: UniqueEntityId;
+  bestAnswerId?: UniqueEntityId | null;
   authorId: UniqueEntityId;
-  updatedAt?: Date;
+  updatedAt?: Date | null;
   createdAt: Date;
   content: string;
   title: string;
@@ -67,13 +67,10 @@ export class Question extends AggregateRoot<QuestionProps> {
     this.changeUpdatedAt();
   }
 
-  set bestAnswerId(bestAnswerId: UniqueEntityId | undefined) {
+  set bestAnswerId(bestAnswerId: UniqueEntityId | undefined | null) {
     if (bestAnswerId === undefined) return;
 
-    if (
-      this.props.bestAnswerId === undefined ||
-      !this.props.bestAnswerId.equals(bestAnswerId)
-    ) {
+    if (bestAnswerId && bestAnswerId !== this.props.bestAnswerId) {
       this.addDomainEvent(
         new QuestionBestAnswerChosenEvent(this, bestAnswerId)
       );
