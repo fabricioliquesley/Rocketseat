@@ -8,7 +8,7 @@ export interface AnswerProps {
   questionId: UniqueEntityId;
   authorId: UniqueEntityId;
   attachments: AnswerAttachmentList;
-  updatedAt?: Date;
+  updatedAt?: Date | null;
   createdAt: Date;
   content: string;
 }
