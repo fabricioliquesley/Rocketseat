@@ -3,14 +3,11 @@ import {
   Controller,
   Get,
   Query,
-  UseGuards,
 } from "@nestjs/common";
-import { JwtAuthGuard } from "src/infra/auth/jwt-auth.guard";
 import { ZodValidationPipe } from "@/infra/http/pipes/zod-validation-pipe";
 import { z } from "zod";
 import { ListRecentQuestionsUseCase } from "@/domain/forum/application/use-cases/list-recent-questions";
 import { QuestionPresenter } from "../presenters/question-presenter";
-import { error } from "console";
 
 const pageQueryParamSchema = z
   .string()
@@ -24,7 +21,6 @@ const queryValidationPipe = new ZodValidationPipe(pageQueryParamSchema);
 type PageQueryParamSchema = z.infer<typeof pageQueryParamSchema>;
 
 @Controller("/questions")
-@UseGuards(JwtAuthGuard)
 export class FetchRecentQuestionsController {
   constructor(private listRecentQuestions: ListRecentQuestionsUseCase) {}
 
