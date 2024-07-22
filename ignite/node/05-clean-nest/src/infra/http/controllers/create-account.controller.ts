@@ -1,9 +1,14 @@
-import { BadRequestException, ConflictException, UsePipes } from "@nestjs/common";
+import {
+  BadRequestException,
+  ConflictException,
+  UsePipes,
+} from "@nestjs/common";
 import { Body, Controller, HttpCode, Post } from "@nestjs/common";
 import { ZodValidationPipe } from "@/infra/http/pipes/zod-validation-pipe";
 import { z } from "zod";
 import { RegisterStudentUseCase } from "@/domain/forum/application/use-cases/register-student";
 import { StudentAlreadyExistsError } from "@/domain/forum/application/use-cases/errors/student-already-exists-error";
+import { Public } from "@/infra/auth/public";
 
 const bodySchema = z.object({
   name: z.string(),
@@ -14,6 +19,7 @@ const bodySchema = z.object({
 type BodySchema = z.infer<typeof bodySchema>;
 
 @Controller("/accounts")
+@Public()
 export class CreateAccountController {
   constructor(private registerStudent: RegisterStudentUseCase) {}
 
