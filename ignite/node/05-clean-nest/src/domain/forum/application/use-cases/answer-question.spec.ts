@@ -20,7 +20,7 @@ describe("Create Answer", () => {
 
   it("should be able to create an answer", async () => {
     const result = await sut.execute({
-      instructorId: "IX01",
+      authorId: "IX01",
       questionId: "QX01",
       attachmentsIds: ["1", "2"],
       content: "Use propriety border",
