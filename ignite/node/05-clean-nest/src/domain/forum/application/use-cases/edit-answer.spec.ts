@@ -77,4 +77,37 @@ describe("Edit Answer", () => {
     expect(result.isLeft()).toBe(true);
     expect(result.value).toBeInstanceOf(NotAllowedError);
   });
+
+  it("should sync new add and removed attachments when editing an answer", async () => {
+    const authorId = new UniqueEntityId("SX01");
+    const fakeAnswer = makeAnswer({ authorId }, new UniqueEntityId("QX01"));
+
+    await inMemoryAnswerRepository.create(fakeAnswer);
+    await inMemoryAnswerAttachmentsRepository.items.push(
+      makeAnswerAttachment({
+        answerId: fakeAnswer.id,
+        attachmentId: new UniqueEntityId("QAX01"),
+      }),
+      makeAnswerAttachment({
+        answerId: fakeAnswer.id,
+        attachmentId: new UniqueEntityId("QAX02"),
+      })
+    );
+
+    const result = await sut.execute({
+      answerId: fakeAnswer.id.toString(),
+      authorId: "SX01",
+      content: "New content",
+      attachmentsIds: ["QAX01", "QAX03"],
+    });
+
+    expect(result.isRight()).toBe(true);
+    expect(inMemoryAnswerAttachmentsRepository.items).toHaveLength(2)
+    expect(inMemoryAnswerAttachmentsRepository.items).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({attachmentId: new UniqueEntityId("QAX01")}),
+        expect.objectContaining({attachmentId: new UniqueEntityId("QAX03")}),
+      ])
+    )
+  });
 });
