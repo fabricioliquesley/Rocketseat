@@ -14,9 +14,11 @@ import { waitFor } from "test/utils/wait-for";
 import { makeQuestionComment } from "test/factories/make-question-comment";
 import { InMemoryQuestionCommentsRepository } from "test/repositories/in-memory-question-comments-repository";
 import { OnQuestionCommentCreated } from "./on-question-comment-created";
+import { InMemoryStudentsRepository } from "test/repositories/in-memory-student-repository";
 
 let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentsRepository;
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository;
+let inMemoryStudentRepository: InMemoryStudentsRepository;
 let inMemoryQuestionCommentsRepository: InMemoryQuestionCommentsRepository;
 let inMemoryAnswersRepository: InMemoryAnswersRepository;
 let inMemoryAnswerAttachmentsRepository: InMemoryAnswerAttachmentsRepository;
@@ -35,7 +37,10 @@ describe("On Question Comment Created", () => {
     inMemoryQuestionsRepository = new InMemoryQuestionsRepository(
       inMemoryQuestionAttachmentsRepository
     );
-    inMemoryQuestionCommentsRepository = new InMemoryQuestionCommentsRepository();
+    inMemoryStudentRepository = new InMemoryStudentsRepository();
+    inMemoryQuestionCommentsRepository = new InMemoryQuestionCommentsRepository(
+      inMemoryStudentRepository
+    );
     inMemoryAnswerAttachmentsRepository =
       new InMemoryAnswerAttachmentsRepository();
     inMemoryAnswersRepository = new InMemoryAnswersRepository(
@@ -48,7 +53,10 @@ describe("On Question Comment Created", () => {
 
     sendNotificationExecuteSpy = vi.spyOn(sendNotificationUseCase, "execute");
 
-    new OnQuestionCommentCreated(inMemoryQuestionsRepository, sendNotificationUseCase);
+    new OnQuestionCommentCreated(
+      inMemoryQuestionsRepository,
+      sendNotificationUseCase
+    );
   });
 
   it("Should send a notification when an question comment is created", async () => {
