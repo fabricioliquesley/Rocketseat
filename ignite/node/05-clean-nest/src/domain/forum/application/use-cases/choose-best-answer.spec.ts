@@ -7,8 +7,12 @@ import { makeQuestion } from "test/factories/make-question";
 import { NotAllowedError } from "@/core/errors/use-case-errors/not-allowed-error";
 import { InMemoryQuestionAttachmentsRepository } from "test/repositories/in-memory-question-attachments-repository";
 import { InMemoryAnswerAttachmentsRepository } from "test/repositories/in-memory-answer-attachments-repository";
+import { InMemoryStudentsRepository } from "test/repositories/in-memory-student-repository";
+import { InMemoryAttachmentRepository } from "test/repositories/in-memory-attachment-repository";
 
 let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentsRepository;
+let inMemoryAttachmentRepository: InMemoryAttachmentRepository;
+let inMemoryStudentRepository: InMemoryStudentsRepository;
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository;
 let inMemoryAnswerAttachmentsRepository: InMemoryAnswerAttachmentsRepository;
 let inMemoryAnswersRepository: InMemoryAnswersRepository;
@@ -17,8 +21,12 @@ let sut: ChooseBestAnswerUseCase;
 beforeEach(() => {
   inMemoryQuestionAttachmentsRepository =
     new InMemoryQuestionAttachmentsRepository();
+  inMemoryAttachmentRepository = new InMemoryAttachmentRepository();
+  inMemoryStudentRepository = new InMemoryStudentsRepository();
   inMemoryQuestionsRepository = new InMemoryQuestionsRepository(
-    inMemoryQuestionAttachmentsRepository
+    inMemoryQuestionAttachmentsRepository,
+    inMemoryAttachmentRepository,
+    inMemoryStudentRepository
   );
   inMemoryAnswerAttachmentsRepository =
     new InMemoryAnswerAttachmentsRepository();

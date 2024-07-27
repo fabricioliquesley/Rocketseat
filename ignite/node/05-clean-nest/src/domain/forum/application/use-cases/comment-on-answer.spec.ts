@@ -4,9 +4,11 @@ import { makeAnswer } from "test/factories/make-answer";
 import { CommentOnAnswerUseCase } from "./comment-on-answer";
 import { InMemoryAnswerCommentsRepository } from "test/repositories/in-memory-answer-comments-repository";
 import { InMemoryAnswerAttachmentsRepository } from "test/repositories/in-memory-answer-attachments-repository";
+import { InMemoryStudentsRepository } from "test/repositories/in-memory-student-repository";
 
 let inMemoryAnswerAttachmentsRepository: InMemoryAnswerAttachmentsRepository;
 let inMemoryAnswersRepository: InMemoryAnswersRepository;
+let inMemoryStudentRepository: InMemoryStudentsRepository;
 let inMemoryAnswerCommentsRepository: InMemoryAnswerCommentsRepository;
 let sut: CommentOnAnswerUseCase;
 
@@ -16,7 +18,10 @@ beforeEach(() => {
   inMemoryAnswersRepository = new InMemoryAnswersRepository(
     inMemoryAnswerAttachmentsRepository
   );
-  inMemoryAnswerCommentsRepository = new InMemoryAnswerCommentsRepository();
+  inMemoryStudentRepository = new InMemoryStudentsRepository();
+  inMemoryAnswerCommentsRepository = new InMemoryAnswerCommentsRepository(
+    inMemoryStudentRepository
+  );
 
   sut = new CommentOnAnswerUseCase(
     inMemoryAnswersRepository,

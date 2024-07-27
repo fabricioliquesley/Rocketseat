@@ -6,16 +6,24 @@ import { UniqueEntityId } from "@/core/entities/unique-entity-id";
 import { NotAllowedError } from "@/core/errors/use-case-errors/not-allowed-error";
 import { InMemoryQuestionAttachmentsRepository } from "test/repositories/in-memory-question-attachments-repository";
 import { makeQuestionAttachment } from "test/factories/make-question-attachment";
+import { InMemoryAttachmentRepository } from "test/repositories/in-memory-attachment-repository";
+import { InMemoryStudentsRepository } from "test/repositories/in-memory-student-repository";
 
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository;
 let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentsRepository;
+let inMemoryAttachmentRepository: InMemoryAttachmentRepository;
+let inMemoryStudentRepository: InMemoryStudentsRepository;
 let sut: EditQuestionUseCase;
 
 beforeEach(() => {
   inMemoryQuestionAttachmentsRepository =
     new InMemoryQuestionAttachmentsRepository();
+  inMemoryAttachmentRepository = new InMemoryAttachmentRepository();
+  inMemoryStudentRepository = new InMemoryStudentsRepository();
   inMemoryQuestionsRepository = new InMemoryQuestionsRepository(
-    inMemoryQuestionAttachmentsRepository
+    inMemoryQuestionAttachmentsRepository,
+    inMemoryAttachmentRepository,
+    inMemoryStudentRepository
   );
   sut = new EditQuestionUseCase(
     inMemoryQuestionsRepository,
@@ -107,12 +115,12 @@ describe("Edit Question", () => {
     });
 
     expect(result.isRight()).toBe(true);
-    expect(inMemoryQuestionAttachmentsRepository.items).toHaveLength(2)
+    expect(inMemoryQuestionAttachmentsRepository.items).toHaveLength(2);
     expect(inMemoryQuestionAttachmentsRepository.items).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({attachmentId: new UniqueEntityId("QAX01")}),
-        expect.objectContaining({attachmentId: new UniqueEntityId("QAX03")}),
+        expect.objectContaining({ attachmentId: new UniqueEntityId("QAX01") }),
+        expect.objectContaining({ attachmentId: new UniqueEntityId("QAX03") }),
       ])
-    )
+    );
   });
 });
