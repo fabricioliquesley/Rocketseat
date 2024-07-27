@@ -9,7 +9,7 @@ export class PrismaNotificationsRepository implements NotificationsRepository {
   constructor(private prisma: PrismaService) {}
 
   async findById(notificationId: string): Promise<Notification | null> {
-    const notification = await this.prisma.notification.findUnique({
+    const notification = await this.prisma.notification.findFirst({
       where: {
         id: notificationId,
       },
