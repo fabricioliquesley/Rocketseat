@@ -7,7 +7,7 @@ content-type: application/json
 
 {
   "name": "Fabricio",
-  "email": "fabricio2@gmail.com",
+  "email": "fabricio4@gmail.com",
   "password": "12345678"
 }
 
@@ -30,8 +30,8 @@ content-Type: application/json
 Authorization: Bearer {{authToken}}
 
 {
-  "title": "Como declaro uma função em JavaScript?",
-  "content": "Quero criar minhas proprias funçõe, como faço?" 
+  "title": "Question do fluxo completo",
+  "content": "Será que a question crida pelo fluxo completo funcionou?" 
 }
 
 ###
