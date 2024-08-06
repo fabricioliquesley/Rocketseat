@@ -10,14 +10,19 @@
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main"
+    "start:prod": "node dist/main",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@nestjs/common": "^10.0.0",
     "@nestjs/core": "^10.0.0",
     "@nestjs/platform-express": "^10.0.0",
     "reflect-metadata": "^0.2.0",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "validation-br": "^1.4.5",
+    "vite-tsconfig-paths": "^4.3.2"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
@@ -28,6 +33,8 @@
     "source-map-support": "^0.5.21",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.1.3"
+    "typescript": "^5.1.3",
+    "unplugin-swc": "^1.5.1",
+    "vitest": "^2.0.5"
   }
 }
