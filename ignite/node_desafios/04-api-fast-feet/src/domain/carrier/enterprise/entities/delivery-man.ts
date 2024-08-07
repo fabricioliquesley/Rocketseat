@@ -5,6 +5,7 @@ export interface DeliveryManProps {
   name: string;
   cpf: string;
   password: string;
+  role?: string;
 }
 
 export class DeliveryMan extends Entity<DeliveryManProps> {
@@ -20,8 +21,18 @@ export class DeliveryMan extends Entity<DeliveryManProps> {
     return this.props.password;
   }
 
-  static create(props: DeliveryManProps, id?: UniquesEntityId) {
-    const deliveryMan = new DeliveryMan(props, id);
+  get role() {
+    return this.props.role;
+  }
+
+  static create(
+    { name, cpf, password }: Omit<DeliveryManProps, "role">,
+    id?: UniquesEntityId
+  ) {
+    const deliveryMan = new DeliveryMan(
+      { name, cpf, password, role: "delivery-man" },
+      id
+    );
 
     return deliveryMan;
   }
