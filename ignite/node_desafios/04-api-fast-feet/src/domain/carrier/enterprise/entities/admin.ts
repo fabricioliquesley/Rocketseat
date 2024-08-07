@@ -1,4 +1,5 @@
 import { Entity } from "@/core/entities/entity";
+import { UniquesEntityId } from "@/core/entities/unique-entity-id";
 
 export interface AdminProps {
   name: string;
@@ -24,8 +25,11 @@ export class Admin extends Entity<AdminProps> {
     return this.props.role;
   }
 
-  static create({ name, cpf, password }: Omit<AdminProps, "role">) {
-    const admin = new Admin({ name, cpf, password, role: "admin" });
+  static create(
+    { name, cpf, password }: Omit<AdminProps, "role">,
+    id?: UniquesEntityId
+  ) {
+    const admin = new Admin({ name, cpf, password, role: "admin" }, id);
 
     return admin;
   }
