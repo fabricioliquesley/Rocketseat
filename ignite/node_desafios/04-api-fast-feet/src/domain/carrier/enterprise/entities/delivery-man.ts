@@ -13,8 +13,16 @@ export class DeliveryMan extends Entity<DeliveryManProps> {
     return this.props.name;
   }
 
+  set name(value: string) {
+    this.props.name = value;
+  }
+
   get cpf() {
     return this.props.cpf;
+  }
+
+  set cpf(value: string) {
+    this.props.cpf = value;
   }
 
   get password() {
