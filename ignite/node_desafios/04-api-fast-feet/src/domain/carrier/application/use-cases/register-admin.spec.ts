@@ -1,33 +1,33 @@
 import { FakeHasher } from "test/cryptography/fake-hasher";
-import { InMemoryDeliveryManRepository } from "test/repositories/in-memory-delivery-man-repository";
 import { RegisterUserUseCase } from "./register-user";
+import { InMemoryAdminRepository } from "test/repositories/in-memory-admin-repository";
 
-let inMemoryDeliveryManRepository: InMemoryDeliveryManRepository;
+let inMemoryAdminRepository: InMemoryAdminRepository;
 let fakeHashGenerator: FakeHasher;
 let sut: RegisterUserUseCase;
 
 beforeEach(() => {
-  inMemoryDeliveryManRepository = new InMemoryDeliveryManRepository();
+  inMemoryAdminRepository = new InMemoryAdminRepository();
   fakeHashGenerator = new FakeHasher();
   sut = new RegisterUserUseCase(
-    inMemoryDeliveryManRepository,
-    "delivery-man",
+    inMemoryAdminRepository,
+    "admin",
     fakeHashGenerator
   );
 });
 
-describe("Register Delivery-man", () => {
-  it("Should be able to create a new delivery man", async () => {
+describe("Register Admin", () => {
+  it("Should be able to create a new admin", async () => {
     await sut.execute({
       name: "John Smith",
       cpf: "111.222.333-44",
       password: "123456",
     });
 
-    expect(inMemoryDeliveryManRepository.items[0]).toEqual(
+    expect(inMemoryAdminRepository.items[0]).toEqual(
       expect.objectContaining({
         name: "John Smith",
-        role: "delivery-man",
+        role: "admin",
       })
     );
   });
