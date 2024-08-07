@@ -4,10 +4,6 @@ import { DeliveryMan } from "@/domain/carrier/enterprise/entities/delivery-man";
 export class InMemoryDeliveryManRepository implements DeliveryManRepository {
   public items: DeliveryMan[] = [];
 
-  async create(deliveryMan: DeliveryMan): Promise<void> {
-    this.items.push(deliveryMan);
-  }
-
   async findByCPF(cpf: string): Promise<DeliveryMan> {
     const deliveryMan = this.items.find(
       (deliveryMan) => deliveryMan.cpf === cpf
@@ -16,5 +12,21 @@ export class InMemoryDeliveryManRepository implements DeliveryManRepository {
     if (!deliveryMan) return null;
 
     return deliveryMan;
+  }
+
+  async create(deliveryMan: DeliveryMan): Promise<void> {
+    this.items.push(deliveryMan);
+  }
+
+  async delete(deliveryMan: DeliveryMan): Promise<void> {
+    const index = this.items.findIndex((item) => item.id === deliveryMan.id);
+    
+    this.items.splice(index, 1);
+  }
+
+  async save(deliveryMan: DeliveryMan): Promise<void> {
+    const index = this.items.findIndex((item) => item.id === deliveryMan.id);
+
+    this.items[index] = deliveryMan;
   }
 }
