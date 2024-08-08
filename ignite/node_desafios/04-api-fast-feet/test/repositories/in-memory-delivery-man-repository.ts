@@ -14,13 +14,23 @@ export class InMemoryDeliveryManRepository implements DeliveryManRepository {
     return deliveryMan;
   }
 
+  async findById(id: string): Promise<DeliveryMan> {
+    const deliveryMan = this.items.find(
+      (deliveryMan) => deliveryMan.id.toString() === id
+    );
+
+    if (!deliveryMan) return null;
+
+    return deliveryMan;
+  }
+
   async create(deliveryMan: DeliveryMan): Promise<void> {
     this.items.push(deliveryMan);
   }
 
   async delete(deliveryMan: DeliveryMan): Promise<void> {
     const index = this.items.findIndex((item) => item.id === deliveryMan.id);
-    
+
     this.items.splice(index, 1);
   }
 
