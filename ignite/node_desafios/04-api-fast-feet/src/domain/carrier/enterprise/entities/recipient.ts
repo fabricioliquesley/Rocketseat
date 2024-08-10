@@ -12,8 +12,16 @@ export class Recipient extends Entity<RecipientProps> {
     return this.props.name;
   }
 
+  set name(value: string) {
+    this.props.name = value;
+  }
+
   get cpf() {
     return this.props.cpf;
+  }
+
+  set cpf(value: string) {
+    this.props.cpf = value;
   }
 
   get password() {
