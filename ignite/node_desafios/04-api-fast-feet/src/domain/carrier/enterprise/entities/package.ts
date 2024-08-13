@@ -73,6 +73,11 @@ export class Package extends Entity<PackageProps> {
     this.changeUpdatedAt();
   }
 
+  public registerDeliveryMan(deliveryManId: UniquesEntityId) {
+    this.props.deliveryManId = deliveryManId;
+    this.changeUpdatedAt();
+  }
+
   public markAsWithdrawn() {
     this.props.withdrawalAt = new Date();
     this.changeUpdatedAt();
