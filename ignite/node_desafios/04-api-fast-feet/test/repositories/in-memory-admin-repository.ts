@@ -23,4 +23,10 @@ export class InMemoryAdminRepository implements AdminRepository {
 
     return admin;
   }
+
+  async save(admin: Admin): Promise<void> {
+    const index = this.items.findIndex((item) => item.id === admin.id);
+
+    this.items[index] = admin;
+  }
 }
