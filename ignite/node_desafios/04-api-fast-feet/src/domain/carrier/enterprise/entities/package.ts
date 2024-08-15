@@ -8,7 +8,9 @@ export interface PackageProps {
   type: string;
   situation: Situation;
   recipientId: UniquesEntityId;
-  deliveryManId?: UniquesEntityId;
+  deliveryManId: UniquesEntityId;
+  latitude: number;
+  longitude: number;
   withdrawalAt?: Date;
   returnedAt?: Date;
   deliveredAt?: Date;
@@ -38,6 +40,14 @@ export class Package extends Entity<PackageProps> {
 
   get deliveryManId() {
     return this.props.deliveryManId;
+  }
+
+  get latitude() {
+    return this.props.latitude;
+  }
+
+  get longitude() {
+    return this.props.longitude;
   }
 
   get recipientId() {
@@ -105,7 +115,10 @@ export class Package extends Entity<PackageProps> {
     >,
     id?: UniquesEntityId
   ) {
-    const _package = new Package({ situation: "on_hold", ...props }, id);
+    const _package = new Package(
+      { situation: "on_hold", deliveryManId: new UniquesEntityId(), ...props },
+      id
+    );
 
     return _package;
   }
