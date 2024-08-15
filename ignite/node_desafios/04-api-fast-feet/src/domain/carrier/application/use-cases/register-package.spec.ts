@@ -25,6 +25,8 @@ describe("Register Package", () => {
       code: "Px0001",
       type: "fragile",
       recipientId: recipient.id,
+      latitude: -19.925151,
+      longitude: -43.9391352,
     });
 
     expect(result.isRight()).toBe(true);

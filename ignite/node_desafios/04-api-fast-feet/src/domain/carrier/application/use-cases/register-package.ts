@@ -9,6 +9,8 @@ export interface RegisterPackageUseCaseRequest {
   code: string;
   type: string;
   recipientId: UniquesEntityId;
+  latitude: number;
+  longitude: number;
 }
 
 type RegisterPackageUseCaseResponse = Either<
@@ -26,6 +28,8 @@ export class RegisterPackageUseCase {
     code,
     type,
     recipientId,
+    latitude,
+    longitude,
   }: RegisterPackageUseCaseRequest): Promise<RegisterPackageUseCaseResponse> {
     const recipient = await this.recipientRepository.findById(
       recipientId.toString()
@@ -39,6 +43,8 @@ export class RegisterPackageUseCase {
       code,
       type,
       recipientId,
+      latitude,
+      longitude,
     });
 
     await this.packageRepository.create(_package);
