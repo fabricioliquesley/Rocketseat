@@ -21,6 +21,7 @@ import {
 } from "recharts";
 import colors from "tailwindcss/colors";
 import { subDays } from "date-fns";
+import { Loader2 } from "lucide-react";
 
 export const RevenueChart = () => {
   const [dateRange, setDateRange] = useState<DateRange | undefined>({
@@ -38,13 +39,13 @@ export const RevenueChart = () => {
   });
 
   const chartData = useMemo(() => {
-    return dailyRevenueMetrics?.map(item => {
+    return dailyRevenueMetrics?.map((item) => {
       return {
         date: item.date,
-        receipt: item.receipt / 100
-      }
-    })
-  }, [dailyRevenueMetrics])
+        receipt: item.receipt / 100,
+      };
+    });
+  }, [dailyRevenueMetrics]);
 
   return (
     <Card className="col-span-6">
@@ -61,7 +62,7 @@ export const RevenueChart = () => {
         </div>
       </CardHeader>
       <CardContent>
-        {dailyRevenueMetrics && (
+        {dailyRevenueMetrics ? (
           <ResponsiveContainer width={"100%"} height={240}>
             <LineChart data={chartData} style={{ fontSize: 12 }}>
               <YAxis
@@ -91,6 +92,10 @@ export const RevenueChart = () => {
               <CartesianGrid vertical={false} className="dark:stroke-muted" />
             </LineChart>
           </ResponsiveContainer>
+        ) : (
+          <div className="flex h-[240px] w-full items-center justify-center">
+            <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+          </div>
         )}
       </CardContent>
     </Card>
