@@ -1,17 +1,16 @@
 import { FakeHasher } from "test/cryptography/fake-hasher";
 import { InMemoryDeliveryManRepository } from "test/repositories/in-memory-delivery-man-repository";
-import { RegisterUserUseCase } from "./register-user";
+import { RegisterDeliveryManUseCase } from "./register-delivery-man";
 
 let inMemoryDeliveryManRepository: InMemoryDeliveryManRepository;
 let fakeHashGenerator: FakeHasher;
-let sut: RegisterUserUseCase;
+let sut: RegisterDeliveryManUseCase;
 
 beforeEach(() => {
   inMemoryDeliveryManRepository = new InMemoryDeliveryManRepository();
   fakeHashGenerator = new FakeHasher();
-  sut = new RegisterUserUseCase(
+  sut = new RegisterDeliveryManUseCase(
     inMemoryDeliveryManRepository,
-    "delivery-man",
     fakeHashGenerator
   );
 });
