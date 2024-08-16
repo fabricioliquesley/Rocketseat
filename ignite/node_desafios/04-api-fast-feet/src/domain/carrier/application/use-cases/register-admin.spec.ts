@@ -1,19 +1,15 @@
 import { FakeHasher } from "test/cryptography/fake-hasher";
-import { RegisterUserUseCase } from "./register-user";
+import { RegisterAdminUseCase } from "./register-admin";
 import { InMemoryAdminRepository } from "test/repositories/in-memory-admin-repository";
 
 let inMemoryAdminRepository: InMemoryAdminRepository;
 let fakeHashGenerator: FakeHasher;
-let sut: RegisterUserUseCase;
+let sut: RegisterAdminUseCase;
 
 beforeEach(() => {
   inMemoryAdminRepository = new InMemoryAdminRepository();
   fakeHashGenerator = new FakeHasher();
-  sut = new RegisterUserUseCase(
-    inMemoryAdminRepository,
-    "admin",
-    fakeHashGenerator
-  );
+  sut = new RegisterAdminUseCase(inMemoryAdminRepository, fakeHashGenerator);
 });
 
 describe("Register Admin", () => {
