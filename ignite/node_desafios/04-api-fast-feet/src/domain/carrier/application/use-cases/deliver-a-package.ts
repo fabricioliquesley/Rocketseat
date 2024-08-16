@@ -4,6 +4,7 @@ import { ResourceNotFoundError } from "@/core/errors/resource-not-found-error";
 import { PackageRepository } from "../repositories/package-repository";
 import { DeliveryManRepository } from "../repositories/delivery-man-repository";
 import { DeliveryManNotMatchError } from "./errors/delivery-man-not-match-error";
+import { AttachmentRepository } from "../repositories/attachment-repository";
 
 export interface DeliverAPackageUseCaseRequest {
   packageId: UniquesEntityId;
@@ -18,7 +19,8 @@ type DeliverAPackageUseCaseResponse = Either<
 export class DeliverAPackageUseCase {
   constructor(
     private packageRepository: PackageRepository,
-    private deliveryManRepository: DeliveryManRepository
+    private deliveryManRepository: DeliveryManRepository,
+    private attachmentRepository: AttachmentRepository
   ) {}
 
   async execute({
@@ -43,6 +45,14 @@ export class DeliverAPackageUseCase {
 
     if (_package.deliveryManId !== deliveryManId) {
       return left(new DeliveryManNotMatchError());
+    }
+
+    const packageAttachment = await this.attachmentRepository.findByPackageId(
+      packageId.toString()
+    );
+
+    if (!packageAttachment) {
+      return left(new ResourceNotFoundError());
     }
 
     _package.changeSituation("delivered");
