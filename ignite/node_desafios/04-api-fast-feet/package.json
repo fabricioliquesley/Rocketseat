@@ -22,7 +22,9 @@
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
     "validation-br": "^1.4.5",
-    "vite-tsconfig-paths": "^4.3.2"
+    "vite-tsconfig-paths": "^4.3.2",
+    "zod": "^3.23.8",
+    "zod-validation-error": "^3.3.1"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
