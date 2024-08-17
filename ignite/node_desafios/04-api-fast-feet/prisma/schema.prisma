@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String    @id @default(uuid())
+  name      String
+  cpf       String    @unique
+  password  String
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  recipientPackages Package[] @relation("recipients")
+  deliverPackages   Package[] @relation("delivers")
+
+  @@map("users")
+}
+
+enum Type {
+  special
+  fragile
+  dangerous
+}
+
+enum Situation {
+  on_hold
+  delivered
+  returned
+}
+
+model Package {
+  id            String    @id @default(uuid())
+  code          String
+  type          Type
+  situation     Situation
+  latitude      Int
+  longitude     Int
+  recipientId   String    @map("recipient_id")
+  deliveryManId String    @map("delivery_man_id")
+  createdAt     DateTime  @default(now()) @map("creted_at")
+  withdrawalAt  DateTime? @map("withdrawal_at")
+  returnedAt    DateTime? @map("returned_at")
+  deliveredAt   DateTime? @map("delivered_at")
+  updatedAt     DateTime? @updatedAt @map("updated_at")
+
+  recipient User @relation("recipients", fields: [recipientId], references: [id])
+  deliver   User @relation("delivers", fields: [deliveryManId], references: [id])
+
+  @@map("packages")
+}
