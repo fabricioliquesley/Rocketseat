@@ -44,7 +44,7 @@ export class UpdateDeliveryManUseCase {
       const adminWithSameCpf = await this.adminRepository.findByCPF(cpf);
 
       if (deliveryManWithSameCpf || adminWithSameCpf) {
-        return left(new UserAlreadyExistsError(cpf));
+        return left(new UserAlreadyExistsError());
       }
     }
 

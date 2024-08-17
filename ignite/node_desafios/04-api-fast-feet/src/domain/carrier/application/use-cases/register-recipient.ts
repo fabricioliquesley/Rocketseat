@@ -3,6 +3,7 @@ import { HashGenerator } from "../cryptography/hashGenerator";
 import { UserAlreadyExistsError } from "./errors/user-already-exists-error";
 import { RecipientRepository } from "../repositories/recipient-repository";
 import { Recipient } from "../../enterprise/entities/recipient";
+import { Injectable } from "@nestjs/common";
 
 interface RegisterRecipientUseCaseRequest {
   name: string;
@@ -15,6 +16,7 @@ type RegisterRecipientUseCaseResponse = Either<
   { recipient: Recipient }
 >;
 
+@Injectable()
 export class RegisterRecipientUseCase {
   constructor(
     private recipientRepositoryRepository: RecipientRepository,
@@ -30,7 +32,7 @@ export class RegisterRecipientUseCase {
       await this.recipientRepositoryRepository.findByCPF(cpf);
 
     if (recipientWithSameCpf) {
-      return left(new UserAlreadyExistsError(cpf));
+      return left(new UserAlreadyExistsError());
     }
 
     const hashedPassword = await this.hashGenerator.hash(password);

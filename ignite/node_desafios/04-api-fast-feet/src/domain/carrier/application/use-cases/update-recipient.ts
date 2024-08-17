@@ -42,7 +42,7 @@ export class UpdateRecipientUseCase {
       const adminWithSameCpf = await this.adminRepository.findByCPF(cpf);
 
       if (recipientWithSameCpf || adminWithSameCpf) {
-        return left(new UserAlreadyExistsError(cpf));
+        return left(new UserAlreadyExistsError());
       }
     }
 

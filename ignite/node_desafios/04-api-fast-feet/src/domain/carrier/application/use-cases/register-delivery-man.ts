@@ -30,7 +30,7 @@ export class RegisterDeliveryManUseCase {
       await this.deliverymanRepositoryRepository.findByCPF(cpf);
 
     if (deliverymanWithSameCpf) {
-      return left(new UserAlreadyExistsError(cpf));
+      return left(new UserAlreadyExistsError());
     }
 
     const hashedPassword = await this.hashGenerator.hash(password);

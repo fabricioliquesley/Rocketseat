@@ -31,7 +31,7 @@ export class RegisterAdminUseCase {
     );
 
     if (adminWithSameCpf) {
-      return left(new UserAlreadyExistsError(cpf));
+      return left(new UserAlreadyExistsError());
     }
 
     const hashedPassword = await this.hashGenerator.hash(password);
