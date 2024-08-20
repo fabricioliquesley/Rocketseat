@@ -7,7 +7,7 @@ export const getMonthOrdersAmountMock = http.get<
   GetMonthOrdersAmountResponse
 >("/metrics/month-orders-amount", () => {
   return HttpResponse.json({
-    amount: 20,
+    amount: 56,
     diffFromLastMonth: 7,
   });
 });
